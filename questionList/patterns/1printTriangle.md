@@ -21,3 +21,6 @@ A number n
 # Sample Output
 
 ![image](https://github.com/prateeeksahu/javacodes/assets/100373713/091d95d3-0a7f-4223-a3b0-383d9cfa48f4)
+
+# Solution
+[Click here](https://github.com/prateeeksahu/javacodes/blob/main/patterns/printingstars.java)
