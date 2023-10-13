@@ -9,8 +9,7 @@ A number n
 
 # Output Format
 
-![image]![image](https://github.com/prateeeksahu/javacodes/assets/100373713/7c930520-2d43-47a7-a414-09e5f528dad8)
-
+![image](https://github.com/prateeeksahu/javacodes/assets/100373713/5d1021df-cafb-40da-9e6b-935cb9feabb2)
 
 
 # Constraints
@@ -21,4 +20,5 @@ A number n
 
 
 # Sample Output
-![image](https://github.com/prateeeksahu/javacodes/assets/100373713/a5699440-b1eb-4c0c-9621-956f49ff5fef)
+
+![image](https://github.com/prateeeksahu/javacodes/assets/100373713/89f34189-57c7-4301-a86b-88285451eb92)
