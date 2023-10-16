@@ -22,3 +22,6 @@ A number n
 # Sample Output
 
 ![image](https://github.com/prateeeksahu/javacodes/assets/100373713/89f34189-57c7-4301-a86b-88285451eb92)
+
+# Solution
+[Click here](https://github.com/prateeeksahu/javacodes/blob/main/patterns/printreversetriangle.java)
