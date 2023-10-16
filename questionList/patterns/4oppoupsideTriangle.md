@@ -20,3 +20,6 @@ A number n
 # Sample Output
 
 ![image](https://github.com/prateeeksahu/javacodes/assets/100373713/0e13bac5-c782-4647-a742-26dd646715f6)
+
+# Solution
+[Click here](https://github.com/prateeeksahu/javacodes/blob/main/patterns/printreversetriangle.java)

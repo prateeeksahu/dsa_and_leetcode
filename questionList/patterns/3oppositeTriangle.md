@@ -21,3 +21,7 @@ A number n
 # Sample Output
 
 ![image](https://github.com/prateeeksahu/javacodes/assets/100373713/3844fbd5-f2ab-441e-be9d-05065a0b0f8e)
+
+# Solution
+
+[Click here](https://github.com/prateeeksahu/javacodes/blob/main/patterns/rightFacedTriangle.java)
