@@ -8,10 +8,10 @@
 
 [Print Diamond](https://github.com/prateeeksahu/javacodes/blob/main/questionList/patterns/5printDiamond.md)
 
-[Print Inverted Diamond](questionList/patterns/6invertedDiamond.md)
+[Print Inverted Diamond](https://github.com/prateeeksahu/javacodes/blob/main/questionList/patterns/6invertedDiamond.md)
 
-[]()
+[Print Diagonal](https://github.com/prateeeksahu/javacodes/blob/main/questionList/patterns/7printdiagonalLeftToRight.md)
 
-[]()
+[Print Opposite Triangle](https://github.com/prateeeksahu/javacodes/blob/main/questionList/patterns/8diagonalRightTOLeft.md)
 
-[]()
+[Print X](https://github.com/prateeeksahu/javacodes/blob/main/questionList/patterns/9printX.md)
