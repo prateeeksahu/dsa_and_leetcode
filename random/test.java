@@ -15,42 +15,17 @@ public class test {
             arr[j][1] = Integer.parseInt(line.split(" ")[1]);
         }
 
-        sort(arr);
+
+        Arrays.sort(arr, (a, b) -> Integer.compare(a[0],b[0]));
+
+        for (int i = 0; i < n; i++) {
+            System.out.println("arr[" + i + "][0] = " + arr[i][0] + ", arr[" + i + "][1] = " + arr[i][1]);
+        }
     }
 
 
 
-    public static void sort(int [][] arr){
-        int i = 0, j = arr.length;
 
-        while(i>=j){
-            if(arr[i][0]>arr[j][0]){
-                int temp1 = arr[i][0];
-                int temp2 = arr[i][1];
 
-                arr[i][0] = arr[j][0];
-                arr[i][1] = arr[j][1];
-
-                arr[j][0] = temp1;
-                arr[j][1] = temp2;
-                i++;
-            } else {
-                int temp1 = arr[j][0];
-                int temp2 = arr[j][1];
-
-                arr[j][0] = arr[i][0];
-                arr[j][1] = arr[i][1];
-
-                arr[i][0] = temp1;
-                arr[i][1] = temp2;
-                j--;
-            }
-        }
-
-        for (int k = 0; k < arr.length; k++) {
-            System.out.println("arr[" + k + "][0] = " + arr[k][0] + ", arr[" + k + "][1] = " + arr[k][1]);
-        }
-
-    }
 
 }

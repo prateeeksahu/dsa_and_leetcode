@@ -19,34 +19,29 @@ public class mergeOverlappingIntervals {
     }
 
     public static void interval(int [][] arr){
+        Arrays.sort(arr, (a, b) -> Integer.compare(a[0],b[0]));
 
-    }
+        Stack<Integer> stst = new Stack<>();
+        Stack<Integer> stet = new Stack();
 
-    public static void sort(int [][] arr){
-        int i = 0, j = arr.length;
+        stst.push(arr[0][0]);
+        stet.push(arr[0][1]);
 
-        while(i>=j){
-            if(arr[i][0]>arr[j][0]){
-                int temp1 = arr[i][0];
-                int temp2 = arr[i][1];
-
-                arr[i][0] = arr[j][0];
-                arr[i][1] = arr[j][1];
-
-                arr[j][0] = temp1;
-                arr[j][1] = temp2;
-                i++;
-            } else {
-                int temp1 = arr[j][0];
-                int temp2 = arr[j][1];
-
-                arr[j][0] = arr[i][0];
-                arr[j][1] = arr[i][1];
-
-                arr[i][0] = temp1;
-                arr[i][1] = temp2;
-                j--;
+        for(int i = 1;i<arr.length;i++){
+            if(stet.peek()>=arr[i][0]){
+                int x = Math.max(stet.peek(),arr[i][1]);
+                stet.pop();
+                stet.push(x);
+            } else{
+                stst.push(arr[i][0]);
+                stet.push(arr[i][1]);
             }
         }
+
+        while(stst.size()>0){
+            System.out.println(stst.pop() + " " + stet.pop());
+        }
     }
+
+
 }
