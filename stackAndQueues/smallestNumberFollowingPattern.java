@@ -49,9 +49,18 @@ public class smallestNumberFollowingPattern {
         c.add(cm);
 
         int x = v.size();
+        Stack<Integer> stt = new Stack<>();
+
         for(int i = 0;i<x;i++){
-            System.out.println(v.pop());
+            int a = (v.pop());
+            stt.push(a);
         }
+
+        for(int i = 0;i<x;i++){
+            System.out.println(stt.pop());
+        }
+
+
 
     }
 
