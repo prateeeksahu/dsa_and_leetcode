@@ -1,3 +1,5 @@
+package practice.stackAndQueues;
+
 import java.io.*;
 import java.util.*;
 
