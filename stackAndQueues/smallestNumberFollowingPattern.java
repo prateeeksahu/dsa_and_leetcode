@@ -60,7 +60,7 @@ public class smallestNumberFollowingPattern {
             System.out.println(stt.pop());
         }
 
-        
+
     }
 
 
