@@ -69,7 +69,7 @@ public class minimumStack2 {
                     return data.pop();
                 } else {
                     int ov = min;
-                    min = 2*min-data.peek();
+                    min = 2*min-data.pop();
                     return ov;
                 }
             }
@@ -89,7 +89,12 @@ public class minimumStack2 {
         }
 
         int min() {
-            return min;
+            if(size() == 0){
+                System.out.println("Stack Underflow");
+                return -1;
+            } else {
+                return min;
+            }
         }
     }
 
