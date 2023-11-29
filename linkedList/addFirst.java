@@ -1,11 +1,9 @@
 package practice.linkedList;
 
-
 import java.io.*;
-
 import java.util.*;
 
-public class addInMiddle  {
+public class addFirst {
 
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -41,10 +39,6 @@ public class addInMiddle  {
             } else if (str.startsWith("addFirst")) {
                 int val = Integer.parseInt(str.split(" ")[1]);
                 list.addFirst(val);
-            } else if (str.startsWith("addAt")) {
-                int idx = Integer.parseInt(str.split(" ")[1]);
-                int val = Integer.parseInt(str.split(" ")[2]);
-                list.addAt(idx, val);
             }
             str = br.readLine();
         }
@@ -135,34 +129,11 @@ public class addInMiddle  {
             Node temp = new Node();
             temp.data = val;
             temp.next = head;
-            head = temp;
 
-            if (size == 0) {
-                tail = temp;
+            if(size == 0){
+                head=tail=temp;
             }
-
             size++;
         }
-
-        public void addAt(int idx, int val) {
-            if (idx < 0 || idx > size) {
-                System.out.println("Invalid arguments");
-            } else if (idx == 0) {
-                addFirst(val);
-            } else if (idx == size) {
-                addLast(val);
-            } else {
-                Node node = new Node();
-                node.data = val;
-                Node temp = head;
-                for (int i = 0; i < idx - 1; i++) {
-                    temp = temp.next;
-                }
-                node.next = temp.next;
-                temp.next = node;
-                size++;
-            }
-        }
     }
-
 }
