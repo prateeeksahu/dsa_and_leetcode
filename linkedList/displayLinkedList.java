@@ -1,8 +1,7 @@
 package practice.linkedList;
 
 import java.io.*;
-import java.sql.SQLOutput;
-import java.util.*;
+
 
 public class displayLinkedList  {
     public static void main(String[] args) throws Exception {
