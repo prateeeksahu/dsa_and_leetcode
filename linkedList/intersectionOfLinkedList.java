@@ -3,7 +3,7 @@ package practice.linkedList;
 import java.io.*;
 import java.util.*;
 
-public class addTwoLinkedList {
+public class intersectionOfLinkedList {
     public static class Node {
         int data;
         Node next;
@@ -395,47 +395,31 @@ public class addTwoLinkedList {
             tail.next = null;
         }
 
+        public static int findIntersection(LinkedList one, LinkedList two) {
 
-        public static int addH(Node one, int pl1, Node two, int pl2, LinkedList res){
+            Node t1 = one.head;
+            Node t2 = two.head;
+            int delta = Math.abs(one.size - two.size);
 
-            if(pl1 == 0 && pl2 == 0){
-                return 0;
+            if (one.size > two.size) {
+                for (int i = 0; i < delta; i++) {
+                    t1 = t1.next;
+                }
+            } else if (two.size > one.size) {
+                for (int i = 0; i < delta; i++) {
+                    t2 = t2.next;
+                }
             }
 
-
-            int oc,val;
-
-            if(pl1>pl2){
-                oc = addH(one, pl1 -1, two , pl2, res);
-                val = oc + one.data;
-            } else if( pl1<pl2){
-                oc = addH(one , pl1, two, pl2 - 1, res);
-                val = oc + two.data;
-            } else {
-                oc = addH(one, pl1- 1, two, pl2 - 1, res);
-                val = one.data + two.data + oc;
+            while (t1 != t2) {
+                t1 = t1.next;
+                t2 = t2.next;
             }
 
-            int ed = val % 10;
-            int c = val / 10;
-
-            res.addFirst(ed);
-
-            return c;
-        }
-
-
-        public static LinkedList addTwoLists(LinkedList one, LinkedList two) {
-            LinkedList res = new LinkedList();
-            int c = addH(one.head, one.size, two.head , two.size, res);
-
-            if(c>0){
-                res.addFirst(c);
-            }
-
-            return res;
+            return t1.data;
         }
     }
+
 
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -456,16 +440,21 @@ public class addTwoLinkedList {
             l2.addLast(d);
         }
 
-        LinkedList sum = LinkedList.addTwoLists(l1, l2);
+        int li = Integer.parseInt(br.readLine());
+        int di = Integer.parseInt(br.readLine());
+        if(li == 1){
+            Node n = l1.getNodeAt(di);
+            l2.tail.next = n;
+            l2.tail = l1.tail;
+            l2.size += l1.size - di;
+        } else {
+            Node n = l2.getNodeAt(di);
+            l1.tail.next = n;
+            l1.tail = l2.tail;
+            l1.size += l2.size - di;
+        }
 
-        int a = Integer.parseInt(br.readLine());
-        int b = Integer.parseInt(br.readLine());
-
-        l1.display();
-        l2.display();
-        sum.display();
-        sum.addFirst(a);
-        sum.addLast(b);
-        sum.display();
+        int inter = LinkedList.findIntersection(l1, l2);
+        System.out.println(inter);
     }
 }
