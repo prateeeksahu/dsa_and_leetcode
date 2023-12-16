@@ -109,7 +109,7 @@ public class levelOrderZigzag {
         Stack <Node> s = new Stack<>();
         s.add(node);
         Stack <Node> sc = new Stack<>();
-        int l = 0;
+        int l = 1;
 
         while(s.size()>0){
             node = s.pop();
