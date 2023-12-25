@@ -25,6 +25,7 @@ public class linearizeTree {
         ArrayList< Node> children = new ArrayList< >();
     }
 
+
     public static void display(Node node) {
         String str = node.data + " -> ";
         for (Node child : node.children) {
