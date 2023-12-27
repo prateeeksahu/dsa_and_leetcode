@@ -1,11 +1,13 @@
-package practice.random;
+package practice.external;
+
+
 import java.util.*;
-public class test2 {
+public class pattern {
     public static void main(String[] args) {
         int n = 5;
 
         for (int i = 0; i<(n*2)+1;i++) {
-                int x = 1;
+            int x = 1;
             if (i == 0 || i == (n * 2)) {
                 System.out.print("*");
             } else {
@@ -39,3 +41,4 @@ public class test2 {
         }
     }
 }
+
