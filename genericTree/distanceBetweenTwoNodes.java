@@ -3,13 +3,11 @@ package practice.genericTree;
 import java.io.*;
 import java.util.*;
 
-public class lowestCommonAncestor {
+public class distanceBetweenTwoNodes {
     private static class Node {
         int data;
         ArrayList<Node> children = new ArrayList<>();
     }
-
-
 
     public static void display(Node node) {
         String str = node.data + " -> ";
@@ -67,13 +65,29 @@ public class lowestCommonAncestor {
     }
 
     public static int lca(Node node, int d1, int d2) {
-        ArrayList<Integer> n1 = nodeToRootPath(node, d1);
-        ArrayList<Integer> n2 = nodeToRootPath(node, d2);
+        ArrayList<Integer> p1 = nodeToRootPath(node, d1);
+        ArrayList<Integer> p2 = nodeToRootPath(node, d2);
 
-        int i = n1.size()-1;
-        int j = n2.size()-1;
+        int i = p1.size() - 1;
+        int j = p2.size() - 1;
 
-        while(i>=0 && j>=0 && n1.get(i) == n2.get(j)){
+        while(i >= 0 && j >= 0 && p1.get(i) == p2.get(j)){
+            i--;
+            j--;
+        }
+
+        return p1.get(i + 1);
+    }
+
+    public static int distanceBetweenNodes(Node node, int d1, int d2){
+
+        ArrayList<Integer> p1 = nodeToRootPath(node, d1);
+        ArrayList<Integer> p2 = nodeToRootPath(node, d2);
+
+        int i = p1.size() - 1;
+        int j = p2.size() - 1;
+
+        while(i >= 0 && j >= 0 && p1.get(i) == p2.get(j)){
             i--;
             j--;
         }
@@ -81,7 +95,7 @@ public class lowestCommonAncestor {
         i++;
         j++;
 
-        return n1.get(i);
+        return i+j;
     }
 
     public static void main(String[] args) throws Exception {
@@ -97,8 +111,8 @@ public class lowestCommonAncestor {
         int d2 = Integer.parseInt(br.readLine());
 
         Node root = construct(arr);
-        int lca = lca(root, d1, d2);
-        System.out.println(lca);
+        int dist = distanceBetweenNodes(root, d1, d2);
+        System.out.println(dist);
         // display(root);
     }
 
