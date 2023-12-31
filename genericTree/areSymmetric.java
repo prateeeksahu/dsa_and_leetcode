@@ -3,7 +3,7 @@ package practice.genericTree;
 import java.io.*;
 import java.util.*;
 
-public class areTreesMirror {
+public class areSymmetric {
     private static class Node {
         int data;
         ArrayList<Node> children = new ArrayList<>();
@@ -98,29 +98,23 @@ public class areTreesMirror {
         return true;
 
     }
-
+    public static boolean IsSymmetric(Node node) {
+        return areMirror(node, node);
+    }
 
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-        int n1 = Integer.parseInt(br.readLine());
-        int[] arr1 = new int[n1];
-        String[] values1 = br.readLine().split(" ");
-        for (int i = 0; i < n1; i++) {
-            arr1[i] = Integer.parseInt(values1[i]);
+        int n = Integer.parseInt(br.readLine());
+        int[] arr = new int[n];
+        String[] values = br.readLine().split(" ");
+        for (int i = 0; i < n; i++) {
+            arr[i] = Integer.parseInt(values[i]);
         }
-        Node root1 = construct(arr1);
 
-        int n2 = Integer.parseInt(br.readLine());
-        int[] arr2 = new int[n2];
-        String[] values2 = br.readLine().split(" ");
-        for (int i = 0; i < n2; i++) {
-            arr2[i] = Integer.parseInt(values2[i]);
-        }
-        Node root2 = construct(arr2);
-
-        boolean mirror = areMirror(root1, root2);
-        System.out.println(mirror);
+        Node root = construct(arr);
+        boolean sym = IsSymmetric(root);
+        System.out.println(sym);
+        // display(root);
     }
 
 }
