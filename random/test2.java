@@ -13,13 +13,15 @@ public class test2 {
                     System.out.print("*");
                     for(int j = 1; j<(i*2); j++){
                         if(j<i){
-                            System.out.print(x);
+                              System.out.print(x);
                             x++;
                         } else {
                             System.out.print(x);
                             x--;
                         }
                     }
+
+
                     System.out.print("*");
                 } else {
                     System.out.print("*");
