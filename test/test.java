@@ -6,7 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
 
-public class test {
+public class test  implements Iterable<Integer>{
 
     public static void main(String[] args) {
 
