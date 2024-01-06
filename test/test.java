@@ -15,6 +15,8 @@ public class test {
         String haystack  = sc.nextLine();
         String needle = sc.nextLine();
 
+
+
         int n = needle.length();
         int i = 0;
         int j = n;
