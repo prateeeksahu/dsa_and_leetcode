@@ -24,6 +24,7 @@ public class levelOrderTraversal {
             this.node = node;
             this.state = state;
         }
+
     }
 
     public static Node construct(Integer[] arr) {
