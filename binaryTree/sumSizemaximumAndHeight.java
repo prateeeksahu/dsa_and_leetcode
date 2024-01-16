@@ -118,31 +118,31 @@ public class sumSizemaximumAndHeight {
 
 
         return Math.max(rht, lht) +1;
-    }
-
-    public static void main(String[] args) throws Exception {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int n = Integer.parseInt(br.readLine());
-        Integer[] arr = new Integer[n];
-        String[] values = br.readLine().split(" ");
-        for (int i = 0; i < n; i++) {
-            if (values[i].equals("n") == false) {
-                arr[i] = Integer.parseInt(values[i]);
-            } else {
-                arr[i] = null;
-            }
         }
 
-        Node root = construct(arr);
+        public static void main(String[] args) throws Exception {
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            int n = Integer.parseInt(br.readLine());
+            Integer[] arr = new Integer[n];
+            String[] values = br.readLine().split(" ");
+            for (int i = 0; i < n; i++) {
+                if (values[i].equals("n") == false) {
+                    arr[i] = Integer.parseInt(values[i]);
+                } else {
+                    arr[i] = null;
+                }
+            }
 
-        int size = size(root);
-        int sum = sum(root);
-        int max = max(root);
-        int ht = height(root);
-        System.out.println(size);
-        System.out.println(sum);
-        System.out.println(max);
-        System.out.println(ht);
+            Node root = construct(arr);
+
+            int size = size(root);
+            int sum = sum(root);
+            int max = max(root);
+            int ht = height(root);
+            System.out.println(size);
+            System.out.println(sum);
+            System.out.println(max);
+            System.out.println(ht);
+        }
+
     }
-
-}
