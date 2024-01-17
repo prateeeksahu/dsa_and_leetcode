@@ -86,11 +86,13 @@ public class nodeToRootPath {
     public static boolean find(Node node, int data){
         if(node==null) return false;
 
-        boolean isAtLeft=find(node.left,data);
+
        if(node.data == data){
            res.add(node.data);
            return true;
        }
+
+
 
        boolean l = find(node.left, data);
        if(l){
@@ -124,10 +126,11 @@ public class nodeToRootPath {
         int data = Integer.parseInt(br.readLine());
 
         Node root = construct(arr);
+        res = new ArrayList<>();
         boolean found = find(root, data);
         System.out.println(found);
 
-        res = new ArrayList<>();
+
         boolean ans = find(root, data);
         System.out.println(res);
     }

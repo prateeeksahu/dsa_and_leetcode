@@ -56,12 +56,13 @@ public class levelOrderTraversal {
                     st.push(rp);
                 } else {
                     top.node.right = null;
-                }
+              }
 
                 top.state++;
             } else {
                 st.pop();
             }
+            System.out.println();
         }
 
         return root;
@@ -102,8 +103,6 @@ public class levelOrderTraversal {
                 System.out.print(node.data + " ");
             }
         }
-
-        System.out.println();
 
     }
 
