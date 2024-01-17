@@ -247,7 +247,7 @@ public class reverseLinkedList2 {
 
             Node temp = head;
             head = tail;
-            tail = head;
+             tail = temp;
         }
     }
 }
