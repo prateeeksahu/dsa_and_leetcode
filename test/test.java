@@ -55,6 +55,10 @@ public class test {
         Arrays.sort(cw1);
         Arrays.sort(cw2);
 
+
+
+
+
         for(int i = 0;i<26;i++){
             System.out.println(cw1[i] + " " + cw2[i]);
             if(cw1[i] != cw2[i]){
