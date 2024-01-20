@@ -83,45 +83,45 @@ public class printKLevelsFar {
         display(node.right);
     }
     public static ArrayList<Node> nodeToRootPath(Node node, int data){
-        if(node==null)
-            return new ArrayList<Node>();
+       if(node == null){
+           return new ArrayList<>();
+       }
 
-        //If we find the target node, the make a new AL and add this nodes data and return it.
-        if(node.data==data){
-            ArrayList<Node> ans = new ArrayList<Node>();
-            ans.add(node);
-            return ans;
+       if(node.data == data){
+           ArrayList<Node> ans = new ArrayList<>();
+           ans.add(node);
+       }
+
+       ArrayList<Node> l = nodeToRootPath(node.left, data);
+       ArrayList<Node> r = nodeToRootPath(node.right, data);
+
+       if(l.size()!=0){
+           l.add(node);
+           return l;
+       }
+
+        if(r.size()!=0){
+            r.add(node);
+            return r;
         }
 
-        //Now we check whether the left child or right child contains our required node.
-        ArrayList<Node> lchild=nodeToRootPath(node.left,data);
-        ArrayList<Node> rchild=nodeToRootPath(node.right,data);
+        return r;
 
-        if(lchild.size()!=0){
-            lchild.add(node);
-            return lchild;
-        }
-        if(rchild.size()!=0){
-            rchild.add(node);
-            return rchild;
-        }
-
-        return lchild;
     }
 
     public static void printKLevelsDown(Node node, int k,Node root){
-        if(node==null || node==root || k<0)
+        if(node==null || k<0)
             return;
 
-        printKLevelsDown(node.left,k-1,root);
         if(k==0)
             System.out.println(node.data);
+
+        printKLevelsDown(node.left,k-1,root);
         printKLevelsDown(node.right,k-1,root);
 
     }
 
     public static void printKNodesFar(Node node, int data, int k) {
-        //Node accNode=get(node,data);
         ArrayList<Node> path=nodeToRootPath(node,data);
 
         for(int i=0; i<path.size();i++){
