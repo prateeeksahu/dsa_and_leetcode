@@ -29,6 +29,9 @@ public class test2 {
         System.out.println(obj2.sum());
         System.out.println(obj1.a);
 
+
+
+
     }
 }
 
