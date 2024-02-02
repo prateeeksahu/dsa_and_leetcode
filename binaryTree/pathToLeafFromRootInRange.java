@@ -3,7 +3,7 @@ package practice.binaryTree;
 import java.io.*;
 import java.util.*;
 
-public class printKLevelsFar {
+public class pathToLeafFromRootInRange {
     public static class Node {
         int data;
         Node left;
@@ -25,7 +25,6 @@ public class printKLevelsFar {
             this.state = state;
         }
     }
-
 
     public static Node construct(Integer[] arr) {
         Node root = new Node(arr[0], null, null);
@@ -67,7 +66,6 @@ public class printKLevelsFar {
         return root;
     }
 
-
     public static void display(Node node) {
         if (node == null) {
             return;
@@ -82,50 +80,20 @@ public class printKLevelsFar {
         display(node.left);
         display(node.right);
     }
-    public static ArrayList<Node> nodeToRootPath(Node node, int data){
-       if(node == null){
-           return new ArrayList<>();
-       }
 
-       if(node.data == data){
-           ArrayList<Node> ans = new ArrayList<>();
-           ans.add(node);
-           return ans;
-       }
+    public static void pathToLeafFromRoot(Node node, String path, int sum, int lo, int hi){
+        if(node == null) return;
 
-       ArrayList<Node> l = nodeToRootPath(node.left, data);
-       ArrayList<Node> r = nodeToRootPath(node.right, data);
-
-       if(l.size()!=0){
-           l.add(node);
-           return l;
-       }
-
-        if(r.size()!=0){
-            r.add(node);
-            return r;
+        if(node.left == null && node.right == null){
+            sum+=node.data;
+            if(sum>=lo && sum<=hi){
+                System.out.println(path + node.data);
+            }
+            return;
         }
 
-        return r;
-
-    }
-
-    public static void printKLevelsDown(Node node, int k,Node root){
-        if(node==null || k<0) return;
-
-        if(k==0) System.out.println(node.data);
-
-        printKLevelsDown(node.left,k-1,root);
-        printKLevelsDown(node.right,k-1,root);
-
-    }
-
-    public static void printKNodesFar(Node node, int data, int k) {
-        ArrayList<Node> path=nodeToRootPath(node,data);
-
-        for(int i=0; i<path.size();i++){
-            printKLevelsDown(path.get(i),k-i,(i==0)?null: path.get(i-1));
-        }
+        pathToLeafFromRoot(node.right,path + node.data + " ", sum+ node.data, lo,hi);
+        pathToLeafFromRoot(node.left,path + node.data + " ", sum+ node.data, lo,hi);
 
     }
 
@@ -142,11 +110,12 @@ public class printKLevelsFar {
             }
         }
 
-        int data = Integer.parseInt(br.readLine());
-        int k = Integer.parseInt(br.readLine());
+        int lo = Integer.parseInt(br.readLine());
+        int hi = Integer.parseInt(br.readLine());
 
         Node root = construct(arr);
-        printKNodesFar(root, data, k);
+        pathToLeafFromRoot(root, "",0, lo, hi);
     }
 
 }
+
