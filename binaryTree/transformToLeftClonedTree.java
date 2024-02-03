@@ -3,7 +3,7 @@ package practice.binaryTree;
 import java.io.*;
 import java.util.*;
 
-public class TransformToLeftClonedTree {
+public class transformToLeftClonedTree {
     public static class Node {
         int data;
         Node left;
@@ -94,10 +94,17 @@ public class TransformToLeftClonedTree {
 //    }
 
     public static Node createLeftCloneTree(Node node){
-        if(node==null) return node;
+        if(node==null) return null;
 
+        Node lcr = createLeftCloneTree(node.left);
+        Node rcr = createLeftCloneTree(node.right);
+
+        Node nn = new Node(node.data, lcr, null);
+        node.left = nn;
+        node.right = rcr;
 
         return node;
+
     }
 
     public static void main(String[] args) throws Exception {
