@@ -3,7 +3,7 @@ package practice.binaryTree;
 import java.io.*;
 import java.util.*;
 
-public class TransferToNormalFromLeftCloned {
+public class transferToNormalFromLeftCloned {
     public static class Node {
         int data;
         Node left;
@@ -81,16 +81,32 @@ public class TransferToNormalFromLeftCloned {
         display(node.right);
     }
 
+//    public static Node transBackFromLeftClonedTree(Node node){
+//        if(node==null)
+//            return null;
+//
+//        node.left=(node.left!=null)?node.left.left:null;
+//
+//        transBackFromLeftClonedTree(node.left);
+//        transBackFromLeftClonedTree(node.right);
+//        return node;
+//    }
+
     public static Node transBackFromLeftClonedTree(Node node){
-        if(node==null)
-            return null;
+        if(node==null) {return null;}
 
-        node.left=(node.left!=null)?node.left.left:null;
+        Node ln = transBackFromLeftClonedTree(node.left.left);
+        Node rn = transBackFromLeftClonedTree(node.right);
 
-        transBackFromLeftClonedTree(node.left);
-        transBackFromLeftClonedTree(node.right);
+        node.left = ln;
+        node.right = rn;
+
         return node;
+
     }
+
+
+
 
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
