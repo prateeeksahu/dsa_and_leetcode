@@ -3,7 +3,7 @@ package practice.binaryTree;
 import java.io.*;
 import java.util.*;
 
-public class printSingleChildNodes {
+public class removeLeavesInBT {
     public static class Node {
         int data;
         Node left;
@@ -81,31 +81,28 @@ public class printSingleChildNodes {
         display(node.right);
     }
 
-//    public static void printSingleChildNodes(Node node, Node parent){
+//    public static Node removeLeaves(Node node){
 //        if(node==null)
-//            return;
-//        if(parent!=null){
-//            if((parent.left!=null && parent.right==null) || (parent.left==null && parent.right!=null)){
-//                System.out.println(node.data);
-//            }
+//            return node;
+//        if(node.left==null && node.right==null)
+//            node=null;
+//
+//        if(node!=null){
+//            node.left=removeLeaves(node.left);
+//            node.right=removeLeaves(node.right);
 //        }
-//        printSingleChildNodes(node.left,node);
-//        printSingleChildNodes(node.right,node);
+//        return node;
 //    }
 
+    public static Node removeLeaves(Node node){
+      if(node == null) return node;
 
+      if(node.left == null && node.right == null) return null;
 
-    public static void printSingleChildNodes(Node node, Node parent){
-       if(node  == null ) return;
+      node.left = removeLeaves(node.left);
+      node.right = removeLeaves(node.right);
 
-       if(parent != null && parent.left == node && parent.right == null){
-           System.out.println(node.data);
-       } else if (parent != null && parent.left == null && parent.right == node) {
-           System.out.println(node.data);
-       }
-
-        printSingleChildNodes(node.left,node);
-        printSingleChildNodes(node.right,node);
+      return node;
     }
 
     public static void main(String[] args) throws Exception {
@@ -122,7 +119,8 @@ public class printSingleChildNodes {
         }
 
         Node root = construct(arr);
-        printSingleChildNodes(root, null);
+        root = removeLeaves(root);
+        display(root);
     }
 
 }
