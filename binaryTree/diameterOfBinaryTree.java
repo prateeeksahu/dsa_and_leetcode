@@ -95,7 +95,40 @@ public class diameterOfBinaryTree {
 
     static int dm;
     public static int diameter1(Node node) {
-      return 0;
+      if (node == null) return 0;
+
+      int ld = diameter1(node.left);
+      int rd = diameter1(node.right);
+      int t = height(node.left) + height(node.right) + 2;
+
+      return Math.max(t,(Math.max(ld, rd)));
+
+    }
+
+    public static class DPair{
+        int dia;
+        int ht;
+    }
+
+    public static DPair diameter2(Node node){
+
+        if(node == null){
+            DPair p = new DPair();
+            p.ht = -1;
+            p.dia = 0;
+            return p;
+        }
+
+        DPair lp = diameter2(node.left);
+        DPair rp = diameter2(node.right);
+
+        DPair p = new DPair();
+        p.ht = Math.max(lp.ht, rp.ht) + 1;
+
+        p.dia = Math.max(lp.ht + rp.ht + 2, Math.max(lp.dia, rp.dia));
+
+        return p;
+
     }
 
     public static void main(String[] args) throws Exception {
@@ -113,9 +146,14 @@ public class diameterOfBinaryTree {
 
         Node root = construct(arr);
 
-        dm=0;
-        diameter1(root);
-        System.out.println(dm);
+//        dm=0;
+//        diameter1(root);
+//        System.out.println(dm);
+
+        DPair p = diameter2(root);
+        System.out.println(p.dia);
+
+
     }
 
 }
