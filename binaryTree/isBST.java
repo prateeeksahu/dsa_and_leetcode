@@ -101,12 +101,24 @@ public class isBST {
 
         boolean t = false;
 
-        if((node.left != null && node.left.data > node.data) && (node.right != null && node.right.data < node.data)){
+        if((node.left == null || node.left.data <=  node.data) && (node.right == null || node.right.data > node.data)){
             t = true;
         }
 
         return l && r && t;
     }
+
+
+//    public static boolean isbst(Node node){
+//        if (node == null) return true;
+//
+//        boolean l = isbst(node.left);
+//        boolean r = isbst(node.right);
+//
+//
+//        return l && r && (node.left == null || node.left.data <= node.data) && (node.right == null || node.right.data > node.data);
+//    }
+
 
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
