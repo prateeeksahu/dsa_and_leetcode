@@ -1,5 +1,3 @@
-
-
 package practice.test;
 import java.util.*;
 
