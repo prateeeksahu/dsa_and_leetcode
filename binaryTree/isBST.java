@@ -91,17 +91,48 @@ public class isBST {
 
         int th = Math.max(lh, rh) + 1;
         return th;
+
+
     }
 
-    public static boolean isbst(Node node){
+    public static  class bstpair{
+        boolean isbst;
+        int max;
+        int min;
+    }
+
+    public static bstpair isbst(Node node){
+
+        if(node == null){
+            bstpair p = new bstpair();
+            p.min = Integer.MAX_VALUE;
+            p.max = Integer.MIN_VALUE;
+            p.isbst = true;
+            return p;
+        }
+
+        bstpair l = isbst(node.left);
+        bstpair r = isbst(node.right);
+
+        bstpair m = new bstpair();
+
+        m.max = Math.max(node.data, Math.max(l.max, r.max));
+        m.min = Math.min(node.data, Math.min(l.min, r.min));
+
+        m.isbst = l.isbst && r.isbst && (node.data >= l.max && node.data <= r.min);
+
+        return m;
+    }
+
+    public static boolean isbst2(Node node){
         if (node == null) return true;
 
-        boolean l = isbst(node.left);
-        boolean r = isbst(node.right);
+        boolean l = isbst2(node.left);
+        boolean r = isbst2(node.right);
 
         boolean t = false;
 
-        if((node.left == null || node.left.data <=  node.data) && (node.right == null || node.right.data > node.data)){
+        if((node.left == null || node.left.data <=  node.data) && (node.right == null || node.right.data >= node.data)){
             t = true;
         }
 
@@ -135,7 +166,8 @@ public class isBST {
 
         Node root = construct(arr);
 
-        System.out.println(isbst(root));
+        bstpair p = isbst(root);
+        System.out.println(p.isbst);
     }
 
 }
