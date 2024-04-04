@@ -1,4 +1,4 @@
-https://leetcode.com/problems/number-of-good-pairs/description/
+//https://leetcode.com/problems/number-of-good-pairs/description/
 
 class Solution {
     public int numIdenticalPairs(int[] nums) {

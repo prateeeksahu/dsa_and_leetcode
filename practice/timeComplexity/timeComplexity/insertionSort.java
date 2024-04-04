@@ -1,4 +1,4 @@
-package practice.timeComplexity;
+package practice.practice.timeComplexity.timeComplexity;
 
 import java.util.Scanner;
 

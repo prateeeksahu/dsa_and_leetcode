@@ -14,7 +14,7 @@ public class displayTree {
         String str = node.data + " => ";
 
         for(Node child: node.childern){
-            str+=child.data + ", ";
+            str += child.data + ", ";
         }
 
         str+=".";
