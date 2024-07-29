@@ -1,4 +1,4 @@
-package practice.binaryTree;
+package practice.practice.binaryTree.binaryTree;
 
 import java.io.*;
 import java.util.*;
