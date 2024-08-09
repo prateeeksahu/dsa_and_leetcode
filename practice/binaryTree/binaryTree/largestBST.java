@@ -1,9 +1,9 @@
-package practice.binaryTree;
+package practice.practice.binaryTree.binaryTree;
 
 import java.io.*;
 import java.util.*;
 
-public class isBST {
+public class largestBST {
     public static class Node {
         int data;
         Node left;
@@ -81,75 +81,47 @@ public class isBST {
         display(node.right);
     }
 
-    public static int height(Node node) {
-        if (node == null) {
-            return -1;
-        }
-
-        int lh = height(node.left);
-        int rh = height(node.right);
-
-        int th = Math.max(lh, rh) + 1;
-        return th;
-
-
-    }
-
-    public static  class bstpair{
-        boolean isbst;
+    public static class BSTPair{
         int max;
         int min;
+        boolean isBST;
+        Node node;
+        int size;
+
     }
+    public static BSTPair largestBST(Node node){
+        if(node==null){
+            BSTPair ret=new BSTPair();
+            ret.min=Integer.MAX_VALUE;
+            ret.max=Integer.MIN_VALUE;
+            ret.isBST=true;
+            ret.node=null;
+            ret.size=0;
+            return ret;
+        }
+        BSTPair lc=largestBST(node.left);
+        BSTPair rc=largestBST(node.right);
 
-    public static bstpair isbst(Node node){
+        BSTPair nd=new BSTPair();
+        nd.isBST= lc.isBST && rc.isBST && (node.data>=lc.max && node.data<=rc.min);
+        nd.max=Math.max(node.data,Math.max(lc.max,rc.max));
+        nd.min=Math.min(node.data,Math.min(lc.min,rc.min));
 
-        if(node == null){
-            bstpair p = new bstpair();
-            p.min = Integer.MAX_VALUE;
-            p.max = Integer.MIN_VALUE;
-            p.isbst = true;
-            return p;
+        if(nd.isBST){
+            nd.node=node;
+            nd.size=lc.size+rc.size+1;
+        }
+        else if(lc.size>rc.size){
+            nd.node=lc.node;
+            nd.size=lc.size;
+        }
+        else{
+            nd.node=rc.node;
+            nd.size=rc.size;
         }
 
-        bstpair l = isbst(node.left);
-        bstpair r = isbst(node.right);
-
-        bstpair m = new bstpair();
-
-        m.max = Math.max(node.data, Math.max(l.max, r.max));
-        m.min = Math.min(node.data, Math.min(l.min, r.min));
-
-        m.isbst = l.isbst && r.isbst && (node.data >= l.max && node.data <= r.min);
-
-        return m;
+        return nd;
     }
-
-    public static boolean isbst2(Node node){
-        if (node == null) return true;
-
-        boolean l = isbst2(node.left);
-        boolean r = isbst2(node.right);
-
-        boolean t = false;
-
-        if((node.left == null || node.left.data <=  node.data) && (node.right == null || node.right.data >= node.data)){
-            t = true;
-        }
-
-        return l && r && t;
-    }
-
-
-//    public static boolean isbst(Node node){
-//        if (node == null) return true;
-//
-//        boolean l = isbst(node.left);
-//        boolean r = isbst(node.right);
-//
-//
-//        return l && r && (node.left == null || node.left.data <= node.data) && (node.right == null || node.right.data > node.data);
-//    }
-
 
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -157,7 +129,7 @@ public class isBST {
         Integer[] arr = new Integer[n];
         String[] values = br.readLine().split(" ");
         for (int i = 0; i < n; i++) {
-            if (values[i].equals("n") == false) {
+            if (!values[i].equals("n")) {
                 arr[i] = Integer.parseInt(values[i]);
             } else {
                 arr[i] = null;
@@ -166,8 +138,8 @@ public class isBST {
 
         Node root = construct(arr);
 
-        bstpair p = isbst(root);
-        System.out.println(p.isbst);
+        BSTPair ans=largestBST(root);
+        System.out.println(ans.node.data+"@"+ans.size);
     }
 
 }
