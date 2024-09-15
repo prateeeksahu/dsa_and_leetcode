@@ -101,4 +101,8 @@ public class test2 {
         return (res[0] * res[0]) + (res[1] * res[1]);
 
     }
+
+    private void hell0(){
+
+    }
 }
