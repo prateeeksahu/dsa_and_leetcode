@@ -1,0 +1,24 @@
+
+
+#If the input is given in 2D array in this manner [[1,0],[0,1]]  and graph is directed graph below can be used to create adjcency list
+
+
+        Map<Integer, List<Integer>> adj = new HashMap<>();
+
+        for(int[] x : p){
+            adj.putIfAbsent(x[1], new ArrayList());
+            adj.get(x[1]).add(x[0]);
+        }
+  
+putIfAbsent because if you are insersting a v for u first time and u is not present it will throw an error
+
+If graph is undirected for similar manner below code can be used
+
+        Map<Integer, List<Integer>> adj = new HashMap<>();
+
+        for(int[] x : p){
+            adj.putIfAbsent(x[1], new ArrayList());
+            adj.putIfAbsent(x[0], new ArrayList());
+            adj.get(x[1]).add(x[0]);
+            adj.get(x[0]).add(x[1]);
+        }
