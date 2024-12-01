@@ -63,3 +63,14 @@ class Solution {
         return al;
     }
 }
+
+- to itrate over all the elements use loop
+
+public boolean isCycle(ArrayList<ArrayList<Integer>> adj) {
+        
+        boolean[] v = new boolean[adj.size()];
+        for(int i = 0; i<adj.size(); i++) if(!v[i] && bfs(i, v, adj)) return true;
+        return false;
+            
+        
+    }
