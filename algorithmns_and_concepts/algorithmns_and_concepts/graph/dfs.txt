@@ -85,4 +85,20 @@ class Solution {
             }
         }
     }
-} 
+}
+
+
+- the above code will only work if graph is connected, what if graph is not connected? we use loop then
+
+    public boolean isCycle(ArrayList<ArrayList<Integer>> adj) {
+        // Code here
+        
+        boolean[] v = new boolean[adj.size()];
+        for(int i = 0; i<adj.size(); i++) if(!v[i] && dfs(i, -1, v, adj)) return true;
+        return false;
+            
+        
+    }
+
+
+- we use loop then to make sure we itrate over all the nodes, in above code instead of calling dfs from only one node we call dfs from every node if it is not visited" 
