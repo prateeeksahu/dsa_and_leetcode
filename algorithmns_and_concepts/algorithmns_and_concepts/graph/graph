@@ -4,8 +4,10 @@
   DFS
 
 #Cycle in graph
- - Directed graph
  - Undirected graph
     - DFS
     - BFS
-    
+ - Directed graph
+    - DFS
+    - BFS
+   
