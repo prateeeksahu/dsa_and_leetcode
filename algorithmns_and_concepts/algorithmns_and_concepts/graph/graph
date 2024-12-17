@@ -9,5 +9,7 @@
     - BFS
  - Directed graph
     - DFS
+    - topological sort using DFS
+    - topological sort using BFS (kahn's algo)
     - BFS
    

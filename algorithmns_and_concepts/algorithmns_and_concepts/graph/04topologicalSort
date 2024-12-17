@@ -1,3 +1,40 @@
 - can only be done in directed graph
 
 - cannot be done in cyclic graph
+
+- Topological sorting for Directed Acyclic Graph (DAG) is a linear ordering of vertices such that for every directed edge u-v, vertex u comes before v in the ordering
+
+- topological sort is dfs but we store all the elements we visit in stack
+
+- once we visit all the elements of u we put u in stack\
+
+- so once we reach the last node in DFS loop wont run and last element will be added as it is, then we go back 
+
+- in this way all the Vs come before U, thus maintaing the flow of elements being placed in order they occur
+
+
+code : https://www.geeksforgeeks.org/problems/topological-sort/1
+
+class Solution {
+    
+    static void topo (int u, boolean[] vi, Stack<Integer> s, ArrayList<ArrayList<Integer>> adj){
+        vi[u] = true;
+        
+        for(int v : adj.get(u)) if(!vi[v]) topo(v, vi, s, adj);
+        
+        s.push(u);
+    }
+    
+    static ArrayList<Integer> topologicalSort(ArrayList<ArrayList<Integer>> adj) {
+        boolean[] v = new boolean[adj.size()];
+        Stack<Integer> s = new Stack<>();
+        
+        for(int i = 0; i<adj.size(); i++) if(!v[i]) topo(i, v, s,adj);
+        
+        ArrayList<Integer> a = new ArrayList();
+        
+        while(!s.isEmpty()) a.add(s.pop());
+
+        return a;
+    }
+}
