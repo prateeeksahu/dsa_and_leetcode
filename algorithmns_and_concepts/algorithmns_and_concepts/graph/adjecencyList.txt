@@ -22,3 +22,30 @@ If graph is undirected for similar manner below code can be used
             adj.get(x[1]).add(x[0]);
             adj.get(x[0]).add(x[1]);
         }
+
+
+
+now if you are given 2d array as edges then to make adj list you can use this
+
+        Map<Integer, List<Integer>> adj = new HashMap();
+
+        for(int i = 0; i<e.length; i++) adj.put(i, new ArrayList());
+        for(int i=0; i<e.length; i++){
+            for(int j = i+1; j<e.length; j++){
+                if(e[i][j] == 1){
+                    adj.get(i).add(j);
+                    adj.get(j).add(i);
+                }
+            }
+        } 
+
+and if you dont want to create adj list with this kind of input you can call function in loop and perform dfs and bfs only when node is not visited and edges[i][j] == 1
+
+
+    private void dfs(int[][] isConnected, int u, boolean[] v){
+        v[u] = true;
+
+        for(int x = 0; x<isConnected.length; x++){
+            if(!v[x] && isConnected[u][x] == 1) dfs(isConnected, x, v);
+        }
+    }
