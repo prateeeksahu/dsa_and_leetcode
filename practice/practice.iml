@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/practice/arrays" isTestSource="false" packagePrefix="practice" />
+      <sourceFolder url="file://$MODULE_DIR$/practice/binaryTree" isTestSource="false" packagePrefix="practice" />
+      <sourceFolder url="file://$MODULE_DIR$/practice/genericTree" isTestSource="false" packagePrefix="practice" />
+      <sourceFolder url="file://$MODULE_DIR$/practice/linkedList" isTestSource="false" packagePrefix="practice" />
+      <sourceFolder url="file://$MODULE_DIR$/practice/methods" isTestSource="false" packagePrefix="practice" />
+      <sourceFolder url="file://$MODULE_DIR$/practice/patterns" isTestSource="false" packagePrefix="practice" />
+      <sourceFolder url="file://$MODULE_DIR$/practice/recursionAndBacktracking" isTestSource="false" packagePrefix="practice" />
+      <sourceFolder url="file://$MODULE_DIR$/practice/stackAndQueues" isTestSource="false" packagePrefix="practice" />
+      <sourceFolder url="file://$MODULE_DIR$/practice/stringAndArraylist" isTestSource="false" packagePrefix="practice" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

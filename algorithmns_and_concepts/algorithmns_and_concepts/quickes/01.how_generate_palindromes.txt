@@ -1,0 +1,33 @@
+to generate numbers first we should know how many digits we are generatting, for example if we are generating plindrome of 4 digits our length (L) is 4
+
+we first need to generate all numbers of size L/2 (2) if even if odd then (L+1)/2
+
+(L+1)/2 will work for both since int wont store decimal value
+
+now all we gotta do is take this l/2 size digit reverse it and append to itself ex -> if int is 12 append 21 to it that becomes 1221
+
+if L is odd we generate odd size int .. reverse it and leave first digit and append to original int 
+ex -> if dig is 123 its reverse id 321. remove 3 form 321 we get 21.. append this 21 in 123 we get 12321
+
+if we gotta generate series here is a smaple code
+
+while(n>0){
+            int hL = (L+1)/2;
+            long mi = (long) Math.pow(10, hL-1);
+            long mx = (long) Math.pow(10, hL)-1;
+
+            for(long i = mi; i<=mx; i++){
+                String fN = Long.toString(i);
+                String sN = new StringBuilder(fN).reverse().toString();
+
+                String fP = (L % 2 == 0) ? fN + sN : fN + sN.substring(1);
+                long pN = Long.parseLong(fP);
+                
+		System.out.println(fP);
+            }
+
+            L++;
+        }  
+
+
+here mi is minimum number and mx is maximum for given L/2
