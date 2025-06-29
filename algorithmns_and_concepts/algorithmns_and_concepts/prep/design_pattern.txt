@@ -1,0 +1,19 @@
+#SINGLETON DESIGN PATTERN
+
+we dont allow creation of more than instance (object) of a class in this design
+This is particularly useful for managing shared resources, like database connections or configuration settings, to maintain consistency and control.
+
+code is as follows
+
+class Singleton {
+    private static Singleton instance;
+
+    private Singleton() {}  // private constructor
+
+    public static Singleton getInstance() {
+        if (instance == null)
+            instance = new Singleton();
+        return instance;
+    }
+}
+
