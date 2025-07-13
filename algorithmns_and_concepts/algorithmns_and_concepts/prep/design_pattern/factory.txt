@@ -69,3 +69,10 @@ public class ShapeFactory{
 		}
 	}
 }
+
+# Abstract factory 
+
+
+_ It is just factory of factories where we can group the factory classes to return specific type of object
+
+
