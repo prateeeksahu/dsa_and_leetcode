@@ -1,0 +1,71 @@
+> The factory design pattern is used when we have a superclass with multiple sub-classes and based on input, we need to return one of the sub-class. 
+
+> This pattern takes out the responsibility of the instantiation of a class from the client program to the factory class.
+
+> The way I understand this as is we take all resposibilty of making an object from a class and give it to a factory class.
+> It implements loose coupling between class and reduce its depedency by seprating products construction code from the code that uses the product
+
+> It depends heavily on inheritance and interfaces and abstract classes
+
+> another explantion of factory design pattern can be - When there is superclass and multiple subclasses and we want to get object of subclasses based on input and requirement.
+
+
+-- Implementation
+
+we create a factory class that has responsiblity to decide which sub class's object to be created
+
+Step 1 - we create an interface/abstract class of any type.. leave methods decalred in it and in there chilf implementations we override them
+
+we create a client class(generally main class) that demands the object, but if we create object then and there, then the classes become tighltly coupled
+
+Step 2 - to prevent this we create factory class that takes parameters and create objects based on these parameteres
+
+Step 3 - now since creating and returning the object factory class's responsibilty its implementions/logic is hidden from client. it can just call method written in factory class to get the obj
+
+code - 
+
+public class MainClass {
+    public static void main (String argsl]) {
+
+        ShapeFactory shapeFactoryObj = new ShapeFactory();
+        Shape shapeObj = shapeFactory0bj.getShape("CIRCLE");
+        shape0bj.draw();
+    }
+}
+
+public interface Shape {
+
+    void draw();
+}
+
+public class Rectangle implements Shape{
+
+    @Override
+    public void draw() {
+    System.out.println ("rectangle");
+}
+
+public class Circle implements Shape{
+
+    @Override
+    public void draw() {
+    System.out.println ("circle");
+}
+
+public class ShapeFactory{
+
+    Shape getShape(String input){
+
+
+	// we can use if else here      
+	Switch (input) {
+
+	   case "CIRCLE":
+	     return new Circle;
+	  case "RECTANGLE":
+	     return new Rectangle);
+	  default:
+	     return null;
+		}
+	}
+}

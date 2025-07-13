@@ -1,0 +1,38 @@
+> Default methods are with body method in interface. 
+
+> if you want to give implementation of the method in interface you need to declare as default.
+
+> you can further override it if you like but without even over riding it child object can use the method
+
+> if a class implements two interfaces with same default class with exact same signature it will throw an error, which merthod to use
+  in that case you need to override the method
+
+code 
+
+package com.edigest.defaultMethods;
+
+interface A {
+    default void sayHello() {
+        System.out.println("A says Hello");
+    }
+}
+
+interface B {
+    default void sayHello() {
+        System.out.println("B says Hello");
+    }
+}
+
+public class MyClass implements A, B {
+    public static void main(String[] args) {
+        MyClass myClass = new MyClass();
+        myClass.sayHello();
+    }
+
+    @Override
+    public void sayHello() {
+        A.super.sayHello(); // Calls the sayHello method from interface A
+        B.super.sayHello(); // Optionally, you can call the method from B as well
+    }
+}
+

@@ -9,4 +9,8 @@ class is the set of rules that obect follows to create the class
 
 > objects are stored in heap memory and refrence variable are stored in stack memory
 
------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+
+what new keyword does
+
+> it does dynamic memory allocation. it creats an object in runtime and allocates a memory to it and returns its address or reference
