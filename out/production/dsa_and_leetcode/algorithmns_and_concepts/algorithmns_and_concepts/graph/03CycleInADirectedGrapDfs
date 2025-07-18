@@ -1,0 +1,41 @@
+we dont need to check since its directed so no going back to parent
+
+but if we use undirected logic and graph is like
+
+0 --> 1 <-- 2
+
+we might call it cyclic, since 1 is visited twice and parent is not same
+
+so we maintain inRecurrsion array that keeps track of each element visited in current recurrsion
+
+we check in visited array first, if it is not visited then go ahead and see if we find cycle
+ 
+but if visited then check if we visited it in same recurrsion in inrecurrsion array
+
+if we did then cycle is there, otherwise we move to next neighbhour
+
+code : 
+
+class Solution {
+    
+    public boolean dfs(int u, ArrayList<ArrayList<Integer>> adj, boolean[] v, boolean[] i){
+        v[u] = true;
+        i[u] = true;
+        
+        for(int x : adj.get(u)){
+            if(!v[x] && dfs(x, adj, v, i)) return true;
+            else if(i[x]) return true;
+        }
+        
+        i[u] = false;
+        return false;
+    }
+    
+    public boolean isCyclic(int V, ArrayList<ArrayList<Integer>> adj) {
+        boolean[] v = new boolean[adj.size()];
+        boolean[] i = new boolean[adj.size()];
+        
+        for(int u = 0; u < adj.size(); u++) if(!v[u] && dfs(u, adj, v, i)) return true;
+        return false;
+    }
+}

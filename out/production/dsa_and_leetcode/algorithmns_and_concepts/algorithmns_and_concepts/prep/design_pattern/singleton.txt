@@ -1,0 +1,362 @@
+#SINGLETON DESIGN PATTERN
+
+we dont allow creation of more than instance (object) of a class in this design
+This is particularly useful for managing shared resources, like database connections or configuration settings, to maintain consistency and control.
+
+code is as follows
+
+    class Singleton {
+    	private static Singleton instance;
+
+    	private Singleton() {}  // private constructor
+
+    	public static Singleton getInstance() {
+        	if (instance == null)
+            	instance = new Singleton();
+       	return instance;
+    	}
+    }
+
+
+this is called lazy initialzation, there are 4 imp ways to initialize a singleton class
+
+------------------------------------------------------------------------------------------------------------------------------
+
+1. Eager initialization
+
+ - in this type we initialize an object regardless the object is requested... 
+   * this saves time 
+   * it is thread safe
+   * but can be costly if object creation is expensive
+
+code - 
+
+    class EagerSingleton {
+    	private static final EagerSingleton instance = new EagerSingleton();
+
+     	private EagerSingleton() {}
+
+    	public static EagerSingleton getInstance() {
+        	return instance;
+       } 
+    }
+---------------------------------------------------------------
+
+2. Lazy initlization 
+
+ - in this type we only create object when it is needed
+   * it is not thread safe, if two thread enters the block of code and object is not created it can two instance
+   * it saves memory
+
+code - 
+     class LazySingleton {
+    	private static LazySingleton instance;
+
+    	private LazySingleton() {}
+
+    	public static LazySingleton getInstance() {
+        	if (instance == null)
+            	instance = new LazySingleton();
+        	return instance;
+        }
+    }
+
+------------------------------------------------------------------
+
+3. Syncronized  initlization
+
+ - Make the getInstance() method synchronized to prevent multiple threads from entering it at the same time.
+ - still looks lazy
+  * only down side is it is slow, if two or more threads enter, they will have to wait for their turn
+  * here we are makinging getIstance() syncornous
+
+code- 
+     class SynchronizedSingleton {
+    	private static SynchronizedSingleton instance;
+
+    	private SynchronizedSingleton() {}
+
+    	public static synchronized SynchronizedSingleton getInstance() {
+        	if (instance == null)
+            	instance = new SynchronizedSingleton();
+        	return instance;
+        }
+    }
+
+-------------------------------------------------------------------
+
+4. Double check locking
+
+ - here we make the class less syncronus by making only instance creation syncronus
+  * lazy, thread safe, and efficient
+
+
+code- 
+
+    class DoubleCheckedSingleton {
+    	private static volatile DoubleCheckedSingleton instance;
+
+    	private DoubleCheckedSingleton() {}
+
+    	public static DoubleCheckedSingleton getInstance() {
+        	if (instance == null) {
+            	synchronized (DoubleCheckedSingleton.class) {
+                	if (instance == null) instance = new DoubleCheckedSingleton();
+                }
+            }
+        	return instance;
+        } 
+    }    
+--------------------------------------------------------------------
+
+little less important 
+
+5. static block initialization
+
+ - Similar to eager initialization, but uses a static block instead of direct assignment
+  * Eager + allows exception handling
+
+code - 
+
+class StaticBlockSingleton {
+    private static final StaticBlockSingleton instance;
+
+    static {
+        instance = new StaticBlockSingleton();
+        // You can add try-catch here for exception handling
+    }
+
+    private StaticBlockSingleton() {}
+
+    public static StaticBlockSingleton getInstance() {
+        return instance;
+    }
+}
+
+----------------------------------------------------------------------
+
+6. enum singleton
+
+ - Java ensures enums are inherently Singleton — no extra code required
+   * Thread-safe
+   * Serialization-safe
+   * Reflection-safe
+   * Very concise and clean
+   * CANNOT BE INHERITED
+
+code - 
+enum EnumSingleton {
+    INSTANCE;
+
+    public void doSomething() {
+        System.out.println("Doing something...");
+    }
+}
+------------------------------------------------------------------
+
+7. Static Inner Class (Bill Pugh Singleton)
+
+ - Uses an inner static helper class that is loaded only when needed.
+ - inner class is only loaded when getinstance() is called
+ * eazy
+ * no syncronization required
+ * thread safe
+
+code - 
+
+class InnerClassSingleton {
+    private InnerClassSingleton() {}
+
+    private static class Holder {
+        private static final InnerClassSingleton INSTANCE = new InnerClassSingleton();
+    }
+
+    public static InnerClassSingleton getInstance() {
+        return Holder.INSTANCE;
+    }
+}
+###################################################################
+
+we can break this singleton pattrern one of the way is reflection api
+
+ -  we get the reference of the constructor of the class
+ - since it is declared private in our case we will use a function to change its accessibility and create its object
+
+code - 
+
+import java.lang.reflect.Constructor;
+
+public class ReflectionBreak {
+    public static void main(String[] args) throws Exception {
+        Singleton s1 = Singleton.getInstance();
+
+        Constructor<Singleton> constructor = Singleton.class.getDeclaredConstructor();
+        constructor.setAccessible(true); // Bypass private constructor
+        Singleton s2 = constructor.newInstance(); // Creates new instance
+
+        System.out.println("s1 hash: " + s1.hashCode());
+        System.out.println("s2 hash: " + s2.hashCode()); // Different hash = different object
+    }
+}
+
+
+ - Singleton.class. gets the class refernce and getDeclaredConstructor() gets reference of that constructor
+ - Constructor<Singleton> is class to hold the refernce and <> holds the class name 
+ - constructor.setAccessible(true); allows us to call the constructor even of its private
+ - Singleton s2 = constructor.newInstance(); after = ref name along with newInstance is called to create new object of that class using the provided constructor 
+   this will create new object hence single ton is broken
+
+to prevent this we can either create the *class enum(this will by default create a single on=bject of class)*
+or we can throw exception in constructor
+
+code - 
+
+class SafeSingleton {
+    private static boolean instanceCreated = false;
+    private static final SafeSingleton instance = new SafeSingleton();
+
+    private SafeSingleton() {
+        if (instanceCreated) {
+            throw new RuntimeException("Use getInstance()");
+        }
+        instanceCreated = true;
+    }
+
+    public static SafeSingleton getInstance() {
+        return instance;
+    }
+}
+-----------------------------------------------------------------------------
+
+another way to break this pattern is serialization and deseialzation (writing and reading the object)
+ 
+  - if you read an object from a file it creates a new object .. even private constructors cant stop this
+  - for this your class should implement Serializable interface
+
+code - 
+
+import java.io.Serializable;
+
+class Singleton implements Serializable {
+    private static final Singleton instance = new Singleton();
+
+    private Singleton() {}
+
+    public static Singleton getInstance() {
+        return instance;
+    }
+}
+
+
+import java.io.*;
+
+public class SerializationBreak {
+    public static void main(String[] args) throws Exception {
+        Singleton s1 = Singleton.getInstance();
+
+        ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("singleton.obj"));
+        out.writeObject(s1);
+        out.close();
+
+        ObjectInputStream in = new ObjectInputStream(new FileInputStream("singleton.obj"));
+        Singleton s2 = (Singleton) in.readObject(); // New object created
+
+        System.out.println("s1 hash: " + s1.hashCode());
+        System.out.println("s2 hash: " + s2.hashCode());
+    }
+}
+
+
+to prevent this you gotta write this function in class
+
+private Object readResolve() {
+    return getInstance();
+}
+  
+ 
+➡️ JVM calls readResolve() after deserialization, and returns the existing instance instead of creating a new one.
+
+readResolve() is a special method in Java serialization.
+
+🔁 It is called automatically by JVM:
+After an object is deserialized (using readObject()).
+Before the deserialized object is returned to your program.
+
+
+When JVM deserializes:
+Singleton s2 = (Singleton) in.readObject(); 
+
+It internally calls:
+s2 = s2.readResolve();
+
+➡️ So instead of returning the newly created object, it returns:
+return Singleton.getInstance();
+
+
+This method tells the JVM:
+
+"Hey JVM, after you deserialize me, don't return this new object, instead return the real Singleton instance."
+🚨 Requirements:
+
+The method must be named readResolve()
+Must return Object
+Must be private (or at least not public — but private is preferred)
+Class must implement Serializable
+---------------------------------------------------------------------------------------
+
+third way is to clone the object
+
+ - if you clone any object that create its new instance 
+ - but to do that you need to implment clonable interface to clone the object that makes no sense
+
+code - 
+
+class Singleton implements Cloneable {
+    private static final Singleton instance = new Singleton();
+
+    private Singleton() {}
+
+    public static Singleton getInstance() {
+        return instance;
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone(); // creates a new object!
+    }
+}
+
+public class CloningBreak {
+    public static void main(String[] args) throws Exception {
+        Singleton s1 = Singleton.getInstance();
+        Singleton s2 = (Singleton) s1.clone(); // New object created
+
+        System.out.println("s1 hash: " + s1.hashCode());
+        System.out.println("s2 hash: " + s2.hashCode());
+    }
+}
+
+
+and to prevent that you gotta 
+
+@Override
+protected Object clone() throws CloneNotSupportedException {
+    throw new CloneNotSupportedException("Cannot clone singleton");
+}
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+

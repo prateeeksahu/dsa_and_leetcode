@@ -1,0 +1,19 @@
+for calculating from decimal to any given base just divide the number by base and keep storing the reminder.
+
+remeber to put last reminder to first,, second last to second, third last to third and so on... reminder is the conversion
+
+wroks for even binary.
+
+sample code- 
+
+private String baseK(long n, int k){
+        if(n == 0) return "0";
+        StringBuilder r = new StringBuilder();
+
+        while(n > 0){
+            r.append(n%k);
+            n/=k;
+        }
+
+        return r.toString();
+    }

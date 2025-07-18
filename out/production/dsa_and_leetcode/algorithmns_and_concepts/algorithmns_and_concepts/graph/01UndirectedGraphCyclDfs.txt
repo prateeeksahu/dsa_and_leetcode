@@ -1,0 +1,28 @@
+- remember not go baack to node where you came from.
+
+- pass parent with node to avoid this
+
+code: https://www.geeksforgeeks.org/problems/detect-cycle-in-an-undirected-graph/1
+
+class Solution {
+    public boolean dfs(int u, int p, boolean[] v, ArrayList<ArrayList<Integer>> adj){
+        v[u] = true;
+        for(int x : adj.get(u)){
+            if(x == p) continue;
+            if(v[x]) return true;
+            if(!v[x] && dfs(x, u, v, adj)) return true;
+            
+        }
+        
+        return false;
+    }
+    
+    public boolean isCycle(ArrayList<ArrayList<Integer>> adj) {        
+        boolean[] v = new boolean[adj.size()];
+        
+        for(int i = 0; i<adj.size(); i++) if(!v[i] && dfs(i, -1, v, adj)) return true;
+        return false;
+            
+        
+    }
+}

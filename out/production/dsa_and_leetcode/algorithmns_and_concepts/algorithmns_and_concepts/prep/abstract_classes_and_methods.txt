@@ -1,0 +1,11 @@
+> Abstract means such things that donot exist.. in java it will mean just defination with no implementation
+
+> Abstract classes are such classes that have abstract methods in it
+
+> Abstract class is class which who will help to create child classes, it will set a standrad and will ask to implement methods
+
+> abstract classes cannot be instantiated, but can be used to create new classes
+
+> With Parent refrence creating child class is possible
+
+Parent child = new Child(); // this is possible

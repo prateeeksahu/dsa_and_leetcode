@@ -1,0 +1,51 @@
+
+
+#If the input is given in 2D array in this manner [[1,0],[3,2]]  and graph is directed graph below can be used to create adjcency list
+
+
+        Map<Integer, List<Integer>> adj = new HashMap<>();
+
+        for(int[] x : p){
+            adj.putIfAbsent(x[1], new ArrayList());
+            adj.get(x[1]).add(x[0]);
+        }
+  
+putIfAbsent because if you are insersting a v for u first time and u is not present it will throw an error
+
+If graph is undirected for similar manner below code can be used
+
+        Map<Integer, List<Integer>> adj = new HashMap<>();
+
+        for(int[] x : p){
+            adj.putIfAbsent(x[1], new ArrayList());
+            adj.putIfAbsent(x[0], new ArrayList());
+            adj.get(x[1]).add(x[0]);
+            adj.get(x[0]).add(x[1]);
+        }
+
+
+
+now if you are given 2d matrix as edges then to make adj list you can use this
+
+        Map<Integer, List<Integer>> adj = new HashMap();
+
+        for(int i = 0; i<e.length; i++) adj.put(i, new ArrayList());
+        for(int i=0; i<e.length; i++){
+            for(int j = i+1; j<e.length; j++){
+                if(e[i][j] == 1){
+                    adj.get(i).add(j);
+                    adj.get(j).add(i);
+                }
+            }
+        } 
+
+and if you dont want to create adj list with this kind of input you can call function in loop and perform dfs and bfs only when node is not visited and edges[i][j] == 1
+
+
+    private void dfs(int[][] isConnected, int u, boolean[] v){
+        v[u] = true;
+
+        for(int x = 0; x<isConnected.length; x++){
+            if(!v[x] && isConnected[u][x] == 1) dfs(isConnected, x, v);
+        }
+    }

@@ -1,0 +1,61 @@
+one way is power set (bit manipulation)
+
+just set take only those elements which bit is set
+
+public static List<List<Integer>> generateSubsequences(int[] arr) {
+    List<List<Integer>> result = new ArrayList<>();
+    int n = arr.length;
+
+    for (int i = 0; i < (1 << n); i++) {
+        List<Integer> subseq = new ArrayList<>();
+        for (int j = 0; j < n; j++) {
+            if ((i & (1 << j)) != 0) {
+                subseq.add(arr[j]);
+            }
+        }
+        result.add(subseq);
+    }
+
+    return result;
+}
+
+
+here 1<<j means right shift 1 j times ex - if j is 2 number will be like 0100
+
+another way is recursion
+
+
+    public static void generateSubsequences(String s, int i, StringBuilder current, List<String> result) {
+        if (i == s.length()) {
+            result.add(current.toString());  // base case: reached end
+            return;
+        }
+
+        // ✅ Include current character
+        current.append(s.charAt(i));
+        generateSubsequences(s, i + 1, current, result);
+        current.deleteCharAt(current.length() - 1);  // backtrack
+
+        // ❌ Exclude current character
+        generateSubsequences(s, i + 1, current, result);
+    }
+
+
+this says either take the character or dont take it
+
+another way is BFS
+
+public static List<String> generateSubsequences(String s) {
+    List<String> result = new ArrayList<>();
+    result.add("");  // Start with empty string
+
+    for (char c : s.toCharArray()) {
+        int size = result.size();
+        for (int i = 0; i < size; i++) {
+            result.add(result.get(i) + c);  // Append c to existing subsequences
+        }
+    }
+
+    return result;
+}
+

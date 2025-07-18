@@ -1,0 +1,65 @@
+this uses same method as kahn's algorithm
+
+as we know that topological sort can only be done when there's no cycle, this means when there's a cycle we wont be able to reach all the nodes
+
+because indegree of the node which is visited twoce will never become 0
+
+so we make a counter to count how many nodes whose indegree became 0
+
+if we were able to get indegree of all nodes to 0 then there's no cycle, but if we not then cycle is there
+
+code - https://www.geeksforgeeks.org/problems/detect-cycle-in-a-directed-graph/1
+
+class Solution {
+    public boolean isCyclic(int V, ArrayList<ArrayList<Integer>> adj) {
+        Queue<Integer> q = new LinkedList();
+        int[] ind = new int[V];
+        int c = 0;
+        for(int u = 0; u<adj.size(); u++) for(int v : adj.get(u)) ind[v]++;
+        for(int i = 0; i<V; i++) if(ind[i] == 0){ 
+            q.offer(i); 
+            c++;
+        }
+        
+        while(!q.isEmpty()){
+            int u = q.poll();
+            
+            
+            for(int v : adj.get(u)){
+                ind[v]--;
+                if(ind[v] == 0){ 
+                    q.offer(v);
+                    c++;
+                }
+                
+            }
+        }
+        
+        return !(V == c);
+    }
+}
+
+
+well there's another code i wrote and worked idk how?
+
+class Solution {
+    public boolean isCyclic(int V, ArrayList<ArrayList<Integer>> adj) {
+        Queue<Integer> q = new LinkedList();
+        int[] ind = new int[V];
+        int c = 0;
+        for(int u = 0; u<adj.size(); u++) for(int v : adj.get(u)) ind[v]++;
+        for(int i = 0; i<V; i++) if(ind[i] == 0) q.offer(i);
+        
+        while(!q.isEmpty()){
+            int u = q.poll();
+            c++;
+            
+            for(int v : adj.get(u)){
+                ind[v]--;
+                if(ind[v] == 0) q.offer(v);
+            }
+        }
+        
+        return !(V == c);
+    }
+}

@@ -1,0 +1,239 @@
+> The factory design pattern is used when we have a superclass with multiple sub-classes and based on input, we need to return one of the sub-class. 
+
+> This pattern takes out the responsibility of the instantiation of a class from the client program to the factory class.
+
+> The way I understand this as is we take all resposibilty of making an object from a class and give it to a factory class.
+> It implements loose coupling between class and reduce its depedency by seprating products construction code from the code that uses the product
+
+> It depends heavily on inheritance and interfaces and abstract classes
+
+> another explantion of factory design pattern can be - When there is superclass and multiple subclasses and we want to get object of subclasses based on input and requirement.
+
+
+-- Implementation
+
+we create a factory class that has responsiblity to decide which sub class's object to be created
+
+Step 1 - we create an interface/abstract class of any type.. leave methods decalred in it and in there chilf implementations we override them
+
+we create a client class(generally main class) that demands the object, but if we create object then and there, then the classes become tighltly coupled
+
+Step 2 - to prevent this we create factory class that takes parameters and create objects based on these parameteres
+
+Step 3 - now since creating and returning the object factory class's responsibilty its implementions/logic is hidden from client. it can just call method written in factory class to get the obj
+
+code - 
+
+public class MainClass {
+    public static void main (String argsl]) {
+
+        ShapeFactory shapeFactoryObj = new ShapeFactory();
+        Shape shapeObj = shapeFactory0bj.getShape("CIRCLE");
+        shape0bj.draw();
+    }
+}
+
+public interface Shape {
+
+    void draw();
+}
+
+public class Rectangle implements Shape{
+
+    @Override
+    public void draw() {
+    System.out.println ("rectangle");
+}
+
+public class Circle implements Shape{
+
+    @Override
+    public void draw() {
+    System.out.println ("circle");
+}
+
+public class ShapeFactory{
+
+    Shape getShape(String input){
+
+
+	// we can use if else here      
+	Switch (input) {
+
+	   case "CIRCLE":
+	     return new Circle;
+	  case "RECTANGLE":
+	     return new Rectangle);
+	  default:
+	     return null;
+		}
+	}
+}
+
+# Abstract factory 
+
+
+_ It is just factory of factories where we can group the factory classes to return specific type of object
+
+The Abstract Factory Design Pattern is a creational design pattern that provides an interface for creating families of related or dependent objects without specifying their concrete classes. 
+
+This pattern is particularly useful when the client code needs to work with a set of products that share a common theme or interface.
+
+Code Example of Abstract Factory Pattern in Java
+
+Below is a simple example demonstrating the Abstract Factory Design Pattern in Java.
+
+Step 1: Create Abstract Products
+ // Abstract Product A
+interface Shape {
+    void draw();
+}
+
+// Abstract Product B
+interface Color {
+    void fill();
+}
+
+
+ Step 2: Create Concrete Products
+ // Concrete Product A1
+class Circle implements Shape {
+    @Override
+    public void draw() {
+        System.out.println("Drawing a Circle");
+    }
+}
+
+// Concrete Product A2
+class Square implements Shape {
+    @Override
+    public void draw() {
+        System.out.println("Drawing a Square");
+    }
+}
+
+// Concrete Product B1
+class Red implements Color {
+    @Override
+    public void fill() {
+        System.out.println("Filling with Red color");
+    }
+}
+
+// Concrete Product B2
+class Blue implements Color {
+    @Override
+    public void fill() {
+        System.out.println("Filling with Blue color");
+    }
+}
+
+
+
+ Step 3: Create an Abstract Factory
+ // Abstract Factory
+interface AbstractFactory {
+    Shape createShape();
+    Color createColor();
+}
+
+
+
+ Step 4: Create Concrete Factories
+ // Concrete Factory 1
+class ShapeFactory implements AbstractFactory {
+    private String shapeType;
+
+    public ShapeFactory(String shapeType) {
+        this.shapeType = shapeType;
+    }
+
+    @Override
+    public Shape createShape() {
+        if (shapeType.equalsIgnoreCase("CIRCLE")) {
+            return new Circle();
+        } else if (shapeType.equalsIgnoreCase("SQUARE")) {
+            return new Square();
+        }
+        return null;
+    }
+
+    @Override
+    public Color createColor() {
+        return null; // Not applicable for shape factory
+    }
+}
+
+// Concrete Factory 2
+class ColorFactory implements AbstractFactory {
+    private String colorType;
+
+    public ColorFactory(String colorType) {
+        this.colorType = colorType;
+    }
+
+    @Override
+    public Shape createShape() {
+        return null; // Not applicable for color factory
+    }
+
+    @Override
+    public Color createColor() {
+        if (colorType.equalsIgnoreCase("RED")) {
+            return new Red();
+        } else if (colorType.equalsIgnoreCase("BLUE")) {
+            return new Blue();
+        }
+        return null;
+    }
+}
+
+
+
+ Step 5: Create a Factory Producer
+ // Factory Producer
+class FactoryProducer {
+    public static AbstractFactory getFactory(String choice) {
+        if (choice.equalsIgnoreCase("SHAPE")) {
+            return new ShapeFactory("CIRCLE"); // default shape
+        } else if (choice.equalsIgnoreCase("COLOR")) {
+            return new ColorFactory("RED"); // default color
+        }
+        return null;
+    }
+}
+
+
+ Step 6: Client Code
+ public class AbstractFactoryPatternDemo {
+    public static void main(String[] args) {
+        // Get shape factory
+        AbstractFactory shapeFactory = FactoryProducer.getFactory("SHAPE");
+
+        // Create a circle and draw it
+        Shape circle = shapeFactory.createShape();
+        circle.draw();
+
+        // Get color factory
+        AbstractFactory colorFactory = FactoryProducer.getFactory("COLOR");
+
+        // Create a red color and fill it
+        Color red = colorFactory.createColor();
+        red.fill();
+    }
+}
+
+
+ Explanation
+	1.	Abstract Products: Shape and Color are interfaces that declare the methods that concrete products must implement. 	
+	2.	Concrete Products: Circle, Square, Red, and Blue are concrete classes that implement the Shape and Color interfaces.
+ 	3.	Abstract Factory: AbstractFactory defines factory methods for creating products.
+ 	4.	Concrete Factories: ShapeFactory and ColorFactory implement the AbstractFactory interface to create specific objects.
+ 	5.	Factory Producer: FactoryProducer provides a method to get factory instances based on the type requested.
+ 	6.	Client Code: The AbstractFactoryPatternDemo demonstrates how to use the factories to create and use different objects.
+
+Output
+When you run this program, the output will be:
+ Drawing a Circle
+Filling with Red color
+ This example demonstrates how the Abstract Factory Design Pattern allows for the creation of families of related objects without specifying their concrete classes, enhancing flexibility and encapsulation.

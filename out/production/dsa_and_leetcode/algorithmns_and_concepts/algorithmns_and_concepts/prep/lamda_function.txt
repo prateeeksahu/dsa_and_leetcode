@@ -1,0 +1,112 @@
+lamda fun will mostly use for sorting or defining the order of priority queue
+
+
+#SYNTAX
+
+(parameters) -> expression
+OR
+(parameters) -> { statements; }
+
+Parameters: Can be zero or more. Their types can often be inferred by the compiler.
+
+-> (Arrow operator): Separates the parameters from the body.
+
+Body:
+
+If it's a single expression, the result of that expression is implicitly returned.
+
+If it's a block of statements, you need explicit return statements if a value is expected.
+
+- Example 
+
+	Arrays.sort(arr, (a, b) -> Integer.compare(a[0], b[0]));
+
+	Explanation:
+
+	(a, b): The two int[] objects being compared.
+
+	Integer.compare(a[0], b[0]): Returns a negative integer, zero, or a positive integer as the first argument is less than, equal to, or greater than the second. 
+	This naturally sorts in ascending order.
+
+
+
+# SORTING 1D ARRAY
+
+by default sort function will sort in increasing order, but if you want to sort in decreasing order you can use
+
+	Arrays.sort(numbers, (a, b) -> Integer.compare(b, a));
+
+in function we first pass array name(numbers), then we pass a,b denoting the numbers 
+notice b is written before a for reverse ordering
+
+before java 8 this could be done as
+		
+	Arrays.sort(arr, new Comparator<int>() {
+    		@Override
+    		public int compare(int a, int b) {
+        	return Integer.compare(b, a); // Compares first elements
+    	      }
+	});
+
+
+
+
+# SORTING 2D ARRAY BASED ON FIRST VALUE
+
+	Arrays.sort(arr, (a, b) -> Integer.compare(a[0], b[0]));
+
+
+before java 8
+
+    Arrays.sort(arr, new Comparator<int[]>() {
+        @Override
+        public int compare(int[] a, int[] b) {
+            return Integer.compare(a[0], b[0]); // Compares first elements
+        }
+    });
+
+and based on first and second both we can use 
+
+	Arrays.sort(arr, (a, b) -> {
+    	if (a[0] != b[0]) {
+        	return Integer.compare(a[0], b[0]); // Sort by first element ascending
+    	} else {
+        	return Integer.compare(b[1], a[1]); // If first elements equal, sort by second element descending
+    	}
+    });
+
+
+	now if you want to sort it based on second element instead of writing you can replace a[0] with a[1] and same with b
+
+  
+
+
+# LAMDA FUNCTION IN PRIORITY QUEUE
+
+well this data structure keeps data sorted in increasing order, but incase we have 2d array or we want it decreasing order we proceed in following manner
+
+
+	PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> Integer.compare(a[0], b[0]));
+
+before java 8
+
+	PriorityQueue<int[]> pq = new PriorityQueue<>(new Comparator<int[]>() {
+    		@Override
+    		public int compare(int[] a, int[] b) {
+        	return Integer.compare(a[0], b[0]);
+    		}
+	}); 
+
+again to reverse it exchange a and b, but another way to reverse it is
+
+	PriorityQueue<Integer> reversedQueue = new PriorityQueue<>(Collections.reverseOrder()); 
+
+to sort on first and second element below code can be used
+
+	PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> {
+   		 if (a[0] != b[0]) {
+        	return Integer.compare(a[0], b[0]); // Smallest first for first element
+    	} else {
+        	return Integer.compare(b[1], a[1]); // Largest first for second element
+    	}
+    });

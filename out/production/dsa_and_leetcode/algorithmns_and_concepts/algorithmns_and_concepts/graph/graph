@@ -1,0 +1,15 @@
+#traversal
+
+  BFS
+  DFS
+
+#Cycle in graph
+ - Undirected graph
+    - DFS
+    - BFS
+ - Directed graph
+    - DFS
+    - topological sort using DFS
+    - topological sort using BFS (kahn's algo)
+    - BFS
+   

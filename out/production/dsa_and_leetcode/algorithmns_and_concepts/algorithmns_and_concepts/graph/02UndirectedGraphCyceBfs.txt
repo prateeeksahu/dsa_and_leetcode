@@ -1,0 +1,43 @@
+- use loop for reaching all nodes
+
+- keep track of parent
+
+class Pair{
+        int k;
+        int v;
+        
+        public Pair(int k, int v){
+            this.k = k;
+            this.v = v;
+        }
+    }
+    
+        public boolean bfs(int u, boolean[] v, ArrayList<ArrayList<Integer>> adj){
+            v[u] = true;
+            Queue<Pair> q = new LinkedList<>();
+            q.offer(new Pair(u, -1));
+            
+            while(!q.isEmpty()){
+                Pair p = q.poll();
+                for(int x : adj.get(p.k)){
+                     
+                    if(!v[x]){
+                        v[x] = true;
+                        q.offer(new Pair(x, p.k));
+                    } else if(x != p.v){
+                        return true;
+                    }
+                    
+                }
+            }
+            return false;
+        }
+    
+        public boolean isCycle(ArrayList<ArrayList<Integer>> adj) {
+        
+        boolean[] v = new boolean[adj.size()];
+        for(int i = 0; i<adj.size(); i++) if(!v[i] && bfs(i, v, adj)) return true;
+        return false;
+            
+        
+    }

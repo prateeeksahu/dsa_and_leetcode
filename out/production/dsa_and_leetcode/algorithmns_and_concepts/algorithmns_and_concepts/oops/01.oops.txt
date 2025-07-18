@@ -1,0 +1,16 @@
+Class -> a class is template for object, it is a logical construct, its a name group of properties and functions or data members and functions
+
+A class creates a new data type that can be used to create objects.
+
+Objects -> these are physical reality of class, these are instance of the class, object occupies sapce in memory
+
+class is the set of rules that obect follows to create the class
+--------------------------------------------------------------------------------------------
+
+> objects are stored in heap memory and refrence variable are stored in stack memory
+
+----------------------------------------------------------------------------------------------
+
+what new keyword does
+
+> it does dynamic memory allocation. it creats an object in runtime and allocates a memory to it and returns its address or reference
