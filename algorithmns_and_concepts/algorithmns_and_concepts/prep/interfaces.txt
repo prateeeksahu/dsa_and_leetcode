@@ -24,5 +24,32 @@ we can extend a class and implement multiple interfaces at same time
 > once defined with body in interface it can be used in class exteding it, the class can override it as well
 
 > private methods can be used by extendong class, they are made for helping default methods for completeing their implementation
+-----------------------------------------------------------------
 
+> you can create a refrence of interface and object of class that implements it
+
+> In this case the object will only be able to call the methods and varibales defined in the interface
+
+> we can also call default or defined methods in interfaces the current interface extends 
+
+> we cannot call any other methods that are specific to class (whose obj we created), interface or class extending this interface(ref we are using to create) or defined after this interface
+
+----------------------------------------------------------------
+
+> access modifires - methods are by default public in interfaces, private methods can be declared but they are only used by default methods
+
+> we can also declare method static but they are not inherited by class, they cannot be overridden as well
+
+-----------------------------------------------------------------
+
+> Default methods were introduced in Java 8 to address challenges with interface evolution
+
+> If two interfaces have same default methods the implemnting class must override the conflicting method, this resolves the diamond problem
+--------------------------------------------------------------------
+
+#TYPES OF INTERFACES
+
+> Normal inerface - 
+ 
+ - Can have one or more abstract class along with static and default methods
 

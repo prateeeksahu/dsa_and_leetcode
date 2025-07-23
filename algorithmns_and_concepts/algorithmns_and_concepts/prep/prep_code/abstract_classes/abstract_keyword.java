@@ -16,6 +16,12 @@ class baseC extends base{
     }
 }
 
+interface binter{
+    default void hello(){
+        System.out.println("hello");
+    }
+}
+
 public class abstract_keyword {
 
     public static void main(String[] args) {
@@ -24,5 +30,8 @@ public class abstract_keyword {
 
         LinkedList<Integer> l = new LinkedList<>();
         List<Integer> l2 =  new  LinkedList <>();
+
+//        binter bi = new binter();
+//        bi.hello();
     }
 }

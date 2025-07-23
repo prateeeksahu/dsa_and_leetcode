@@ -27,7 +27,7 @@ public class dynamic_method_dispatch {
         c.hi();
         //c.hi2(); = not allowed
 
-        child obj = new parent();
+//        child obj = new parent();
 
     }
 }

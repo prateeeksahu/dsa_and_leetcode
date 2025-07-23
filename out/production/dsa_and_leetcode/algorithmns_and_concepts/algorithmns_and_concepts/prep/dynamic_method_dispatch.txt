@@ -1,0 +1,39 @@
+> It is a run tine polymorphism
+
+> this means program decides which method to call in run time
+
+Things to remember - 
+
+ - You can create a parent object with parent class reference
+
+        parent obj = new parent();
+
+  
+  * all methods defined in parent class call be called
+
+
+ - You can create a child object with child class reference
+
+        child obj = new child();
+ 
+
+  * all methods defined in child class can be called
+
+
+ - You can create a child object with parent refernnce
+
+        parent obj = new child();
+
+  
+  * Only those method which are overridden in child can be called.
+  * Methods can be called if they exist in parent or are overriden child 
+
+
+
+ - You cannot create a parent object with child reference
+
+        child obj = new parent();
+
+----------------------------------------------------------------
+
+This is called dynamic methid dispatch
