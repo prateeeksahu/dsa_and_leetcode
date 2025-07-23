@@ -1,5 +1,14 @@
 package algorithmns_and_concepts.algorithmns_and_concepts.prep.prep_code.abstract_classes;
 
+// Marker interface
+interface Cloneable {}
+
+class Student implements Cloneable {
+    int id;
+    String name;
+}
+
+
 interface top{
     void meth1();
     default void meth2(){
