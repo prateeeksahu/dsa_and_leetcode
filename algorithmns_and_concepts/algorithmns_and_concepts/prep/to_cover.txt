@@ -1,0 +1,111 @@
+Java study order 
+
+You're aiming for Java interviews with 2 years of experience (YOE) — that means you should show solid foundations in:
+* Core Java
+* Multithreading
+* OOP + design patterns
+* Coding skills
+* Spring Boot basics
+* SQL and DB concepts
+* Light system design exposure
+
+🧭 Recommended Study Order (2 YOE Java Developer)
+✅ Phase 1: Core Java Foundations
+🔹 Duration: 5–7 days
+1. OOP Concepts — Encapsulation, Inheritance, Polymorphism, Abstraction
+2. Class and Object — Constructors, this, super, static blocks
+3. Design Patterns
+    * Singleton (very important)
+    * Factory + Abstract Factory
+    * Builder
+    * Prototype
+    * Cloneable and Object.clone() problems
+4. Methods
+    * Instance vs static methods
+    * final, abstract, default methods
+
+✅ Phase 2: Java 8 Features (Very Common in Interviews)
+🔹 Duration: 5–6 days
+1. Functional Interfaces — Predicate, Function, Supplier, Consumer
+2. Stream API — filter, map, collect, sorted, reduce
+3. Optional
+4. Internal changes in Java 8 HashMap
+
+✅ Phase 3: Multithreading + Concurrency
+🔹 Duration: 4–6 days
+1. Thread life cycle, Runnable vs Callable
+2. start() vs run()
+3. Synchronization, volatile, wait/notify, locks
+4. Thread pools, ExecutorService, Future
+5. Thread-safe concepts (ConcurrentHashMap vs HashMap)
+6. Basics of async/await (use CompletableFuture in Java)
+
+✅ Phase 4: Exception Handling
+🔹 Duration: 2–3 days
+1. Checked vs Unchecked exceptions
+2. Exception hierarchy
+3. try-catch-finally, throw, throws
+4. Errors (StackOverflowError, OutOfMemoryError) vs Exceptions
+
+✅ Phase 5: Data Structures & Internal Working
+🔹 Duration: 5 days
+1. Map (HashMap, LinkedHashMap, TreeMap)
+    * Internal structure
+    * hashCode() and equals() usage
+2. Stack, Queue
+3. How recursion works under the hood
+
+✅ Phase 6: Coding Practice (Daily 1–2 hrs)
+🔁 Ongoing — parallel with above phases
+* String manipulations
+* Arrays (sorting, searching, subarrays)
+* Recursion (backtracking, subsets, subsequences)
+* Use Stream API in coding problems
+* Practice on Leetcode / HackerRank
+
+✅ Phase 7: Spring Boot
+🔹 Duration: 7–9 days
+1. IoC and Dependency Injection
+2. Core annotations: @Component, @Autowired, @Service, @RestController
+3. @SpringBootApplication, auto-configuration
+4. Bean lifecycle
+5. Spring Boot + REST APIs
+6. Basics of JPA, Hibernate, JDBC (differences)
+7. Microservices & REST architecture basics
+8. Prepare using Durgesh's YouTube series (as you mentioned)
+
+✅ Phase 8: SQL & Database
+🔹 Duration: 3–4 days
+1. Joins, Subqueries, Aggregate functions
+2. One-to-One vs One-to-Many
+3. Constraints (PK, FK, UNIQUE, NOT NULL)
+4. Why RDBMS is "Relational"
+
+✅ Optional Phase 9: System Design (Light Touch)
+🔹 Duration: 4–5 days
+1. LLD vs HLD basics
+2. SOLID principles
+3. What is Kafka, Redis, API Gateway
+4. CAP theorem, ACID properties
+5. REST vs SOAP, HTTP methods
+
+🔍 Bonus: Other Concepts You Should Know
+Topic	Reason for Inclusion
+Garbage Collection	Basic understanding of GC, memory areas
+JVM Internals	Class loading, stack vs heap, execution engine
+Immutability	String pool, StringBuilder vs String
+equals() and hashCode()	Contract, overriding rules
+Comparable vs Comparator	For sorting custom objects
+
+📆 Suggested Weekly Plan
+Week	Focus Area
+1	Core Java + Design Patterns
+2	Java 8 + Coding
+3	Multithreading + Exception + DS
+4	Spring Boot + SQL + System Design
+
+Would you like:
+* 📄 A Notion/GDoc template to track your progress?
+* 🧪 Sample questions + answers for each phase?
+* 🛠 A mini project (Spring Boot + SQL) to practice everything end-to-end?
+
