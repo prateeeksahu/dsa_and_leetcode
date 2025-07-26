@@ -1,3 +1,5 @@
+>Default methods were introduced in java 1.8
+
 > Default methods are with body method in interface. 
 
 > if you want to give implementation of the method in interface you need to declare as default.
@@ -36,3 +38,15 @@ public class MyClass implements A, B {
     }
 }
 
+
+----------------------------------------------------------t
+
+there is something called static method in interface, we can provide implementation of a method in an interface using static keyword
+
+then what is diff between both
+
+1. these methods only belong to interface
+
+2. static methods are not overridden hence cannot be overriden, if you have a static method in interface and an instance or a staic method in class with same name, that wont thorw any error
+
+these methods cam only be called using interface name

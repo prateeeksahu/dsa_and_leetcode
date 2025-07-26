@@ -1,0 +1,50 @@
+1. shallow clonong by default-> when clone is called intead of copying the object it copies the reference so if one obj is copied from another and you change the 
+   the varible value in another it will reflect in one as well
+
+2. Clonable is jsut a marker there is no method in it. The actual logic is written in Object.Clone() method. This method is protected by default.
+   So if you were to use Object.Clone you will : 
+
+	i) make a clonable interface
+	ii) make a class that implements it 
+	iii) override clonable method to use it and that has to be done correctly
+
+   If you miss any one step that might thorw error 
+
+3. If a base class implements `Cloneable`, subclasses are expected to maintain cloneability, which is not always straightforward, especially with mutable fields or complex inheritance chains.
+   
+   If a class in the hierarchy does NOT support cloning, it can break the chain unexpectedly.
+
+code -
+
+class Address implements Cloneable {
+    String city;
+    Address(String city) { this.city = city; }
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone(); // shallow copy
+    }
+}
+
+class Person implements Cloneable {
+    String name;
+    Address address;
+    Person(String name, Address address) {
+        this.name = name;
+        this.address = address;
+    }
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone(); // shallow copy
+    }
+}
+
+public class Main {
+    public static void main(String[] args) throws CloneNotSupportedException {
+        Address addr1 = new Address("NYC");
+        Person p1 = new Person("Alice", addr1);
+        Person p2 = (Person) p1.clone();
+        p2.address.city = "LA"; // changes address for p1 as well!
+        System.out.println(p1.address.city); // Output: LA
+    }
+}
+
+
+

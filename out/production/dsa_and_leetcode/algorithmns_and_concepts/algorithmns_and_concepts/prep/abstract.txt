@@ -1,0 +1,36 @@
+> abstract methods are methods with no body, their concreate implementation is given class extending it
+
+> abstract methods can only be created in abstract class
+
+> we cannot create object of an abstract class
+
+> we can definately create refrence of parent class and object of child class
+
+-----------------------------------------------------
+
+access- 
+
+public - if an abstract class is defined public it can be accessed from anywhere even outside the package, given its obj is created
+
+private - making the abstract method private makes no sense since private can only be accessed in class and you need to override abstract methods in another class
+
+protected - protected will not let you access the method unless its parent abstract class is being extended. 
+            you will only be able to override protected abstract class outside its package if you extend its parent 
+
+no access - if no access moidfier specified you can only access the method in package
+
+--------------------------------------------------------
+
+Usecase of protected 
+
+> in we cannot create an object of abstract class so we cant use constructor for that, but remember constructor are also used to initialize variables
+
+> lets say we want to initialize variables in abstract class, in that case we will call the constructor, this calling will only take place in child classes
+
+> why? since object cannot be created we cannot use abstract classes anywhere except childs and only child ill access its abstract parent class
+
+> and because protected methods can be accessed by child defining abstract class constructor protected makes sense.. 
+
+> this works in diff package as well
+
+

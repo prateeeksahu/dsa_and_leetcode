@@ -23,3 +23,9 @@ A: ✅ Yes
 
 Q: Can an interface extend an abstract class?
 A: ❌ No — interfaces can only extend other interfaces
+
+
+
+We can implement more than one interfaces but we cannot extend more than one class.. this kindoff resolves multiple inheritance
+
+all variable in interface are static and final by nature in interface but in abstract class they are nither final nor static:

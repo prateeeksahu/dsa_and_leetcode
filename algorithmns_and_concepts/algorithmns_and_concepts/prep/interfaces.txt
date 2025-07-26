@@ -8,6 +8,7 @@ all variables declared in interface are final by default
 
 we can implemant more than 1 interfaces but we can only extend one class - main diff between abstract class and interface
 
+Every variable in an interface is static and final
 -----------------------------------------------------------
 
 we can extend a class and implement multiple interfaces at same time 

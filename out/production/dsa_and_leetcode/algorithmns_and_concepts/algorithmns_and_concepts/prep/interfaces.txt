@@ -8,6 +8,7 @@ all variables declared in interface are final by default
 
 we can implemant more than 1 interfaces but we can only extend one class - main diff between abstract class and interface
 
+Every variable in an interface is static and final
 -----------------------------------------------------------
 
 we can extend a class and implement multiple interfaces at same time 
@@ -24,5 +25,60 @@ we can extend a class and implement multiple interfaces at same time
 > once defined with body in interface it can be used in class exteding it, the class can override it as well
 
 > private methods can be used by extendong class, they are made for helping default methods for completeing their implementation
+-----------------------------------------------------------------
+
+> you can create a refrence of interface and object of class that implements it
+
+> In this case the object will only be able to call the methods and varibales defined in the interface
+
+> we can also call default or defined methods in interfaces the current interface extends 
+
+> we cannot call any other methods that are specific to class (whose obj we created), interface or class extending this interface(ref we are using to create) or defined after this interface
+
+----------------------------------------------------------------
+
+> access modifires - methods are by default public in interfaces, private methods can be declared but they are only used by default methods
+
+> we can also declare method static but they are not inherited by class, they cannot be overridden as well
+
+-----------------------------------------------------------------
+
+> Default methods were introduced in Java 8 to address challenges with interface evolution
+
+> If two interfaces have same default methods the implemnting class must override the conflicting method, this resolves the diamond problem
+--------------------------------------------------------------------
+
+#TYPES OF INTERFACES
+
+> Normal inerface - 
+ 
+ - Can have one or more abstract class along with static and default methods
+
+> Marker interface - 
+
+ - A marker interface in Java is a special type of interface that has no methods or fields—it is entirely empty
+ -  Its sole purpose is to “mark” or “tag” a class, conveying metadata or a signal to the Java runtime or frameworks about how a class should be treated.
+
+ex - 
+
+interface Cloneable {}
+
+class Student implements Cloneable {
+    int id;
+    String name;
+}
+
+replace cloneable with Serializable
+
+the logic to clone or serilize is writeen inside the methods use clone or serialuze... they check if the object class implements the interface or not and then only performs the task
+else they throw exception
 
 
+> Functional interface
+
+ - these interface have only one abstract method
+ - other static and default methods are allowed as well but only one abstract method
+
+ex - 
+Runnable
+Callable

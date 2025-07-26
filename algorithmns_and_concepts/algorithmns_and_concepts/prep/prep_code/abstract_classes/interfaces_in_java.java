@@ -62,7 +62,7 @@ public class interfaces_in_java {
 
         obj.meth2();
         obj.meth1();
-        obj.meth7();
+//        obj.meth7();
 
 
     }

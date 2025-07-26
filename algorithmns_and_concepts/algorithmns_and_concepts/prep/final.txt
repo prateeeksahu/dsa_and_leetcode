@@ -1,0 +1,10 @@
+Final key word is used in 3 places
+
+Variables - Once a variable declared final it can never be modified
+	    You can decalre a final variable and assign a value to it later but final variable once initialized can never be modified
+
+Methods - A method declared final can never be overriden
+	  its implementation can never be changed in any child class
+	  constructor can never be final since they are always specific to a class
+
+Class - classes decalred final can never be extended by any other class

@@ -1,0 +1,30 @@
+Static variables:
+	•	Belong to the class, not to any instance.
+	•	Only one copy exists shared by all objects.
+	•	Declared with the `static` keyword.
+	•	Created when the class is loaded into memory.
+	•	Accessed using the class name (`ClassName.variable`).
+	•	Changes affect all objects sharing that variable.
+	•	Can be accessed directly from static methods.
+Instance variables:
+	•	Belong to individual objects.
+	•	Each object has its own copy.
+	•	Declared without the `static` keyword.
+	•	Created when an object is instantiated.
+	•	Accessed using the object reference (`object.variable`).
+	•	Changes affect only the specific object.
+	•	Can only be accessed from instance methods or via an object.
+Static methods:
+	•	Belong to the class itself.
+	•	Can be called without creating an object (`ClassName.method()`).
+	•	Can only directly access static variables and other static methods.
+	•	Cannot access instance variables or instance methods directly.
+	•	Cannot use the `this` keyword.
+	•	Cannot be overridden but can be hidden.
+Instance methods:
+	•	Belong to objects (instances).
+	•	Require an object to be called (`object.method()`).
+	•	Can access both instance variables and static variables.
+	•	Can call both instance and static methods.
+	•	Can use the `this` keyword.
+	•	Can be overridden (support runtime polymorphism).
