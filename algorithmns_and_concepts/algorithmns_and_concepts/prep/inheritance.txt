@@ -1,0 +1,93 @@
+new thing I learnt is if we call constructor of subclass/child it first calls constructor of parent class(this to initliaze properties of parent)
+
+code - 
+
+package algorithmns_and_concepts.algorithmns_and_concepts.prep.prep_code.abstract_classes;
+
+class grandparent{
+    grandparent(){
+        System.out.println("Grandparent was borned");
+    }
+}
+
+class father extends grandparent{
+    father(){
+        System.out.println("Parent was borned");;
+    }
+}
+
+class son extends father{
+    son(){
+        System.out.println("son is borned");
+    }
+}
+
+public class inhertance {
+    public static void main(String[] args) {
+        son c = new son();
+    }
+}
+
+
+output - 
+
+Grandparent was borned
+Parent was borned
+son is borned
+
+Process finished with exit code 0
+
+
+
+----------------------------------------------
+
+this keyword represent obejct of current class 
+
+super keyword represent constructor of immediate parent class
+
+so when I say constructor of parent is called it actually calls super explicitly
+
+now if parent constructor is parameterized child class will thorw error because super is called explicitly with no arg and it is first line in child.. like this
+
+
+class father extends grandparent{
+    
+    super();
+
+    father(){
+        System.out.println("Parent was borned");;
+    }
+}
+
+above code will show error if grand parent is parameterized
+
+to fix this we call super in child with arg below code is code in action 
+
+
+class grandparent{
+    grandparent(int a){
+        System.out.println("Grandparent was borned");
+    }
+}
+
+class father extends grandparent{
+    
+    father(int a){
+        super(a);
+        System.out.println("Parent was borned");;
+    }
+}
+
+class son extends father{
+    son(int a){
+        super(a);
+        System.out.println("son is borned");
+    }
+}
+
+public class inhertance {
+    public static void main(String[] args) {
+        son c = new son(5);
+    }
+}
+

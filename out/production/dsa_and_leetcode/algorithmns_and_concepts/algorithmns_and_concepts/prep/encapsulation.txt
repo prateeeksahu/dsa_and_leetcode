@@ -1,0 +1,38 @@
+Encapsulation is one of the fundamental principles of object-oriented programming (OOP) in Java and other programming languages.
+
+> It refers to the bundling of data (attributes) and methods (functions) that operate on that data into a single unit, typically a class.
+
+Key Aspects of Encapsulation
+
+	1.	Data Hiding:
+
+	▪	Encapsulation restricts direct access to some of an object's components, which is a means of preventing unintended interference 
+		and misuse of the methods and data. This is achieved by making class variables private. 	
+	
+
+	2.	Access Modifiers:
+
+	▪	Java uses access modifiers to set the visibility of classes, methods, and variables:
+
+	◦	private: The member is accessible only within the same class.
+
+ 	◦	public: The member is accessible from any other class.
+
+ 	◦	protected: The member is accessible within the same package and subclasses.
+
+ 	◦	default (no modifier): The member is accessible only within its own package.
+
+
+ 	3.	Getters and Setters:
+
+	▪	To allow controlled access to the private variables, encapsulation often involves the use of getter and setter methods. 
+		These methods provide a way to read and modify the value of private variables while enforcing rules or constraints.
+
+
+Benefits of Encapsulation
+	•	Control: You can control how the data is accessed or modified. For example, you can validate data before setting it.
+
+ 	•	Flexibility and Maintenance: Changes to the internal implementation of a class can be made without 
+		affecting the classes that use it, as long as the interface (public methods) remains the same.
+
+ 	•	Increased Security: Sensitive data can be hidden from outside access, reducing the risk of unintended modifications
