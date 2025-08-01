@@ -1,0 +1,38 @@
+The issue you're experiencing stems from the fact that you're updating the result array r incorrectly. Specifically, the loop should update r[i] only after we’ve found the smallest subarray for each index i.
+
+Problem Understanding:
+You are trying to find the smallest subarray starting at each index i such that the bitwise OR of the subarray equals the OR of all elements in the array (m).
+The subarray length should be the smallest length that satisfies this condition for each index i.
+The Problem in Your Code:
+The issue is that after we find a subarray whose OR matches m, we are incorrectly skipping some valid subarrays and updating the result prematurely.
+
+Let's walk through the problem and fix it.
+
+Key Fix:
+The issue is caused by updating r[i] only when we find the first valid subarray. However, we should continue searching until we find the smallest subarray for each index i.
+
+Correct Approach:
+We need to ensure that for each index i, we are properly calculating the smallest subarray length for which the OR of the subarray equals m (the OR of all elements).
+
+The issue you're experiencing stems from the fact that you're updating the result array r incorrectly. Specifically, the loop should update r[i] only after we’ve found the smallest subarray for each index i.
+
+Problem Understanding:
+You are trying to find the smallest subarray starting at each index i such that the bitwise OR of the subarray equals the OR of all elements in the array (m).
+The subarray length should be the smallest length that satisfies this condition for each index i.
+The Problem in Your Code:
+The issue is that after we find a subarray whose OR matches m, we are incorrectly skipping some valid subarrays and updating the result prematurely.
+
+Let's walk through the problem and fix it.
+
+Key Fix:
+The issue is caused by updating r[i] only when we find the first valid subarray. However, we should continue searching until we find the smallest subarray for each index i.
+
+Correct Approach:
+We need to ensure that for each index i, we are properly calculating the smallest subarray length for which the OR of the subarray equals m (the OR of all elements).
+
+Corrected Code:Corrected Code:
+Problederstanding:
+Problederstanding:
+Problederstanding:
+Problederstanding:
+Problederstanding:

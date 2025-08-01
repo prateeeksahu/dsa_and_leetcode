@@ -82,3 +82,21 @@ else they throw exception
 ex - 
 Runnable
 Callable
+
+-----------------------------------------
+
+# functional interface 
+
+finctional interace are such interfaces which exactly one abstract method
+
+no less, no more
+
+it can have any number of static and default
+
+@FunctionalInterface is the annotation useful to tell compiler that below interface is functional interface
+
+if the interface voilets the rules the anootation shows error
+
+these interfaces are useful for lamda expression
+
+any method from object class is allowed 
