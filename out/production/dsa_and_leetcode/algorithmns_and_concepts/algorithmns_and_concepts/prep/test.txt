@@ -1,6 +1,6 @@
 The issue you're experiencing stems from the fact that you're updating the result array r incorrectly. Specifically, the loop should update r[i] only after we’ve found the smallest subarray for each index i.
 
-Problem Understanding:
+Problem Understandingii:
 You are trying to find the smallest subarray starting at each index i such that the bitwise OR of the subarray equals the OR of all elements in the array (m).
 The subarray length should be the smallest length that satisfies this condition for each index i.
 The Problem in Your Code:
@@ -35,4 +35,27 @@ Problederstanding:
 Problederstanding:
 Problederstanding:
 Problederstanding:
+Prooblederstanding
+
+i;akjhf;hello
+i;akjhf;h
 Problederstanding:
+Problederstanding:
+Problederstanding:
+Problederstanding:
+Prooblederstanding
+
+i;akjhf;hello
+Problederstanding:
+Problederstanding:
+Problederstanding:
+Problederstanding:
+Prooblederstanding
+:Key Fix:
+The issue is caused by updating r[i] only when we find the first valid subarray. However, we should continue searching until we find the smallest subarray for each index i.
+Replace the word.. regex
+Problederstanding:
+Problederstanding:
+Problederstanding:
+Problederstanding:
+Prooblederstanding
