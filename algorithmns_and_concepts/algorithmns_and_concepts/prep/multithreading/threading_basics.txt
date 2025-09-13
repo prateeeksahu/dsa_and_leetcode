@@ -1,0 +1,59 @@
+> CPU - central processing unit responsible for almost everything happeing inside a system
+
+> core - small units handling differnt programs inside the CPU
+
+> program - an application in a system that uses CPU/core for its exeecution
+
+> process - when a program is started the cpu starts a process that executes the program
+
+> thread -  the smallest unit of any process is thread, keeps samll things doing when we are running process
+
+> Multitasking -  OS runs multiple process at a time. in single core CPU it is achived using time sharing, this is rapidly switching between tasks. In multi core CPU tasks run parallely in seprate core. OS scheduler takes care of distribution and balancing the load
+
+
+
+In nutshell, when a program runs cpu creates a process - there can be multiple processes running in the cpu, inside a process multiple threads runs simultenouly - performing small operations we are doing in the app
+--------------------------------------------------------------
+
+In a single core CPU both process and threads are managed by OS scheduler through time slicing and context switching (quick swtiching between the processes), this creaets illusion of simultanious execution.
+
+In multi core cpu true parallel execution takes place in seprate cores
+
+--------------------------------------------------------------
+
+Time slicing - 
+
+def - it divides cpu time into smaller time intervals called time slices or quanta
+
+fun - scheduler assigns these slices to process and threads
+
+purpose - no monopoly on cpu, improves performance and concurrent execution
+
+---------------------------------------------------------------
+
+context switching - 
+
+def - saving the state of current process/thread and loading the state of next process/thread for execution
+
+fun - when time slice expires the scheduler moves focus to next process/ thread
+
+purpose - improves efficiency
+
+------------------------------------------------------------------
+
+Java supports multithreading and its part of java.lang package. It uses java.lang.Thread class and java.lang.Runnable interface
+
+In an os JVM and OS both helps in managing multithreading
+
+When a java program starts, the thread called main starts running immediately, this runs the main method
+
+You can get the name of thread by  -  System.out.println(Thread.currentThread().getName());
+
+
+************
+
+a thread and main method are two diff threads.. if an infinite loop is called they run simultenously 
+
+************
+
+

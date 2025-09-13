@@ -31,3 +31,4 @@ public class stream_api {
         System.out.println(a);
     }
 }
+

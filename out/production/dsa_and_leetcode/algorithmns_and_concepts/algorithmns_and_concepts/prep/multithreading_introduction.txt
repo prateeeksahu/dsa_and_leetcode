@@ -1,0 +1,78 @@
+> A thread is a process within a process
+
+> we can do multiple tasks by just running a process
+
+> spawning multiple processes can consume more resources, but threads are light weight and fast
+
+> threads share same memory
+
+
+-----------------------------------------
+
+concurrency - managing multiple computatuions at same time.. like cooking and coding.. even though you are managing both tasks but you are doing one task at a time
+
+
+parallelism - doing two or more tasks simulteniously, humanly it is not possible but it is like eating and writing at same time
+
+----------------------------------------
+
+> threads run simultanously
+
+below is the syntax how to write threads extending thread class..
+
+1. a class that implemnts thread interface is created... run method is overridden and logic is written in it
+2. in main object of the class is created and start method is called... start method internally calls run method
+
+code - 
+
+class myThread extends Thread{
+    public void run(){
+        for(int i = 0; i<10000; i++) System.out.println("myThread is running");
+    }
+}
+
+class notMyThread extends Thread{
+    public void run(){
+        for(int i = 0; i<10000; i++) System.out.println("notMyThread is running");
+    }
+}
+
+public class threads_in_java {
+    public static void main(String[] args) {
+
+        myThread mt = new myThread();
+        notMyThread nmt = new notMyThread();
+        mt.start();
+        nmt.start();
+
+    }
+}
+
+------------------------------------------
+
+> to run thread using runnable interface - 
+
+1. you first gotta make a class that implements runnable interface
+2. you then overide the run method and write your logic in it
+3. in main you first create an object of class that inplements runnable and then you create an object of thread class and pass runnable object to it
+4. then you call the start function on thread function..
+
+code - 
+
+class myThreadRunnable implements Runnable{
+    public void run(){
+        for(int i = 0; i<10000; i++) System.out.println("myThreadRunnable is running");
+    }
+}
+
+public class threads_in_java {
+    public static void main(String[] args) {
+        myThreadRunnable mtr = new myThreadRunnable();
+        Thread t = new Thread (mtr);
+        t.start();
+   }
+}
+
+this approach is used because if we extend thread class we can not extend any other class (to avoid multiple inheritance issue)
+this also implements seprate responsibilty principle (srp)... where runnable has the logic and thread has responsibilty to run
+this also make code More Reusable - Same Runnable instance can be given to multiple Thread objects if needed.
