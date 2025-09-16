@@ -68,7 +68,7 @@ class myThreadRunnable implements Runnable{
 public class threads_in_java {
     public static void main(String[] args) {
         myThreadRunnable mtr = new myThreadRunnable();
-        Thread t = new Thread (mtr);
+        Thread t = new Thread (mtr); // -> runnable object is passed inside the an overloaded constructor of Thread class
         t.start();
    }
 }

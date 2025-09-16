@@ -1,0 +1,117 @@
+> lamda function is an anonymus function
+
+> remove modifier, return type and name and place an arrow you are left with lamda expression
+
+> lamda can only be used with functional interface 
+
+
+-----------------------------------------------------------------
+
+if we have an interface with more than one abstract method and lets say we are going to use the object of that interface class only once 
+> creating class of that interface and making object uses more resources 
+
+> we can simplify that by below code
+
+interface inter{
+    void yoiyoi();
+    void boiboi();
+}
+
+public class lamda_experssion {
+    public static void main(String[] args) {
+        inter i = new inter() {
+            @Override
+            public void yoiyoi() {
+                System.out.println("yoi");
+            }
+
+            @Override
+            public void boiboi() {
+                System.out.println("boi");
+            }
+        };
+
+        i.boiboi();
+        i.yoiyoi();
+    }
+}
+
+This is also called anonymus class
+
+this was done until java 7 but in java 8 lamda functions were introduced for functional interfaces
+
+-----------------------------------------------------------------------------
+
+now lets say we dont want 2 abstract methods.. instead we have a functional interface... in that case we can use lamda expression
+
+
+interface inter{
+    void yoiyoi();
+}
+
+public class lamda_experssion {
+    public static void main(String[] args) {
+        inter i = () -> { System.out.println("yoi")};
+    }
+}
+
+here what i did is
+
+removed the name, return type and modifier
+
+-> is called arrow funtion or lamda expression
+
+and directly provided the implemention surin creating an object.
+
+Rules- 
+
+1. if there is only one statement we can remove curly braces
+
+ inter i = () -> System.out.println("yoi");
+
+this works 
+
+
+
+2. Use type inference, if there are parameters we can pass arguments without data type
+
+  if defination is 
+  void yoiyoi(int a, int b, String s);
+
+  we can write it as
+
+  inter i = (a, b, s) -> System.out.println("yoi");
+
+3. no return keyword
+
+if there is only single return you dont need to write return and then return value
+
+   inter i = (a, b, s) -> a+b;
+
+this works
+
+
+4. if only one param
+
+If there is only parameter remove brackets, if there are more than one param or 0 param you need to give brackets
+
+if there is only one param we can drop brackets
+
+ inter i = a -> System.out.println("yoi");
+ 
+ inter i = () -> System.out.println("yoi");
+
+
+------------------------------------------------------
+
+there is an annotation in java that throws error when we use more than one abstract method in interface
+
+it is like a watchman that once an interface defined functional wont allow more than one abstract method
+
+
+@FunctionalInterface unctionl
+interface inter{
+    void yoiyoi(int a, int b, String s);
+}
+
+though methods present in object class are allowed to be defined abstract

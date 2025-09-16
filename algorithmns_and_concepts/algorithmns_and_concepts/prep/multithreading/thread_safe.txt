@@ -1,0 +1,11 @@
+anything in java wont give unexpected result when used with thread is called thread safe
+
+when race situation does happen
+
+when more than one thread can never access an object then it is thread safe
+
+- syncronization
+- locks
+- thread communcation 
+
+all makes objects thread safe

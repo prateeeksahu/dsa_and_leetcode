@@ -1,0 +1,66 @@
+A deadlock happens when two (or more) threads are waiting for each other’s locks, and none can proceed.
+
+1.	Setup:
+	•	We have two classes:
+	•	Pen with methods writeWithPenAndPaper(Paper) and finishWriting()
+	•	Paper with methods writeWithPaperAndPen(Pen) and finishWriting()
+	•	All these methods are declared synchronized, meaning whenever a thread enters one of these methods, it acquires the intrinsic lock (monitor lock) of that object.
+
+
+2.	What Threads Do:
+	•	Thread-1 calls pen.writeWithPenAndPaper(paper)
+	•	This method acquires the lock on Pen object.
+	•	Inside it, the method tries to call paper.finishWriting(), which requires the lock on Paper object.
+	•	Thread-2 calls paper.writeWithPaperAndPen(pen)
+	•	This method acquires the lock on Paper object.
+	•	Inside it, the method tries to call pen.finishWriting(), which requires the lock on Pen object.
+
+
+3.	How Deadlock Happens:
+	•	At this point:
+	•	Thread-1 is holding the Pen lock and waiting for the Paper lock.
+	•	Thread-2 is holding the Paper lock and waiting for the Pen lock.
+	•	Since both locks are already taken by the other thread, neither thread can proceed.
+	•	Both are waiting indefinitely → deadlock.
+
+Code - 
+
+class Pen {
+    public synchronized void writeWithPenAndPaper(Paper paper) {
+        System.out.println(Thread.currentThread().getName() + " acquired Pen lock, trying to call Paper.finishWriting");
+        try { Thread.sleep(100); } catch (InterruptedException e) { e.printStackTrace(); }
+        paper.finishWriting(); // needs Paper lock → deadlock
+    }
+
+    public synchronized void finishWriting() {
+        System.out.println(Thread.currentThread().getName() + " is finishing writing with Pen");
+    }
+}
+
+class Paper {
+    public synchronized void writeWithPaperAndPen(Pen pen) {
+        System.out.println(Thread.currentThread().getName() + " acquired Paper lock, trying to call Pen.finishWriting");
+        try { Thread.sleep(100); } catch (InterruptedException e) { e.printStackTrace(); }
+        pen.finishWriting(); // needs Pen lock → deadlock
+    }
+
+    public synchronized void finishWriting() {
+        System.out.println(Thread.currentThread().getName() + " is finishing writing with Paper");
+    }
+}
+
+public class DeadlockExample {
+    public static void main(String[] args) {
+        Pen pen = new Pen();
+        Paper paper = new Paper();
+
+        // Thread 1 → Locks Pen first, then tries Paper
+        Thread t1 = new Thread(() -> pen.writeWithPenAndPaper(paper), "Thread-1");
+
+        // Thread 2 → Locks Paper first, then tries Pen
+        Thread t2 = new Thread(() -> paper.writeWithPaperAndPen(pen), "Thread-2");
+
+        t1.start();
+        t2.start();
+    }
+}
