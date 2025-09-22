@@ -1,0 +1,21 @@
+Difference Between Checked and Unchecked Exceptions in Java
+
+1. Definition
+	•	Checked Exceptions: Exceptions that are checked at compile-time. The compiler forces you to handle them using try-catch or by declaring them with throws.
+	•	Unchecked Exceptions: Exceptions that occur at runtime. The compiler does not force handling of these exceptions.
+
+2. Package
+	•	Checked: Subclasses of Exception (but not RuntimeException).
+	•	Unchecked: Subclasses of RuntimeException and Error.
+
+3. Handling Requirement
+	•	Checked: Must be either caught or declared in the method signature.
+	•	Unchecked: No such requirement; can be left unhandled.
+
+4. Examples
+	•	Checked: IOException, SQLException, ClassNotFoundException.
+	•	Unchecked: NullPointerException, ArrayIndexOutOfBoundsException, ArithmeticException.
+
+5. Use Case
+	•	Checked: Used for recoverable conditions (like missing files, invalid user input, database errors).
+	•	Unchecked: Used for programming errors (like null references, bad array access, logic mistakes).

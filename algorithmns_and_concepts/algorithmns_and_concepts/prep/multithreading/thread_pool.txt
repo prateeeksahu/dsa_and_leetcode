@@ -1,0 +1,9 @@
+A Thread Pool is a collection of pre-created, reusable threads that are kept ready to perform tasks.
+Instead of creating a new thread every time you need to run something (which is costly in terms of memory and CPU), a thread pool maintains a fixed number of threads. 
+
+When a task is submitted:
+
+If a thread is free, it immediately picks up the task and runs it.
+If all threads are busy, the task waits in a queue until a thread becomes available.
+After finishing a task, the thread does not die. It goes back to the pool and waits for the next task.
+

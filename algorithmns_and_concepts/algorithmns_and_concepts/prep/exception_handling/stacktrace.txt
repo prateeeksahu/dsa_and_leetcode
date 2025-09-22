@@ -1,0 +1,21 @@
+> it is an hierarchy in which sequence exception was thrown?
+
+> if you are calling 5 methods and 5th methods throws the exception.. concole will display all the calls in hierarchy.. it is snapshot in which calls were made
+
+at com.engineeringdigest.corejava.innerclasses.Test.level3(Test.java:12)
+at com.engineeringdigest.corejava.innerclasses.Test.level2(Test.java:15)
+at com.engineeringdigest.corejava.innerclasses.Test.level1(Test.java:18)
+at com.engineeringdigest.corejava.innerclasses.Test.main(Test.java:6)
+
+it looks like this... 
+
+this trace is returned in array by exception class
+
+	StackTraceElement[] stackTrace = e.getStackTrace();
+
+you can intrate over this and get the same result
+
+or you can use this and no need to itrate
+
+	e.printStackTrace();
+

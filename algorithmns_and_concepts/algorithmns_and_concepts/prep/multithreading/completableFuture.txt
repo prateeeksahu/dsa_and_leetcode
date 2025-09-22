@@ -1,0 +1,3 @@
+> runs a thread and returns a future object which later have the result after computation is done
+
+similar to other threads.. it has everything to do with async programming

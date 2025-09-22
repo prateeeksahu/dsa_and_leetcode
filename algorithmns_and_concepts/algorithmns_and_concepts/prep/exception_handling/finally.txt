@@ -1,0 +1,27 @@
+Definition:
+	•	The finally block is used with try-catch.
+	•	It contains code that is always executed, whether an exception occurs or not.
+	•	Commonly used for resource cleanup (closing files, database connections, releasing memory, etc.).
+
+⸻
+
+Key Points
+	1.	A finally block is optional, but if present, it always runs.
+	2.	Executes after try-catch (or after try if no catch is present).
+	3.	Executes even if a return statement is in the try or catch.
+	4.	The only time finally might not execute is if the JVM shuts down (System.exit(0) or fatal error).
+
+
+public static void main(String[] args) {
+    try {
+        int a = 10 / 0; // causes exception
+    } catch (ArithmeticException e) {
+        System.out.println("Caught: " + e);
+    } finally {
+        System.out.println("Finally block executes even after exception");
+    }
+}
+
+
+finally ensures that cleanup code (like closing files, DB connections, releasing resources) always runs, no matter what happens in try or catch.
+

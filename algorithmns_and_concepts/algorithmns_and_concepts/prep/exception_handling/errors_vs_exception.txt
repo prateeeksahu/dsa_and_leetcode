@@ -1,0 +1,37 @@
+	1.	Definition
+
+	•	Error: A serious problem that the JVM cannot handle. Usually external to the application (like system-level failures).
+	•	Exception: An abnormal condition that occurs during program execution which can be handled by the program.
+
+	2.	Recoverability
+
+	•	Error: Generally not recoverable. Program cannot continue safely.
+	•	Exception: Usually recoverable if handled properly.
+
+	3.	Hierarchy
+
+	•	Error: Subclass of java.lang.Error.
+	•	Exception: Subclass of java.lang.Exception.
+
+	4.	Checked vs Unchecked
+
+	•	Error: Always unchecked. No need to handle or declare.
+	•	Exception: Can be checked (must be handled/declared) or unchecked (RuntimeException).
+
+	5.	Examples
+
+	•	Error: OutOfMemoryError, StackOverflowError, VirtualMachineError.
+	•	Exception:
+	•	Checked: IOException, SQLException
+	•	Unchecked: NullPointerException, ArithmeticException
+
+	6.	Handling
+
+	•	Error: Cannot usually be handled in code.
+	•	Exception: Can be handled using try-catch or throws.
+
+⸻
+
+One-liner for notes:
+
+Errors are serious JVM problems beyond program control, while Exceptions are abnormal conditions in the program that can be handled.

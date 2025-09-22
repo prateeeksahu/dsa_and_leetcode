@@ -1,0 +1,47 @@
+> It is same as latch just the diff is threds finish and count decreases till it reaches 0 then only threads are released
+
+> here threads wait a barrier.await(); method till all threads arrive then further execution proceeds
+
+class dser implements Callable<String> {
+    private final CyclicBarrier c;
+
+    public dser(CyclicBarrier c){
+        this.c = c;
+    }
+
+    public String call() throws InterruptedException, BrokenBarrierException {
+        System.out.println(Thread.currentThread().getName() + " Started");
+        Thread.sleep(2000);
+        System.out.println(Thread.currentThread().getName() + " Waiting at barrier");
+        c.await();
+        return "ok";
+    }
+}
+
+public class countDownLatch{
+    public static void main(String[] args) throws InterruptedException {
+        int n = 3;
+        ExecutorService e = Executors.newFixedThreadPool(n);
+        CyclicBarrier c = new CyclicBarrier(n);
+
+        e.submit(new dser(c));
+        e.submit(new dser(c));
+        e.submit(new dser(c));
+
+        System.out.println("Main released");
+        e.shutdown();
+
+    }
+}
+
+
+.reset() methods resests the barrirer, this throws broken barrier exception and resumes the execution
+
+.getParties() returns number of threads required to trip this barrier that means how many threads we need to break the barrier
+
+.getNumbeWaiting() as name suggets retruns number of thread waiting
+
+
+the summary is the threads wait at await method till all the threads reach there.. once all are there they resume the execution
+
+

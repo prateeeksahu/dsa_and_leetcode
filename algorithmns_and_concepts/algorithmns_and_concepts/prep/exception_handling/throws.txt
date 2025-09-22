@@ -1,0 +1,65 @@
+throws Keyword in Java
+
+Definition:
+	•	The throws keyword is used in a method declaration to specify the exceptions that the method might throw during execution.
+	•	It tells the caller of the method: “You must handle or declare these exceptions.”
+
+Key Points:
+	1.	Declares checked exceptions (not required for unchecked exceptions).
+	2.	Appears after the method signature.
+	3.	Multiple exceptions can be declared, separated by commas.
+	4.	Shifts the responsibility of handling the exception to the calling method.
+
+
+public void readFile(String path) throws IOException {
+    FileReader file = new FileReader(path); // might throw IOException
+}
+
+
+in an hierarchy of method calls if bottom most method can throw exception all above methods must put throw in their signature until it is handeled
+
+
+Purpose of throws in Java - for checked exceptions only
+	•	The main purpose of throws is compile-time checking of checked exceptions.
+	•	Java wants you to be explicit about which methods can cause checked exceptions, so that:
+	1.	The caller is aware of possible problems.
+	2.	The compiler ensures you either handle them (try-catch) or declare them further.
+
+⸻
+
+Why it feels optional sometimes
+	•	If you don’t declare throws, and instead handle the exception inside the method (with try-catch), the compiler is satisfied — because the exception won’t propagate outward.
+	•	If you do declare throws, the method passes the responsibility to its caller, and the caller must handle it or declare it again.
+	•	At the very top-level (e.g., main method), you can just handle the exception in a try-catch, so it seems like throws isn’t needed.
+
+ex - 
+
+// With throws
+public void readFile(String path) throws IOException {
+    FileReader file = new FileReader(path); // may throw IOException
+}
+
+// Caller must handle or declare
+public static void main(String[] args) {
+    try {
+        new Demo().readFile("abc.txt");
+    } catch (IOException e) {
+        System.out.println("Handled: " + e);
+    }
+}
+
+
+// Without throws (handle internally)
+public void readFile(String path) {
+    try {
+        FileReader file = new FileReader(path);
+    } catch (IOException e) {
+        System.out.println("Handled inside method: " + e);
+    }
+}
+
+
+
+Both work fine ✅, but the difference is:
+	•	throws = “I’m not handling it here, caller must know about it.”
+	•	No throws (with try-catch) = “I’m handling it right here, caller doesn’t need to worry.”

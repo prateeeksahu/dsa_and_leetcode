@@ -1,0 +1,50 @@
+Definition:
+	•	The throw keyword is used to explicitly create and throw an exception object at runtime.
+	•	Unlike throws (which just declares), throw actually executes and interrupts the normal program flow.
+
+⸻
+
+Key Points
+	1.	Used inside a method or block to throw an exception.
+	2.	Can throw only one exception at a time.
+	3.	Works with both checked and unchecked exceptions.
+	4.	Syntax:
+
+	throw new ExceptionType("message");
+
+
+ex - 
+
+Throwing a Checked Exception
+
+public void readFile(String path) throws IOException {
+    if (path == null) {
+        throw new IOException("File path cannot be null");
+    }
+    FileReader fr = new FileReader(path);
+}
+
+
+Throwing an Unchecked Exception
+
+public void divide(int a, int b) {
+    if (b == 0) {
+        throw new ArithmeticException("Division by zero not allowed");
+    }
+    System.out.println("Result: " + (a / b));
+}
+
+public static void main(String[] args) {
+    new Demo().divide(10, 0);  // throws ArithmeticException
+}
+
+
+Here:
+	•	throw → actually creates & throws the IOException.
+	•	throws → declares that readFile might throw an exception.
+
+⸻
+
+Quick Difference (for notes):
+	•	throw → used to actually throw an exception object.
+	•	throws → used in method signature to declare possible exceptions.

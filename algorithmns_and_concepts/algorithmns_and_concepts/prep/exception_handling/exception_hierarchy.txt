@@ -1,0 +1,71 @@
+java.lang.Object
+ └── java.lang.Throwable
+      ├── java.lang.Error
+      │    ├── java.lang.VirtualMachineError
+      │    │    ├── java.lang.OutOfMemoryError
+      │    │    └── java.lang.StackOverflowError
+      │    ├── java.lang.LinkageError
+      │    │    ├── java.lang.ClassFormatError
+      │    │    └── java.lang.NoClassDefFoundError
+      │    └── (other Error subclasses)
+      │
+      └── java.lang.Exception
+           ├── java.lang.RuntimeException
+           │    ├── java.lang.ArithmeticException
+           │    ├── java.lang.NullPointerException
+           │    ├── java.lang.IndexOutOfBoundsException
+           │    └── java.lang.IllegalArgumentException
+           ├── java.io.IOException
+           │    ├── java.io.FileNotFoundException
+           │    └── java.io.EOFException
+           ├── java.sql.SQLException
+           ├── java.lang.reflect.InvocationTargetException
+           ├── java.net.SocketException
+           └── java.net.UnknownHostException
+
+
+this is the hierarchy of the exceptions now all exceptions implements exception class. we can pass exception as reference in place of exact exception 
+
+in that manner we can catch specific exceptions and some random exception if we like 
+
+this is exception handleing exception in hierarchy
+
+public class ExceptionDemo {
+    public static void main(String[] args) {
+        try {
+            // Example code that may throw different exceptions
+            int[] numbers = {1, 2, 3};
+            
+            // Uncomment one at a time to test different exceptions:
+            // int result = 10 / 0;                 // ArithmeticException
+            // String text = null; text.length();   // NullPointerException
+            int result = numbers[5];               // ArrayIndexOutOfBoundsException
+            
+            System.out.println("Result: " + result);
+        } 
+        catch (ArithmeticException e) {
+            System.out.println("Caught ArithmeticException: " + e.getMessage());
+        } 
+        catch (NullPointerException e) {
+            System.out.println("Caught NullPointerException: " + e.getMessage());
+        } 
+        catch (Exception e) {
+            System.out.println("Caught some other Exception: " + e.getClass().getName() 
+                               + " - " + e.getMessage());
+        }
+    }
+}
+
+
+
+here if got it will catch ArithmeticException first then NullPointerException and then Exception for anyother exception that occurs
+
+even if NullPointerException happens it will directly jump to that catch
+
+just know if we put exception class first it will throw error from the exception class and not from the below ones
+
+------------------------------------------
+
+catch (ArithmeticException e | NullPointerException)
+
+we can do this as well, this is called multi catch the only thing we gotta remember is we cannot put child and parent pair in it

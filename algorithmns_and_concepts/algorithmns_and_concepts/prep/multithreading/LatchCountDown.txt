@@ -1,0 +1,43 @@
+> this makes the main thread wait till all the threads are executed
+
+> there is a counter inside of the object of this class, when it becomes 0 the main thread is released
+
+> this is simplest implementation to make thread wait
+
+
+class dser implements Callable<String> {
+    private final CountDownLatch c;
+
+    public dser(CountDownLatch c){
+        this.c = c;
+    }
+
+    public String call() throws InterruptedException {
+        try {
+            System.out.println(Thread.currentThread().getName() + " Started");
+            Thread.sleep(2000);
+        }
+        finally {
+            c.countDown();
+        }
+        return "ok";
+    }
+}
+
+public class countDownLatch{
+    public static void main(String[] args) throws InterruptedException {
+        int n = 3;
+        ExecutorService e = Executors.newFixedThreadPool(n);
+        CountDownLatch l = new CountDownLatch(n);
+
+        e.submit(new dser(l));
+        e.submit(new dser(l));
+        e.submit(new dser(l));
+        l.await();
+
+        System.out.println("Main released");
+        e.shutdown();
+
+    }
+}
+
