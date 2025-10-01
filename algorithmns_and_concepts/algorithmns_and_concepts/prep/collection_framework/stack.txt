@@ -1,0 +1,7 @@
+Stack extends vector, hence it is threadsafe
+
+it inherits all features of vector
+
+we can add elements or remove from middle of stack
+
+we can also search using search method it will return index of first occurance of any object in 1 based indexing

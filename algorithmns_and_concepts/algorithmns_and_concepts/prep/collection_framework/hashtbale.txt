@@ -1,0 +1,7 @@
+> same as hashmap
+
+> its there since java 1
+
+> it slow because it is syncronized
+
+> working is same except it only uses linked list

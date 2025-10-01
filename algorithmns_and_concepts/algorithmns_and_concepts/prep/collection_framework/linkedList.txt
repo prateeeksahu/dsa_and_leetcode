@@ -1,0 +1,21 @@
+in java linkedlist class is a doubly linked
+
+we have 
+ - get
+ - add
+ - addFirst
+ - addLast
+ - getFirst
+ - getlast 
+
+ methods
+
+Performance Considerations
+
+LinkedList has different performance characteristics compared to ArrayList:
+
+Insertions and Deletions: LinkedList is better for frequent insertions and deletions in the middle of the list because it does not require shifting elements, as in ArrayList.
+
+Random Access: LinkedList has slower random access (get(int index)) compared to ArrayList because it has to traverse the list from the beginning to reach the desired index.
+
+Memory Overhead: LinkedList requires more memory than ArrayList because each node in a linked list requires extra memory to store references to the next and previous nodes.

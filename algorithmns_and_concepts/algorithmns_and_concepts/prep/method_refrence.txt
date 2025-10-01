@@ -1,0 +1,96 @@
+What is a Method Reference?
+
+A method reference is a shorthand syntax in Java 8+ for writing lambda expressions that just call an existing method.
+Instead of writing:
+
+list.forEach(x -> System.out.println(x));
+
+You can write:
+
+list.forEach(System.out::println);
+
+here System.out is class name and println method
+
+of it takes only one input it will be automatically added
+
+
+🔹 1. General Rule
+
+A method reference is just a short form of a lambda that calls one method.
+
+Syntax looks like this:
+
+<target>::<methodName>
+
+Where:
+	•	<target> can be a class name or an object reference.
+	•	:: is just the “method reference operator”.
+	•	<methodName> is the method you want to call (or new for constructors).
+
+🔹 2. Type 1 → Static method reference
+
+ClassName::staticMethod
+
+Example:
+
+Lambda:
+
+list.forEach(x -> MyUtils.print(x));
+
+Method reference:
+
+list.forEach(MyUtils::print);
+
+🔹 3. Type 2 → Instance method of a specific object
+
+instance::instanceMethod	
+
+Example:
+
+Lambda:
+
+Printer p = new Printer();
+list.forEach(x -> p.print(x));
+
+Method reference:
+
+list.forEach(p::print);
+
+🔹 4. Type 3 → Instance method of an arbitrary object of a class
+
+ClassName::instanceMethod
+
+Example:
+
+Lambda:
+
+list.sort((a, b) -> a.compareToIgnoreCase(b));
+
+Method reference:
+
+list.sort(String::compareToIgnoreCase);
+
+👉 Here String::compareToIgnoreCase means:
+“Take two strings, call the first one’s compareToIgnoreCase on the second.”
+
+⸻
+
+🔹 5. Type 4 → Constructor reference
+
+ClassName::new
+
+Example:
+
+Lambda:
+
+Supplier<List<String>> supplier = () -> new ArrayList<>();
+
+Method reference:
+
+Supplier<List<String>> supplier = ArrayList::new;
+
+🔑 Key Insight
+
+If you see a lambda like (args) -> something.method(args) →
+you can usually rewrite it as something::method.
+

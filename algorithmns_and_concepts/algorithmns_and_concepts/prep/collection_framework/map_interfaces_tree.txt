@@ -1,0 +1,25 @@
+Map (Separate Interface)
+├── HashMap
+│   ├── LinkedHashMap
+│   ├── WeakHashMap
+│   └── IdentityHashMap
+├── Hashtable (legacy)
+├── SortedMap
+│   └── TreeMap
+│       └── NavigableMap
+├── ConcurrentMap
+    ├── ConcurrentHashMap
+    └── ConcurrentSkipListMap
+
+
+
+                               Map (Separate Interface)
+       /---------------------------|----------------------------\
+   HashMap                   SortedMap                     ConcurrentMap
+   /   |   \                      |                         /           \
+Linked Weak Identity            TreeMap                ConcurrentHash   ConcurrentSkipListMap
+ Hash   Hash   Hash                |                          Map                Map
+  Map   Map    Map            NavigableMap
+       
+                |
+           Hashtable (legacy)

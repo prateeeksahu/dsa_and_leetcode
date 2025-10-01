@@ -1,0 +1,48 @@
+java.lang.Iterable (Interface)
+│
+└── java.util.Collection (Interface)
+    │
+    ├── java.util.List (Interface)
+    │   ├── java.util.ArrayList
+    │   ├── java.util.LinkedList
+    │   ├── java.util.Vector
+    │   │    └── java.util.Stack
+    │   └── java.util.concurrent.CopyOnWriteArrayList
+    │
+    ├── java.util.Set (Interface)
+    │   ├── java.util.HashSet
+    │   │    └── java.util.LinkedHashSet
+    │   ├── java.util.TreeSet (implements SortedSet, NavigableSet)
+    │   ├── java.util.EnumSet
+    │   ├── java.util.concurrent.CopyOnWriteArraySet
+    │   └── java.util.concurrent.ConcurrentSkipListSet
+    │
+    ├── java.util.SortedSet (Interface)  ← extended by TreeSet, ConcurrentSkipListSet
+    │
+    ├── java.util.Queue (Interface)
+    │   ├── java.util.LinkedList  (also implements List, Deque)
+    │   ├── java.util.PriorityQueue
+    │   ├── java.util.concurrent.ConcurrentLinkedQueue
+    │   │
+    │   └── java.util.concurrent.BlockingQueue (Interface)
+    │       ├── java.util.concurrent.ArrayBlockingQueue
+    │       ├── java.util.concurrent.LinkedBlockingQueue
+    │       ├── java.util.concurrent.PriorityBlockingQueue
+    │       ├── java.util.concurrent.SynchronousQueue
+    │       └── java.util.concurrent.DelayQueue
+    │
+    └── java.util.Deque (Interface)
+        ├── java.util.ArrayDeque
+        ├── java.util.LinkedList  (also implements List, Queue)
+        └── java.util.concurrent.ConcurrentLinkedDeque
+
+-----------------------------------------
+
+java.util.Map (Interface)   ← not a child of Collection, but part of framework
+│
+├── java.util.HashMap
+│    └── java.util.LinkedHashMap
+├── java.util.TreeMap (implements SortedMap, NavigableMap)
+├── java.util.EnumMap
+├── java.util.Hashtable
+└── java.util.concurrent.ConcurrentHashMap

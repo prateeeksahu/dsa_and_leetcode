@@ -2,7 +2,7 @@ So far
 
 > stream is a method that returns a stream interface type object
 
-> once stream is consumed (used) cant be used again
+> once stream is consumed (used) cant be used again or cannot be used once terminal operation is called on it
 
 > what is stream? - in simple terms is sequence of elements which we have got from a collection so that we can use declareative and functional programming
 
@@ -25,6 +25,8 @@ A Stream pipeline always has 3 parts:
 
 	3.Terminal Operations (produce result, eager).
 		•Examples: collect, forEach, reduce, count, min, max.
+
+Intermediate operation are not performed until terminal operation is not invoked so even if you do some operation and store it in a list it wont store anything physcally until terminal method is called, this is called lazy evaluation
 
 👉 Once a terminal operation is called, the stream is consumed and cannot be reused.
 
@@ -78,13 +80,13 @@ List<Integer> l = Stream.iterate(0, x -> x+1)
 
  - distinct() will remove all the duplicates
 
- - sorted() sorts the stream 
+ - sorted() sorts the stream, comparater can also be passed
 
  - skip() will skip the first n elements specified
 
  - peek() is consumer that is generally used to print elements
 
- - max() sorts all elements and returns one element from one end based on condition
+ - max() sorts all elements and returns one element from one end based on condition/ comparater passed
 
  - get() will retrun the element 
 
@@ -94,3 +96,105 @@ List<Integer> l = Stream.iterate(0, x -> x+1)
  int sum = List.of(1,2,3,4).stream().reduce(0, (a, b) -> a + b);
  System.out.println(sum); // 10
 
+ - toList - converts the stram to list
+
+ - forEach - to loop over the steram,  takes consumer interface
+
+ - allMatch - when all elements statisfy predicate condition passed in it returs boolean
+
+ - anyMatch - returns boolean if any elements satisfies predicate passed
+
+ - noneMath - returns true when no elemeant matches the predicate passed
+
+ - toArray - converts the stream to array
+
+
+  --------------------------------
+
+> shortcircuit methods - such methods that ends as soon as first condition fails ex - findany, findfirst, anymatch
+
+> stateless operation - such operation that are not aware of all elements ex - map
+
+> stateful operation - such operation that are of all elements ex - sorting
+
+--------------------------------
+
+parallelStream()
+
+this stream divides the tasks into multiple threads and returns the result
+
+but should only be used if taks is stateless... otherwise can cause inconsistency in the result
+
+the result of parallel stream is also a parellel stream, to convert it to stream we use sequential() method
+
+for parallelstreams we use forEachOrdered since loop will go crazy and will print anything.. this wont happen with ordered loop
+
+
+-----------------------------------------------------------------------
+
+🔹 What is Collectors?
+	•	Collectors is a utility class in java.util.stream package.
+	•	It provides static methods that return Collector objects, which are used with Streams to collect the result into different forms (lists, sets, maps, summaries, etc).
+	•	Think of it as the final step of a Stream pipeline.
+
+⸻
+
+🔹 Commonly Used Collectors
+
+1. toList()
+
+List<String> names = Stream.of("A", "B", "C").collect(Collectors.toList());
+// [A, B, C]
+
+
+2. toSet()
+
+Set<Integer> nums = Stream.of(1, 2, 2, 3).collect(Collectors.toSet());
+// [1, 2, 3]
+
+3. toMap()
+
+Map<Integer, String> map = Stream.of("A", "BB", "CCC")
+    .collect(Collectors.toMap(String::length, s -> s));
+// {1=A, 2=BB, 3=CCC}
+
+
+4. joining()
+
+String result = Stream.of("Java", "Python", "C++")
+                      .collect(Collectors.joining(", "));
+// "Java, Python, C++"
+
+5. counting()
+
+long count = Stream.of(1, 2, 3, 4)
+                   .collect(Collectors.counting());
+// 4
+
+
+6. summarizingInt() / summarizingDouble() / summarizingLong()
+
+IntSummaryStatistics stats = Stream.of(10, 20, 30)
+    .collect(Collectors.summarizingInt(Integer::intValue));
+// count=3, sum=60, min=10, avg=20.0, max=30
+
+
+7. groupingBy()
+
+Map<Integer, List<String>> grouped = Stream.of("a", "bb", "ccc", "dd")
+    .collect(Collectors.groupingBy(String::length));
+// {1=[a], 2=[bb, dd], 3=[ccc]}
+
+
+8. partitioningBy()
+
+Map<Boolean, List<Integer>> partitioned = Stream.of(1, 2, 3, 4, 5)
+    .collect(Collectors.partitioningBy(n -> n % 2 == 0));
+// {false=[1, 3, 5], true=[2, 4]}
+
+
+9. mapping()
+
+List<Integer> lengths = Stream.of("Java", "C++", "Python")
+    .collect(Collectors.mapping(String::length, Collectors.toList()));
+// [4, 3, 6]

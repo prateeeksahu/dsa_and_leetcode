@@ -1,0 +1,111 @@
+> Queue is an interface
+
+> it has multiple implementation classes like lindkedlist, dequeue and many more
+
+ - q.add() - adds element but throws exception if queue size is fixed and it is full. 
+
+ - q.offer() - adds element will return boolean if element was added and will not throw exception
+
+
+ - q.remove() - will throw exception if queue is empty
+
+ - q.poll() - will return null if queue is empty
+
+
+ - q.element() - returns first element, does not remove it, will throw exception queue is empty
+
+ - q.peek() - same as above just returns null if queue is empty
+
+
+ ---------------------------------------------
+
+ priority queue
+
+ - elements are not srted
+ - on the head there is an element with highest priority
+
+
+ internally priority queue is a min heap
+
+ min heap is a binary tree such that value of parent is always less than or equal to child
+
+ so time complexity of every operation is log n in priority queue
+
+
+
+ ----------------------------------------------
+
+Deque - Double ended queue
+
+can add and remove elements from both end of the queue
+
+Arraydeque works faster than stack than stack class itself and linkedlist than linkedlist class itself
+
+low memory, fast iteration and no null allowed since it is an array based queue
+
+no need to shitf elemets in insertiion and deletion 
+
+array inside it circular, we play with indices to make it circuler once index meet array size is doubled
+
+methods :
+
+ - addfirst
+ - addlast
+ - offerfirst
+ - offerlast
+ - removefirst
+ - removelast
+ - pollfirst
+ - polllast
+ - elementfirst
+ - elementlast
+ - peekfirst
+ - peeklast
+
+
+-------------------------------------------------------------------
+
+Blocking queue
+
+it is an interface and ArrayBlockingQueue is implplementing class
+
+this queue is thread safe 
+
+this waits for an event happern - queue to become non empty or wait for space 
+
+simplfy concurrency problems like producer and consumer 
+
+here, 
+  - put() blocks and waits for space tobe avaliable is queue is full
+  - remove() blocks and waits for queue to have something if queue is empty
+  - offer() waits for space to be avaliable for specified amount of time
+
+
+there are more queues like
+
+ - linkedblockingqueue
+  backed by linked list
+  has two locks so more concurrent
+
+ - priorityblockingqueue
+  same as priorityqueue just threadsafe
+
+
+ - Syncronusqueue
+  can store atmost one element
+  cant put element until previously added is removed
+
+ - delayqueue
+  has to wait to expire the delay of previously added element
+  the element can only be such object whose class extends Delayed interface
+  backed by priority queue
+
+
+ - concurrentlinkedqueue
+  lock free thread safe queue
+  can perform put put or put reomove from two diff threads simultenously
+  uses compare and swap method internally
+
+ there is also a concurrentlinkeddeque
+  sab same hai bas compare and swap use karta hai
+  thread safe lock free hai

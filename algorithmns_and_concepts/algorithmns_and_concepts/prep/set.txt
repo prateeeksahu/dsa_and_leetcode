@@ -1,0 +1,22 @@
+Set is and interface
+
+> Hashset is an implementation class
+
+> similar to hash map, there are just keys jsut no values
+
+> no duplicates allowed
+
+> hashset is unordered
+
+> for ordered set use linkedHashSet
+
+> for sorted set use treeSet
+
+> to get syncronized set you can use 
+
+ Set<Integer> integers = Collections.synchronizedSet(S); -> thread safe, wraps set in syncronized block, SHOULD BE AVOIDED
+
+ instead use concurrentskiplistset
+
+         ConcurrentSkipListSet<Integer> s = new ConcurrentSkipListSet<>(); -> recommended to use 
+

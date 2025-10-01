@@ -1,0 +1,79 @@
+This is a interface that a class extends in order to be sorted
+
+when you define a class and bunch of variables in it and then create a list of it
+
+later when you try to sort the list you will the exceptio because natural ordering is not defined for the sorting 
+
+in that case we enxtend comparble interface and override the compareTo method
+
+-------------------------------------------------------------------------
+
+🔹 What is Comparable?
+	•	Comparable<T> is an interface in java.lang.
+	•	It defines the natural ordering of objects of a class.
+	•	If a class implements Comparable, its objects can be sorted directly using Collections.sort() or Arrays.sort().
+
+⸻
+
+
+	•	compareTo() compares the current object (this) with another object (o).
+	•	Returns:
+	•	Negative (< 0) → this < o
+	•	Zero (0) → this == o
+	•	Positive (> 0) → this > o
+
+
+ex - 
+
+class Student implements Comparable<Student> {
+    String name;
+    int age;
+    Student(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    @Override
+    public int compareTo(Student other) {
+        return this.age - other.age; // sort by age ascending
+    }
+}
+
+public class Example {
+    public static void main(String[] args) {
+        List<Student> list = Arrays.asList(
+            new Student("A", 22),
+            new Student("B", 20),
+            new Student("C", 25)
+        );
+
+        Collections.sort(list);
+
+        for (Student s : list) {
+            System.out.println(s.name + " => " + s.age);
+        }
+    }
+}
+
+
+🔹 Comparable vs Comparator
+	•	Comparable → defines natural order inside the class (only one way to compare).
+	•	Comparator → external object used to define custom orderings (can have many).
+
+👉 Example:
+	•	String implements Comparable (alphabetical order).
+	•	You can also write a Comparator<String> to sort by length instead.
+
+⸻
+
+🔹 When to Use
+	•	Use Comparable if your class has a default, natural way of ordering (e.g., Students by roll number, Employees by ID).
+	•	Use Comparator if you want multiple different sorting logics.
+
+⸻
+
+✅ In short:
+Comparable is for “this object knows how to compare itself with another.”
+
+⸻
+

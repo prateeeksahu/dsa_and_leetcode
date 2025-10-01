@@ -1,0 +1,42 @@
+
+🔹 What is LinkedHashMap?
+	•	LinkedHashMap<K,V> is a subclass of HashMap.
+	•	It stores key–value pairs like a normal HashMap.
+	•	BUT unlike HashMap, it maintains a linked list of entries in the order they were inserted (or access order if configured).
+	•	That means iteration order is predictable.
+
+⸻
+
+🔹 Internal Working
+	•	Internally, it uses a hash table (like HashMap) + a doubly linked list connecting all entries.
+	•	Each entry knows:
+	•	its key
+	•	its value
+	•	pointer to next in bucket (for hashing)
+	•	pointers to before and after entries (for maintaining order)
+
+⸻
+
+🔹 Types of Ordering
+	1.	Insertion Order (default)
+	•	Iteration happens in the same order you inserted keys.
+	2.	Access Order (if enabled)
+	•	If you pass true in the constructor, the iteration order is based on last access (like LRU caches).
+
+
+⸻
+
+🔹 Features
+	1.	Preserves order (insertion or access).
+	2.	Allows null key (only one) and multiple null values (like HashMap).
+	3.	Iteration is predictable (useful in caches, ordered maps).
+	4.	Performance almost same as HashMap: O(1) for get/put, but with a little extra memory for linked list pointers.
+
+⸻
+
+🔹 When to Use?
+	•	When you want fast lookups like HashMap, but also need a consistent iteration order.
+	•	Example:
+	•	Building caches (access-order mode).
+	•	Maintaining insertion order of user inputs.
+	•	Implementing LRU eviction policies.

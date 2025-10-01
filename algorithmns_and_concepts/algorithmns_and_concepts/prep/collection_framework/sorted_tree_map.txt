@@ -1,0 +1,22 @@
+in java there are sorted map as well
+
+here things are sorted on keys 
+
+sorted map is an interface and treemap is its implementation class
+
+methods
+
+ - firstKey
+ - lastKey
+ - heapMap - from first till where
+ - tailMap - from where till last
+ - subMap - from where to where
+
+if you want decending pass comparater in constructor 
+
+if object is the key use compareable in class and override compareTO
+
+nulls are not allowed since sorting is done
+
+
+treeMap internally uses red - black tree so timecomplexity of every operation in log N

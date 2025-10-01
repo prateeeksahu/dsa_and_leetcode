@@ -1,0 +1,6 @@
+compareable is a interface that has compareto method in it
+
+
+compare decides ordering based on if -ve, +ve or 0 is returned
+
+both are diff

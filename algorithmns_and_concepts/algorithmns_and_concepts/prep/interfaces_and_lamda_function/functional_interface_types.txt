@@ -16,3 +16,5 @@ there are mainly 4 types of functional interface inbuilt in java intorduced in j
 
 	this interface has method call get.. you can write any logic here .. it will return as per logic specifed
 
+
+there are also biPredicate, biConsumer and bifunction which takes 2 parameters as input and return only one as output 

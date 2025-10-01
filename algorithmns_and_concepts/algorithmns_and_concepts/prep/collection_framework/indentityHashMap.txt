@@ -1,0 +1,70 @@
+🔹 What is IdentityHashMap?
+	•	It’s a special implementation of the Map interface.
+	•	Unlike HashMap, it compares keys using == (reference equality) instead of .equals() (logical equality).
+	•	That means two objects are considered the same key only if they are the exact same object in memory, not just logically equal.
+
+⸻
+
+🔹 Key Difference from HashMap
+	•	HashMap → uses .equals() and .hashCode() to compare keys.
+	•	IdentityHashMap → uses == to compare keys (same memory reference).
+
+⸻
+
+
+import java.util.*;
+
+public class IdentityHashMapExample {
+    public static void main(String[] args) {
+        Map<String, String> map = new IdentityHashMap<>();
+
+        String key1 = new String("Hello");
+        String key2 = new String("Hello"); // different object, same content
+
+        map.put(key1, "Value1");
+        map.put(key2, "Value2");
+
+        System.out.println("Map size: " + map.size());
+        System.out.println("Map: " + map);
+    }
+}
+
+output
+
+
+Map size: 2
+Map: {Hello=Value1, Hello=Value2}
+
+
+
+IdentityHashMap<String, String> map = new IdentityHashMap<>();
+
+String k1 = "Hi";
+String k2 = "Hi"; // String pool makes this the SAME reference
+
+map.put(k1, "Value1");
+map.put(k2, "Value2");
+
+System.out.println("Map size: " + map.size());
+System.out.println("Map: " + map);
+
+
+output
+
+Map size: 1
+Map: {Hi=Value2}
+
+
+🔹 Properties
+	1.	Uses reference equality (==) for key comparison.
+	2.	Not ordered → no predictable iteration order.
+	3.	Allows null keys and null values (like HashMap).
+	4.	Performance is similar to HashMap (O(1) for get/put).
+	5.	Not thread-safe → must synchronize externally if used across threads.
+
+⸻
+
+🔹 When to Use?
+	•	Rarely in general apps, but useful in special cases:
+	•	Implementing object graphs or proxies, where identity matters more than logical equality.
+	•	Keeping track of unique object instances (like caches, serialization frameworks, JVM internals).

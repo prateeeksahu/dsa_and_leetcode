@@ -1,0 +1,50 @@
+
+methods
+
+ - put
+ - get
+ - containsKey
+ - containsValue
+ - keySet
+ - entrySet
+ - getOrDefault
+ - putIfAbsent
+
+
+
+ ---------------------------------------------------------------
+
+ entrySet gives set of entries
+
+ entries key value pairs
+
+ 	for (Map.Entry<String, Integer> entry : map.entrySet()) {
+            String key = entry.getKey();
+            Integer value = entry.getValue();
+            System.out.println(key + " => " + value);
+        }
+
+-----------------------------------------------------------------
+
+Key Characteristics
+
+Unordered: Does not maintain any order of its elements.
+
+Allows null Keys and Values: Can have one null key and multiple null values.
+
+Not Synchronized: Not thread-safe; requires external synchronization if used in a multi-threaded context.
+
+Performance: Offers constant-time performance (O(1)) for basic operations like get and put, assuming the hash function disperses elements properly.
+
+
+-------------------------------------------------------------
+
+you can change initial capacity and loadfactor of hashmap by passing value in constructor
+
+-------------------------------------------------------------
+
+why override hashcode function and equals fintion if key custom class
+
+hashcode is claculated using memory refrence so even if two objects have same values their hashcodes will be diff and they will be treated as two diff keys 
+
+so to fix it we overrided these methods inside the custom class

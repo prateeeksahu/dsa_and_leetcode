@@ -1,0 +1,419 @@
+when you create an arraylist with no data tyye it will take in objects by default..
+
+but when you retrive it you will get an object and to print it you will need the data type of it
+
+but arraylist will return obj.. but to get it in specific datatype you need to cast it.. and if you dont and try to pull int in any other type that will throw exception 
+
+public class generics {
+    public static void main(String[] args) {
+        ArrayList list = new ArrayList();
+        list.add("hello");
+        list.add(123);
+
+        Object o = list.get(1);
+        String o1 = (String) list.get(0);
+    }
+}
+
+so here are TYPE SAFTEY ISSUE and MANNUAL CASTING and throws run time error if there's datatype mismatch
+
+
+to fix this in java 5 generics was introduced to specify data types
+
+public class generics {
+    public static void main(String[] args) {
+        ArrayList<String> list = new ArrayList();
+        list.add("hello");
+        list.add(123); // throws error now
+        
+    }
+}
+
+this solves above two errors and shows error in runtime
+
+
+
+-------------------------------------------------------------
+
+to fix this we we declare the class or interface of generic type
+
+while creating a class we put anglular barckets right nxt to class name and pass a varible in it.. this variable is type of data that will be used
+
+public class Box<T>{}  // like this
+
+now we can pass this varible in entire code as data type to keep things in one data type
+
+un main obj will be created like 
+
+Box<Integer> b = new Box<>();
+
+failing to get value in int/Integer will give compiletime error. the class is now type safe
+
+ex - 
+
+// A generic class that can hold any type T
+class Box<T> {
+    private T value;
+
+    public Box(T value) {
+        this.value = value;
+    }
+
+    public T getValue() {
+        return value;
+    }
+
+    public void setValue(T value) {
+        this.value = value;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Use the generic class with Integer
+        Box<Integer> intBox = new Box<>(123);
+
+        System.out.println("Value: " + intBox.getValue());
+
+        intBox.setValue(456);
+        System.out.println("Updated Value: " + intBox.getValue());
+    }
+}
+
+key value pair example
+
+// Generic class with two type parameters: K for Key, V for Value
+class Pair<K, V> {
+    private K key;
+    private V value;
+
+    public Pair(K key, V value) {
+        this.key = key;
+        this.value = value;
+    }
+
+    public K getKey() {
+        return key;
+    }
+
+    public V getValue() {
+        return value;
+    }
+
+    public void setKey(K key) {
+        this.key = key;
+    }
+
+    public void setValue(V value) {
+        this.value = value;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Example with Integer (key) and String (value)
+        Pair<Integer, String> idName = new Pair<>(101, "Alice");
+        System.out.println("ID: " + idName.getKey() + ", Name: " + idName.getValue());
+
+        // Example with String (key) and Double (value)
+        Pair<String, Double> productPrice = new Pair<>("Laptop", 799.99);
+        System.out.println("Product: " + productPrice.getKey() + ", Price: $" + productPrice.getValue());
+ }
+}
+
+------------------------------------------------------------
+
+By convention, single uppercase letters are used for generic type parameters. The most common ones:
+	•	T → Type (general type parameter, e.g., Box<T>)
+	•	E → Element (used in collections, e.g., List<E>)
+	•	K → Key (used in maps)
+	•	V → Value (used in maps)
+	•	N → Number (when dealing with numeric types)
+	•	R → Return type (used in functional programming or mapping)
+
+
+------------------------------------------------------------
+
+bounded generics
+
+Sometimes, you don’t want a generic type to be just anything, you want to restrict it to a certain type (or its subclasses).
+
+class Box<T extends Number> {   // T must be Number or a subclass
+    private T value;
+
+    public Box(T value) {
+        this.value = value;
+    }
+
+    public T getValue() {
+        return value;
+    }
+
+    // Example method: since T is a Number, we can safely call .doubleValue()
+    public double doubleValue() {
+        return value.doubleValue();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Box<Integer> intBox = new Box<>(42);   // ✅ Integer is a Number
+        Box<Double> doubleBox = new Box<>(3.14); // ✅ Double is a Number
+
+        // Box<String> strBox = new Box<>("Hello"); ❌ ERROR: String is not a Number
+
+        System.out.println("Integer as double: " + intBox.doubleValue());
+        System.out.println("Double as double: " + doubleBox.doubleValue());
+    }
+}
+
+
+✅ Key Idea:
+	•	T extends Number → Only Number and its subclasses (Integer, Double, Float, etc.) are allowed.
+	•	This gives you type safety and lets you call methods specific to Number.
+
+
+----------------------
+2️⃣ Multiple Bounds (Double Bounded Generics)
+
+You can also restrict a generic type by multiple bounds:
+
+<T extends ClassA & InterfaceB & InterfaceC>
+
+
+⚠️ Rules:
+	•	You can have at most one class (must come first).
+	•	You can have multiple interfaces after the class.
+
+
+interface Printable {
+    void print();
+}
+
+class Data {
+    void showData() {
+        System.out.println("Showing data...");
+    }
+}
+
+// T must extend Data (class) AND implement Printable (interface)
+class BoundedBox<T extends Data & Printable> {
+    private T item;
+
+    public BoundedBox(T item) {
+        this.item = item;
+    }
+
+    public void use() {
+        item.showData();  // from Data class
+        item.print();     // from Printable interface
+    }
+}
+
+class MyData extends Data implements Printable {
+    @Override
+    public void print() {
+        System.out.println("Printing data...");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        MyData d = new MyData();
+        BoundedBox<MyData> box = new BoundedBox<>(d);
+
+        box.use();  // Calls both showData() and print()
+    }
+}
+
+
+✅ Key Idea:
+	•	T extends Data & Printable
+→ T must be a subclass of Data and must implement Printable.
+	•	This is useful when you want your generic type to inherit behaviors from a class and follow a contract (interface).
+
+
+-----------------------
+
+generic constructor
+
+You can make a constructor itself generic, even if the class is not.
+
+class Printer {
+    // Generic constructor <T>
+    public <T> Printer(T item) {
+        System.out.println("Item: " + item);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        new Printer(123);       // T = Integer
+        new Printer("Hello");   // T = String
+        new Printer(3.14);      // T = Double
+    }
+}
+
+
+👉 Notice:
+	•	Printer is not generic, but the constructor is.
+	•	Every time you call new Printer(...), the type parameter <T> is inferred from the argument.
+
+
+--------------------------------------------
+
+generic method 
+
+What is a Generic Method?
+	•	A generic method introduces its own type parameter(s), independent of the class.
+	•	The type parameter is declared before the return type.
+
+
+class Utils {
+    // A simple generic method
+    public static <T> void printItem(T item) {
+        System.out.println("Item: " + item);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Utils.printItem(123);      // T = Integer
+        Utils.printItem("Hello");  // T = String
+        Utils.printItem(3.14);     // T = Double
+    }
+}
+
+
+👉 T is decided at the method call level, not the class level.
+
+
+Generic Method Overloading
+
+You can overload generic methods by:
+	•	Changing the number of parameters
+	•	Changing the type parameters
+	•	Or combining generics with non-generic methods
+
+
+
+class Display {
+
+    // Generic method #1 - single item
+    public <T> void show(T item) {
+        System.out.println("Generic show: " + item);
+    }
+
+    // Generic method #2 - two items of possibly different types
+    public <T, U> void show(T item1, U item2) {
+        System.out.println("Generic show: " + item1 + " and " + item2);
+    }
+
+    // Overloaded non-generic method (special case for String)
+    public void show(String item) {
+        System.out.println("Non-generic show (String): " + item.toUpperCase());
+    }
+}
+
+
+output
+
+Generic show: 123
+Non-generic show (String): HELLO
+Generic show: 3.14 and true
+Generic show: A
+
+--------------------------------------------
+
+wild card is the special type argument that represents unknown type.
+
+List<?> list;
+
+means: “a list of some type, but I don’t know what type.”
+
+So list could be List<String>, List<Integer>, List<Object>, etc. — you just don’t know which one.
+
+> wildcards are generally used for reading the stuff and not for writing
+
+there are 3 main types of wildcards
+
+(a) Unbounded wildcard ?
+
+void printList(List<?> list) {
+    for (Object elem : list) {
+        System.out.println(elem);
+    }
+}
+
+Accepts a list of any type (List<String>, List<Integer>, etc.).
+	•	You can’t add elements (except null), because the compiler doesn’t know the actual type.
+	•	You can read elements, but only as Object.
+
+
+(b) Upper bounded wildcard ? extends T
+
+void processNumbers(List<? extends Number> list) {
+    for (Number n : list) {
+        System.out.println(n.doubleValue());
+    }
+}
+
+	•	? extends Number means “some unknown subtype of Number.”
+	•	Valid arguments: List<Integer>, List<Double>, List<Number>.
+	•	You can read elements as Number.
+	•	You cannot add elements (except null) because the actual subtype is unknown.
+
+
+(c) Lower bounded wildcard ? super T
+
+void addIntegers(List<? super Integer> list) {
+    list.add(42);  // ✅ safe
+}
+
+	•	? super Integer means “some unknown supertype of Integer.”
+	•	Valid arguments: List<Integer>, List<Number>, List<Object>.
+	•	You can add Integer (and its subtypes) safely.
+	•	When reading, elements come out as Object (least common supertype).
+
+
+When not to use wildcards
+
+If both read and write are needed with the same type, don’t use wildcards. Instead, use a type parameter:
+
+<T> void copy(List<T> src, List<T> dest) {
+    for (T item : src) {
+        dest.add(item);
+    }
+}
+
+
+
+The PECS rule (“Producer Extends, Consumer Super”)
+	•	extends → producer: If a structure only produces values for you, use ? extends T.
+	•	super → consumer: If a structure only consumes values you put in, use ? super T.
+	•	If both add and get are needed → no wildcard.
+
+
+
+---------------------------------------------
+
+when code is converted to byte code generics are removed and is replaced with Object 
+
+and while writing the data typecasting is used
+
+this is called TYPE ERASURE
+
+-----------------------------------------------
+
+why can java make generic exceptions
+
+Java does not support generic exceptions due to type erasure. 
+
+Type erasure means that generic type information is removed at runtime. 
+
+Since exceptions are closely tied to runtime operations (like catching them in try-catch blocks), having generic exceptions wouldn't work as expected. 
+
+For example, if you had an exception like MyGenericException<T>, you wouldn't be able to catch it with a specific type parameter because that type information would be erased at runtime.
+
+
+the work around is declare constructor as generic and throw exception

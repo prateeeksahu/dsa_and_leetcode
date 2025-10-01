@@ -1,0 +1,62 @@
+came in jdk 1 before collection framework but now it is part of collection framework
+
+it use syncronization, hence it is threadsafe
+
+due to syncronization overhead it is recommnded to use Arraylist in single threaded app rather than this
+
+vector is useful in multithreaded apps
+
+--------------------------------------
+
+Key Features of Vector
+
+Dynamic Array: Like ArrayList, Vector is a dynamic array that grows automatically when more elements are added than its current capacity.
+
+Synchronized: All the methods in Vector are synchronized, which makes it thread-safe. This means multiple threads can work on a Vector without the risk of corrupting the data. 
+However, this can introduce performance overhead in single-threaded environments.
+
+Legacy Class: Vector was part of Java's original release and is considered a legacy class. It's generally recommended to use ArrayList in single-threaded environments due to performance considerations.
+
+Resizing Mechanism: When the current capacity of the vector is exceeded, it doubles its size by default (or increases by a specific capacity increment if provided).
+
+Random Access: Similar to arrays and ArrayList, Vector allows random access to elements, making it efficient for accessing elements using an index.
+
+
+---------------------------------------
+
+unlike array as vector grows it capacity arrys doubles and we can set by how much it grows by passing in constructor
+
+Constructors of Vector
+
+Vector(): Creates a vector with an initial capacity of 10.
+
+Vector(int initialCapacity): Creates a vector with a specified initial capacity.
+
+Vector(int initialCapacity, int capacityIncrement): Creates a vector with an initial capacity and capacity increment (how much the vector should grow when its capacity is exceeded).
+
+Vector(Collection<? extends E> c): Creates a vector containing the elements of the specified collection.
+
+
+
+-----------------------------------------
+
+Methods in Vector
+• add(E e): Adds an element at the end.
+• add(int index, E element): Inserts an element at the specified index.
+• get(int index): Retrieves the element at the specified index.
+• set(int index, E element): Replaces the element at the specified index.
+• remove(Object o): Removes the first occurrence of the specified element.
+• remove(int index): Removes the element at the specified index.
+• size(): Returns the number of elements in the vector.
+• isEmpty(): Checks if the vector is empty.
+• contains(Object o): Checks if the vector contains the specified element.
+• clear): Removes all elements from the vector.
+
+
+------------------------------------------
+
+Internal Implementation of Vector
+
+Internally, Vector uses an array to store its elements.
+The size of this array grows as needed when more elements are added. The default behavior is to double the size of the array when it runs out of space. 
+This resizing operation is a costly one, as it requires copying the old elements to the new, larger array.

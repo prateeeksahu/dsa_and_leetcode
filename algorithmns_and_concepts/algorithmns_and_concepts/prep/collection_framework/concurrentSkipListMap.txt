@@ -1,0 +1,76 @@
+🔹 1. What is a Skip List?
+
+A Skip List is a data structure that:
+	•	Maintains elements in sorted order (like a balanced tree).
+	•	Uses multiple levels of linked lists for faster searching, insertion, and deletion.
+	•	Provides O(log n) time complexity for search/insert/delete (like TreeMap / TreeSet but different internally).
+
+Think of it as:
+	•	Level 0 → normal linked list (all elements).
+	•	Higher levels → “express lanes” that skip over elements, making searches faster.
+
+⸻
+
+🔹 2. ConcurrentSkipListSet
+	•	A thread-safe, sorted Set implementation.
+	•	Implements NavigableSet.
+	•	Backed by ConcurrentSkipListMap internally.
+	•	Keeps elements in ascending order (natural order or with a Comparator).
+	•	Allows concurrent reads and updates without locks.
+
+✅ Example:
+
+import java.util.concurrent.ConcurrentSkipListSet;
+
+public class Example {
+    public static void main(String[] args) {
+        ConcurrentSkipListSet<Integer> set = new ConcurrentSkipListSet<>();
+
+        set.add(10);
+        set.add(5);
+        set.add(20);
+
+        System.out.println(set); // [5, 10, 20] → always sorted
+    }
+}
+
+Features:
+	•	Sorted (like TreeSet).
+	•	Thread-safe (like ConcurrentHashMap).
+	•	No nulls allowed.
+
+
+🔹 3. ConcurrentSkipListMap
+	•	A thread-safe, sorted Map.
+	•	Implements ConcurrentNavigableMap.
+	•	Keys are stored in ascending order (natural or comparator).
+	•	All operations (get, put, remove, etc.) are O(log n).
+	•	Lock-free reads, fine-grained locking for writes → very good performance in concurrent apps.
+
+✅ Example:
+
+import java.util.concurrent.ConcurrentSkipListMap;
+
+public class Example {
+    public static void main(String[] args) {
+        ConcurrentSkipListMap<String, Integer> map = new ConcurrentSkipListMap<>();
+
+        map.put("C", 30);
+        map.put("A", 10);
+        map.put("B", 20);
+
+        System.out.println(map); // {A=10, B=20, C=30} → sorted by key
+    }
+}
+
+Features:
+	•	Sorted order (like TreeMap).
+	•	Thread-safe (like ConcurrentHashMap).
+	•	No null keys/values allowed.
+	•	Can efficiently support range queries (headMap, tailMap, subMap).
+
+
+✅ In short:
+	•	ConcurrentSkipListSet → like a thread-safe TreeSet.
+	•	ConcurrentSkipListMap → like a thread-safe TreeMap.
+	•	Both rely on Skip List for efficiency and concurrency.

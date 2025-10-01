@@ -1,0 +1,49 @@
+🔹 What is EnumMap?
+	•	A specialized Map implementation for use with enum keys only.
+	•	Belongs to java.util package.
+	•	It is ordered according to the natural order of enum constants (the order in which they are declared in the enum).
+
+⸻
+
+🔹 Key Points
+	•	Key type must be an enum.
+	•	Values can be anything (objects, primitives).
+	•	Faster than HashMap when using enums as keys (internally uses an array).
+	•	Maintains the order of enum constants, unlike HashMap.
+	•	Null keys not allowed, but null values are allowed.
+
+import java.util.EnumMap;
+
+enum Day {
+    MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
+}
+
+public class Example {
+    public static void main(String[] args) {
+        // Create EnumMap with key type Day
+        EnumMap<Day, String> schedule = new EnumMap<>(Day.class);
+
+        schedule.put(Day.MONDAY, "Team Meeting");
+        schedule.put(Day.WEDNESDAY, "Code Review");
+        schedule.put(Day.FRIDAY, "Release Day");
+
+        System.out.println(schedule);
+    }
+}
+
+output
+
+{MONDAY=Team Meeting, WEDNESDAY=Code Review, FRIDAY=Release Day}
+
+👉 Notice how the order follows the enum declaration order (MONDAY, TUESDAY, ...) not the insertion order.
+
+
+🔹 Why Use EnumMap?
+	•	If you use HashMap<Day, String>, it works but is less efficient.
+	•	EnumMap is highly optimized for enums since it internally stores values in an array indexed by ordinal values (position of enum).
+
+Example:
+	•	Day.MONDAY.ordinal() → 0
+	•	Day.TUESDAY.ordinal() → 1
+
+So the lookup is basically O(1) array access.

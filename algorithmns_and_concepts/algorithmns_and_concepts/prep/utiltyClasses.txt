@@ -1,0 +1,77 @@
+🔹 What is a Utility Class in Java?
+
+A utility class is a class that contains only static methods and constants, meant to provide common, reusable functionality across your project.
+	•	You don’t create objects of utility classes.
+	•	Instead, you call their static methods directly.
+
+Think of them as “helpers” that perform tasks which don’t depend on an object’s state.
+
+⸻
+
+🔹 Characteristics of Utility Classes
+	1.	final class → to prevent inheritance (not always necessary, but common).
+	2.	Private constructor → prevents creating objects of the class.
+	3.	Static methods → all functionality is exposed via static methods.
+
+
+🔹 Example 2: Inbuilt Utility Classes in Java
+
+Java already gives us many utility classes:
+	•	java.util.Collections → utility methods for collections (sort, reverse, min, max).
+	•	java.util.Arrays → utility methods for arrays (sort, binarySearch, toString).
+	•	java.lang.Math → math operations (sqrt, pow, random).
+
+
+
+
+
+-------------------------------------------------------------------------------
+🔹 Common Utility Classes in Java
+
+1. java.lang package
+	•	Math → mathematical operations (sqrt, pow, abs, random).
+	•	StrictMath → same as Math but ensures strict reproducible results across platforms.
+	•	System → input/output (System.out.println), environment, time, GC.
+	•	Objects → null-safe operations (requireNonNull, equals, hashCode).
+
+⸻
+
+2. java.util package
+	•	Arrays → operations on arrays (sort, binarySearch, toString).
+	•	Collections → operations on collections (sort, min, max, reverse).
+	•	Objects → null checks and object comparisons.
+	•	UUID → unique identifiers.
+	•	Optional → container for optional values (avoids nulls).
+	•	ResourceBundle → internationalization utilities.
+	•	Timer / TimerTask → scheduling tasks.
+
+⸻
+
+3. java.time package (Java 8+)
+	•	LocalDate, LocalTime, LocalDateTime → working with dates & times.
+	•	Period, Duration → measuring time differences.
+	•	ChronoUnit → time units.
+	•	DateTimeFormatter → formatting dates.
+
+⸻
+
+4. java.nio.file package
+	•	Files → file operations (copy, move, delete, readAllLines).
+	•	Paths → working with file system paths.
+
+⸻
+
+5. Other Utility Classes
+	•	Pattern & Matcher (java.util.regex) → regex utilities.
+	•	Random (java.util) → random numbers.
+	•	UUID (java.util) → unique IDs.
+	•	Scanner (java.util) → input reading utility.
+
+⸻
+
+✅ Summary:
+	•	Math/StrictMath → Math operations
+	•	Arrays/Collections → Data structures
+	•	Objects/Optional → Null-safe handling
+	•	Files/Paths → File utilities
+	•	Date-Time classes → Modern time API

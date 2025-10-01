@@ -1,0 +1,103 @@
+
+the ordered collection of elements is called list
+
+allows precise control over where elements can be inserted and can contain duplicates
+
+- order preservation
+- index based access
+- allows duplicates
+
+List is an interface
+
+functions 
+ - add()
+ - add(i, ele)
+ - remove()
+ - set(i, ele)
+ - get()
+ - contains()
+
+ these are not thread safe
+---------------------------------------------------
+
+Internal working
+
+- list or arraylist can grow and shrink
+
+- Internally they use array only
+
+- when a list is created the inital size of internal array is 10
+
+Adding an element
+
+- first capacity is checked, if its not enough resizing os done
+
+- for resizing new array of 1.5x capacity of previous array is created and elements are copied in it
+
+- elements are stored like array, while adding new element it is added in last and while reading it reads like array arr[5]
+
+
+Adding elements
+
+- initial capacity is 10, elementData array can store 10 elements before resizing 
+
+- growth factor is 1.5x, once array is full array increases by 1.5x
+
+- copying the elements takes o(n) time
+
+Removing the elements
+
+- index bound is checked
+
+- element is deleted and each element is shifted 1 left
+
+-----------------------------------------------
+
+If you know there is going to be only certain number of elements you can pass capacity of array 
+
+ArrayList<String> list = new ArrayList(1000);
+
+this will create capacity array of size 1000
+
+arrylist size will itself be 0 but the internal array will be of size 1000
+
+this will save unecessary coumputation for resizing
+
+if elements crosses this size resizing happens automatically 
+
+------------------------------------------
+
+asList() method returns a fixed size list... you cannot add or remove elements in it but elements can be replaced
+
+similarly List.of function also creates a list that cannot be modifed - no addition, removal or replace came in java 9	
+
+but if you pass these lists in a new list's constructor.. you can do anything with new lists
+
+
+----------------------------------------------
+
+remove method takes 2 types of input- object and int
+
+
+int removes element of that index and objec removes first occurace of that object 
+
+but list is of integer type and you want to remove 1 from it youll pass 1 in method but this will remove element at first index and not 1
+
+to handle this type cast 1 to Integer object
+
+        li.remove((Integer) 1);
+
+like thsi
+
+-------------------------------
+
+list.toArray() converts the list to array
+
+
+------------------------
+
+time complexity to remove or add is o(n) because of resizing
+
+retriving in o(1) 
+
+

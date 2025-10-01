@@ -1,0 +1,76 @@
+🔹 1. What is ConcurrentMap?
+	•	It’s an interface in java.util.concurrent.
+	•	ConcurrentHashMap is the main implementation.
+	•	Provides thread-safe operations without needing to synchronize the whole map.
+	•	Unlike HashMap, it never throws ConcurrentModificationException during concurrent access.
+
+⸻
+
+🔹 2. Java 7: ConcurrentHashMap Working
+	•	Data Structure:
+	•	Internally divided into segments (default 16).
+	•	Each segment was like a small Hashtable with its own lock.
+	•	A key was placed into a segment using (hash & (segments - 1)).
+	•	Concurrency:
+	•	Multiple threads could update the map simultaneously as long as they were working in different segments.
+	•	Lock granularity = per-segment (better than Hashtable’s global lock).
+	•	Iteration:
+	•	Weakly consistent (does not throw exceptions, but may or may not reflect updates).
+
+
+ConcurrentMap<String, Integer> map = new ConcurrentHashMap<>();
+map.put("A", 1);
+map.put("B", 2);
+
+map.putIfAbsent("A", 10); // won't overwrite, since "A" already exists
+map.replace("B", 2, 20);  // conditional replace
+
+
+🔹 3. Java 8: ConcurrentHashMap Working
+	•	Major redesign for performance.
+	•	Removed Segments → uses a Node[] table similar to HashMap.
+	•	Locking:
+	•	Uses CAS (Compare-And-Swap) for most updates.
+	•	Falls back to synchronized blocks at bucket level if contention is high.
+	•	Much more fine-grained than Java 7.
+	•	Data Structure:
+	•	Buckets start as linked lists of Node<K,V>.
+	•	If a bucket grows too large (≥ 8 elements), it converts into a red-black tree for faster lookups (O(log n)).
+	•	Concurrency:
+	•	Multiple threads can update the map with less contention.
+	•	Higher throughput on modern multi-core CPUs.
+
+
+import java.util.concurrent.*;
+
+public class Example {
+    public static void main(String[] args) {
+        ConcurrentMap<String, Integer> map = new ConcurrentHashMap<>();
+
+        map.put("A", 1);
+        map.putIfAbsent("B", 2);      // add if not already present
+        map.replace("A", 1, 10);      // conditional replace
+        map.computeIfAbsent("C", k -> 30); // atomic compute
+        map.merge("B", 5, Integer::sum);   // atomic merge
+
+        System.out.println(map);
+    }
+}
+
+output
+
+{A=10, B=7, C=30}
+
+
+🔹 6. When to Use?
+	•	When you need a thread-safe map with high read/write concurrency.
+	•	Ideal for:
+	•	Caches
+	•	Counting/frequency maps
+	•	Shared data structures across multiple threads
+
+⸻
+
+✅ In short:
+	•	Java 7 → ConcurrentHashMap was built on segments + locks.
+	•	Java 8 → replaced with CAS + synchronized at bucket level + red-black trees for high concurrency and performance.

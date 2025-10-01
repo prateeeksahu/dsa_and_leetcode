@@ -1,0 +1,99 @@
+🔹 Immutable Maps in Java (Map.of / Map.ofEntries)
+
+An immutable map means:
+	•	Once created, it cannot be modified.
+	•	No put(), remove(), or clear().
+	•	If you try, it throws UnsupportedOperationException.
+
+These were introduced in Java 9 (not in 7/8). Before Java 9, you had to use Collections.unmodifiableMap().
+
+⸻
+
+✅ 1. Map.of(...)
+	•	Used when you want to create a small map quickly.
+	•	Supports up to 10 key-value pairs.
+
+import java.util.Map;
+
+public class Example {
+    public static void main(String[] args) {
+        Map<String, Integer> map = Map.of(
+            "A", 1,
+            "B", 2,
+            "C", 3
+        );
+
+        System.out.println(map); // {A=1, B=2, C=3}
+
+        // map.put("D", 4); // ❌ UnsupportedOperationException
+    }
+}
+
+
+👉 Characteristics:
+	•	No null keys or values allowed.
+	•	If duplicate keys → IllegalArgumentException.
+
+⸻
+
+✅ 2. Map.ofEntries(...)
+	•	Used when you want to create an immutable map with more than 10 entries.
+	•	Uses Map.entry(k, v) factory method.
+
+
+import java.util.Map;
+
+public class Example {
+    public static void main(String[] args) {
+        Map<String, Integer> bigMap = Map.ofEntries(
+            Map.entry("A", 1),
+            Map.entry("B", 2),
+            Map.entry("C", 3),
+            Map.entry("D", 4),
+            Map.entry("E", 5),
+            Map.entry("F", 6),
+            Map.entry("G", 7),
+            Map.entry("H", 8),
+            Map.entry("I", 9),
+            Map.entry("J", 10),
+            Map.entry("K", 11) // ✅ more than 10 entries
+        );
+
+        System.out.println(bigMap);
+    }
+}
+
+
+
+🔹 Before Java 9 (Java 7/8)
+
+In Java 7 and 8, you had to do:
+
+import java.util.*;
+
+public class Example {
+    public static void main(String[] args) {
+        Map<String, Integer> map = new HashMap<>();
+        map.put("A", 1);
+        map.put("B", 2);
+
+        Map<String, Integer> immutableMap = Collections.unmodifiableMap(map);
+
+        System.out.println(immutableMap);
+
+        // immutableMap.put("C", 3); // ❌ UnsupportedOperationException
+    }
+}
+
+	•	Java 7/8 → Collections.unmodifiableMap()
+	•	Java 9+ → Map.of() (small maps) and Map.ofEntries() (large maps)
+
+
+
+| Feature     | Map.of                          | Map.ofEntries                           |
+|-------------|---------------------------------|------------------------------------------|
+| Syntax      | `Map.of(k, v, k2, v2, ...)`     | `Map.ofEntries(Map.entry(k, v), ...)`    |
+| Limit       | Up to 10 pairs                  | Unlimited                                |
+| Readability | Short for small maps            | Better for large maps                    |
+| Nulls       | ❌ Not allowed                  | ❌ Not allowed                           |
+| Immutable   | ✅                               | ✅                                        |

@@ -1,0 +1,70 @@
+🔹 1. Iterable
+	•	It’s an interface (java.lang.Iterable<T>).
+	•	Any class that implements it can be iterated using a for-each loop.
+	•	Method:
+	•	iterator() → returns an Iterator.
+
+
+
+👉 Key point: Iterable is just the ability to provide an Iterator.
+
+🔹 2. Iterator
+	•	It’s an interface (java.util.Iterator<T>) used to actually traverse elements.
+	•	Methods:
+	•	boolean hasNext() → checks if more elements exist.
+	•	T next() → returns the next element.
+	•	void remove() → removes the current element (optional).
+
+
+List<String> list = new ArrayList<>(List.of("A", "B", "C"));
+Iterator<String> it = list.iterator();
+
+while (it.hasNext()) {
+    System.out.println(it.next());
+}
+
+
+like in foreach loop we cannot remove elements when loop is running but here it can be done
+
+List<String> list = new ArrayList<>(List.of("A", "B", "C"));
+Iterator<String> it = list.iterator();
+
+while (it.hasNext()) {
+    System.out.println(it.next());
+}
+
+👉 Key point: Iterator is the actual cursor that moves over elements.
+
+
+🔹 3. ListIterator
+	•	It’s a subinterface of Iterator (only for List).
+	•	It allows bidirectional traversal (forward + backward).
+	•	Extra methods beyond Iterator:
+	•	boolean hasPrevious()
+	•	E previous()
+	•	int nextIndex() / int previousIndex()
+	•	void set(E e) (replace element)
+	•	void add(E e) (insert element while iterating)
+
+
+List<String> list = new ArrayList<>(List.of("A", "B", "C"));
+ListIterator<String> it = list.listIterator();
+
+while (it.hasNext()) {
+    System.out.println("Forward: " + it.next());
+}
+
+while (it.hasPrevious()) {
+    System.out.println("Backward: " + it.previous());
+}
+
+
+
+
+✅ Summary:
+	•	Iterable = can be looped.
+	•	Iterator = actual cursor for one-way traversal.
+	•	ListIterator = cursor for lists with extra control + two-way movement.
+
+⸻
+

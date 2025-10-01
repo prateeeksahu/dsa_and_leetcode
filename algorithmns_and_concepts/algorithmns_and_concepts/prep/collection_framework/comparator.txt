@@ -1,0 +1,26 @@
+comparator is an interface that as compare method
+
+it returns subtraction of two elements passed in it
+
+we pass this comparater in sort function 
+
+Comparator<Integer> ascending = (a, b) -> a - b;
+Comparator<Integer> descending = (a, b) -> b - a;
+
+The return value determines the relative order:
+	•	Negative number (< 0) → o1 comes before o2.(sort function will put o1 before o2)
+	•	Zero (0) → o1 and o2 are considered equal (order doesn’t matter).
+	•	Positive number (> 0) → o1 comes after o2. (sort function will put o2 before o1)
+
+the compare function return o1 - o2 = 3 - 5 = -2
+
+since the result returned was negative that means o2 was bigger value so while sorting o1 will be before o2 (acending)
+
+if we change return to o2 - o1 = 5 - 3 = 2
+
+in this case result is +ve that means o1 will come after o2 (decending)
+
+
+
+
+

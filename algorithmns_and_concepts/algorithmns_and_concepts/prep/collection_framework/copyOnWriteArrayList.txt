@@ -1,0 +1,60 @@
+🔹 What is CopyOnWriteArrayList?
+	•	It’s a thread-safe variant of ArrayList that lives in the package java.util.concurrent.
+	•	It is designed for concurrent access where multiple threads may read and write at the same time.
+	•	Internally, it uses the principle of copy-on-write.
+
+⸻
+
+🔹 How does it work?
+
+Whenever you modify the list (like add, remove, set):
+	1.	It creates a new copy of the underlying array.
+	2.	Applies the modification on this new array.
+	3.	Replaces the old array reference with the new one.
+
+This means:
+	•	Reads (get, iteration) → very fast, no locking needed.
+	•	Writes (add/remove) → expensive, because a new array copy is created.
+
+
+import java.util.concurrent.CopyOnWriteArrayList;
+
+public class Example {
+    public static void main(String[] args) {
+        CopyOnWriteArrayList<String> list = new CopyOnWriteArrayList<>();
+        list.add("A");
+        list.add("B");
+        list.add("C");
+
+        // Iteration
+        for (String s : list) {
+            System.out.println(s);
+            list.add("X"); // modifying during iteration (NO ConcurrentModificationException!)
+        }
+
+        System.out.println("Final list: " + list);
+    }
+}
+
+
+
+✅ Unlike ArrayList, this does not throw ConcurrentModificationException when you modify during iteration.
+But note: the iterator works on a snapshot copy of the array → so modifications during iteration are not visible in that iteration.
+
+⸻
+
+🔹 Properties
+	1.	Thread-safe: Multiple threads can safely read and write without explicit synchronization.
+	2.	Good for read-heavy, write-light use cases.
+	•	Reads are very efficient.
+	•	Writes are costly because they copy the entire array.
+	3.	Fail-safe Iterators: Iterators iterate over a snapshot → they don’t throw exceptions if the list changes.
+	4.	Slower for frequent writes compared to other concurrent collections (ConcurrentLinkedQueue, CopyOnWriteArraySet, etc.).
+
+⸻
+
+🔹 When to Use?
+	•	When reads far outnumber writes.
+	•	For example:
+	•	A list of configuration values.
+	•	A subscriber list where reads are frequent but writes (adding/removing subscribers) are rare.

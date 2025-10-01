@@ -1,0 +1,74 @@
+> In java there are 2 kinds of reference weak and strong
+
+  	hello h = new hello(); - > strong reference like everyother
+
+        WeakReference<hello> h1 = new WeakReference<>(new hello()); -> weak refernece
+
+weakreference is cleared by java garbage collector when not in use 
+
+weakreference is mostly used in cache
+
+--------------------------------------
+
+🔹 What is WeakHashMap?
+	•	WeakHashMap<K, V> is a hash map implementation where the keys are stored as weak references.
+	•	That means: if a key is no longer strongly referenced elsewhere in your program, the garbage collector (GC) can automatically remove that entry from the map.
+
+So the map entries can vanish when GC runs.
+
+⸻
+
+🔹 Why “weak”?
+	•	In Java, an object can be referenced in different ways:
+	•	Strong reference: normal references (Object o = new Object();) – GC won’t remove it.
+	•	Weak reference: referenced via WeakReference – GC can collect it anytime if no strong references exist.
+	•	WeakHashMap internally wraps its keys in weak references.
+
+
+
+import java.util.*;
+
+public class WeakHashMapExample {
+    public static void main(String[] args) {
+        Map<Object, String> map = new WeakHashMap<>();
+
+        Object key1 = new Object();
+        Object key2 = new Object();
+
+        map.put(key1, "Value1");
+        map.put(key2, "Value2");
+
+        System.out.println("Before GC: " + map);
+
+        // Remove strong reference to key1
+        key1 = null;
+
+        // Suggest garbage collection
+        System.gc();
+
+        // Give GC some time
+        try { Thread.sleep(1000); } catch (InterruptedException e) {}
+
+        System.out.println("After GC: " + map);
+    }
+}
+
+
+output
+
+Before GC: {java.lang.Object@5e91993f=Value1, java.lang.Object@1c4af82c=Value2}
+After GC: {java.lang.Object@1c4af82c=Value2}
+
+
+🔹 Features
+	1.	Keys are weakly referenced, values are normal.
+	2.	When a key is garbage collected → the entry is removed.
+	3.	Useful for caches or metadata maps, where you don’t want keys to prevent objects from being collected.
+	4.	Not thread-safe → must be synchronized externally if used by multiple threads.
+
+⸻
+
+🔹 Real-World Use Case
+	•	Suppose you want to store metadata about objects (like extra info about images, database records, etc.).
+	•	You don’t want this metadata to keep the object alive in memory if the program no longer needs it.
+	•	WeakHashMap is perfect, because once the object is gone, its entry in the map is also automatically cleaned.
