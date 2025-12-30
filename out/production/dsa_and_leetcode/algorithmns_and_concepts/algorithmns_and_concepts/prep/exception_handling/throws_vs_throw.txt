@@ -1,0 +1,29 @@
+1.	Definition
+
+	•	throw: Used to actually throw an exception object.
+	•	throws: Used in method declaration to declare exceptions a method might throw.
+
+	2.	Usage Location
+
+	•	throw: Inside a method or block.
+	•	throws: In the method signature (after parameters).
+
+	3.	Number of Exceptions
+
+	•	throw: Can throw only one exception at a time.
+	•	throws: Can declare multiple exceptions separated by commas.
+
+	4.	Type
+
+	•	throw: Followed by an object of Throwable class. Example: throw new IOException();
+	•	throws: Followed by class names of exceptions. Example: throws IOException, SQLException
+
+	5.	Checked vs Unchecked
+
+	•	throw: Can throw both checked and unchecked exceptions.
+	•	throws: Mainly used for checked exceptions (not mandatory for unchecked).
+
+	6.	Example
+
+	•	throw: throw new ArithmeticException("Divide by zero");
+	•	throws: public void readFile() throws IOException { ... }

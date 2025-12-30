@@ -1,0 +1,18 @@
+1.	Method Signature
+	•	Runnable: void run()
+	•	Callable: V call() throws Exception
+2.	Return Type
+	•	Runnable: no return value (void).
+	•	Callable: returns a value of type V.
+3.	Exception Handling
+	•	Runnable: cannot throw checked exceptions.
+	•	Callable: can throw checked exceptions.
+4.	Usage with Executors
+	•	Runnable: submitted via ExecutorService.submit(Runnable) → returns Future<?> (always null on get()).
+	•	Callable: submitted via ExecutorService.submit(Callable<V>) → returns Future<V> (holds the result).
+5.	Functional Interface
+	•	Runnable: represents a task with no result.
+	•	Callable: represents a task that produces a result.
+6.	When to Use
+	•	Runnable: for tasks that only need to run (fire-and-forget).
+	•	Callable: for tasks that need a return value or may throw checked exceptions.

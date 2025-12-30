@@ -1,0 +1,16 @@
+threads usually read variables from main memory and store them in cache for better performance
+
+when data is updated in main memory it is not upadated in cache memory of the thread
+
+to resolve this we assign variable as volatile, such variables read values from main memory
+
+but this gets messier when code becomes complex
+
+
+---------------------------------------------
+
+There is an atomic class that has variabels that are thread safe... you dont need to make classes or methods syncronized 
+
+Just use AtomicInterger and methods provided in it and you are good
+
+AtomicInteger am = new AtomicInteger();

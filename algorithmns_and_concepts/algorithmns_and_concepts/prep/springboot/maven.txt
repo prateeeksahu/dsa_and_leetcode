@@ -1,0 +1,79 @@
+> maven is a build automation tool 
+
+> simplifes build and manages dependenccies
+
+> pom - project object model
+
+> we specify a dependency in pom.xml and reload the project and maven downloads the jar from its repo to the project
+
+sample to dependency
+
+<!-- https://mvnrepository.com/artifact/com.opencsv/opencsv -->
+<dependency>
+    <groupId>com.opencsv</groupId>
+    <artifactId>opencsv</artifactId>
+    <version>5.12.0</version>
+</dependency>
+
+
+the 3 tags are called co ordinates of dependency
+
+---------------------------------------------------
+
+mvn validate checks if pom is correct or not?
+
+if maven is not insatlled in system we can use maven wrapper that comes with springboot, it works same 
+
+./mvnw validate   this is the command
+
+-------------------------------------------------
+
+mvn compile will compile code and store it inside compile folder
+
+mvn test runs all the testcases if written
+
+mvn package converts the code to jar this can be then ditributed
+
+---------------------------------------------------
+
+now since jar is created you can run project using jar by 
+
+java -jar journalApp-0.0.1-SNAPSHOT.jar
+
+this is fat jar/ self contained jar.. it does not need anything to run.. just java and command
+
+on other hand there is another jar with original written at end of it.. it only has compiled code in it
+
+
+--------------------------------------------------
+
+mvn install puts the jar in local in .m2 folder
+
+mvn clean will remove everything from target folder
+
+
+means:
+	•	Run the clean lifecycle.
+	•	The clean phase removes the target/ directory (or whatever output directory is configured).
+	•	That directory contains all the compiled classes, packaged JAR/WAR files, temporary files, and anything generated during the last build.
+
+⸻
+
+Why is this useful?
+	•	It ensures you start from a fresh build.
+	•	Prevents issues where stale or outdated .class files, resources, or JARs cause weird errors.
+	•	Often used before packaging or installing, like:
+
+	mvn clean install
+
+	which means wipe old build → compile everything → run tests → create and install the new JAR/WAR into your local Maven repo.
+
+
+------------------------------------------------
+
+intelij can also be used to do this -
+
+on rght click on maven logo -> expand project -> expand lifecycle folder
+
+
+

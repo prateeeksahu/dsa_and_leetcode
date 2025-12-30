@@ -1,0 +1,23 @@
+> Rest API stands for representational state transfer - Application programming interface
+
+> Rest api helps your device communicate with server
+
+> local device sends request and your phone sends response
+
+> we access server's info with url 
+
+> lets say we have a service runiing at <ip:port> server 
+
+> this server exposes an endpoint <ip:port>/plans/prices something like this 
+
+> this endpoint is called url
+
+> but url itseld isnt enough, you also need to provide hhtp verb, they are
+  get - to read data
+  put - to modify data
+  create - create new data
+  delete - to remove data
+
+> collectively rest api is http verb and url
+
+> so get + <ip:port>/plans/price is a rest api

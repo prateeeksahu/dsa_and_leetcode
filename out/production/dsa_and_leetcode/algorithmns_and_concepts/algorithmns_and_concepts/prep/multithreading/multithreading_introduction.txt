@@ -52,6 +52,8 @@ public class threads_in_java {
 
 > to run thread using runnable interface - 
 
+Runnable is a functional interface with a single abstract method run()
+
 1. you first gotta make a class that implements runnable interface
 2. you then overide the run method and write your logic in it
 3. in main you first create an object of class that inplements runnable and then you create an object of thread class and pass runnable object to it

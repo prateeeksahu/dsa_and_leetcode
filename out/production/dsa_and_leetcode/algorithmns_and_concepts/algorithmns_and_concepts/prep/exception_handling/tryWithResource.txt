@@ -1,0 +1,38 @@
+Definition:
+	•	Introduced in Java 7, try-with-resources is a special form of try statement used to automatically close resources (like files, sockets, database connections) after use.
+	•	A resource is any object that implements the AutoCloseable interface (e.g., FileReader, BufferedReader, Connection).
+
+⸻
+
+Why Use It?
+	•	Normally, resources must be closed in a finally block.
+	•	Try-with-resources automatically closes them when the try block ends, even if an exception occurs.
+	•	This makes code cleaner and safer (no resource leaks).
+
+Example Without Try-with-Resources (old way)
+
+BufferedReader br = null;
+try {
+    br = new BufferedReader(new FileReader("test.txt"));
+    System.out.println(br.readLine());
+} catch (IOException e) {
+    System.out.println("Error: " + e);
+} finally {
+    try {
+        if (br != null) br.close();   // manually closing resource
+    } catch (IOException e) {
+        System.out.println("Error closing reader");
+    }
+}
+
+
+Example With Try-with-Resources (better way)
+
+try (BufferedReader br = new BufferedReader(new FileReader("test.txt"))) {
+    System.out.println(br.readLine());
+} catch (IOException e) {
+    System.out.println("Error: " + e);
+}
+
+	•No need for finally block — br.close() is called automatically.
+

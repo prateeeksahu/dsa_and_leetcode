@@ -1,0 +1,11 @@
+> Jar is the short name for java archive 
+
+> it is a package file format used to aggregate multiple Java class files, associated metadata, and resources like text, images, and configuration files into a single, compressed file for distribution and deployment.
+
+> it typically uses the .jar file extension, allowing for efficient bundling and compression of application components.
+
+> The primary purpose of a JAR file is to simplify the distribution and deployment of Java applications and libraries by encapsulating all necessary files into one unit, which can be downloaded in a single HTTP transaction, significantly improving load times.
+
+> jar has embedded tomcat
+
+

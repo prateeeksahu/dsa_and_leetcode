@@ -1,0 +1,15 @@
+ion container is a box that has all the classes in it
+
+when we want an object we go to this container and ask for object
+
+sonce we are not creating the object and going to someone else the control has been externalised
+
+this is inversion of control hence ioc 
+
+to implement ioc container we use applicaton context, its a way to achieve ioc
+
+therefore these terms are used inter changeablly
+
+it does not keep all the classes in it 
+
+it scans for the package provided and only keeps such classe that has annotation @Component

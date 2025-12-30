@@ -1,0 +1,7 @@
+> Apache Tomcat, often referred to as Tomcat, is a free and open-source implementation of the Jakarta Servlet, Jakarta Expression Language, and WebSocket technologies, providing a "pure Java" HTTP web server environment for running Java code.
+
+> It functions primarily as a web server and servlet container, designed to handle Java web applications by implementing the Java Servlet and JSP specifications.
+
+> Tomcat is developed and maintained by an open community of developers under the Apache Software Foundation and is released under the Apache License 2.0
+
+

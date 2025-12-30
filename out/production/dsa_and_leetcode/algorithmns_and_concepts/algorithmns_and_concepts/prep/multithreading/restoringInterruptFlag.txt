@@ -1,0 +1,56 @@
+when another flag calls interrupt on any other thread it sets the interrupt flag to false
+
+so if we check that if thread was interrrupted it returns false 
+
+so to know this thread was interrupted we restore the flag by writing following in catch block
+
+Thread.currentThread().interrupt();
+
+Analogy
+
+Imagine your mom knocks on your door (interrupt) while you are sleeping (wait()).
+	•	Java wakes you up and forgets the knock happened (clears the flag).
+	•	If you just ignore it, it’s like saying “I never heard anything.”
+	•	If you set the flag again (Thread.currentThread().interrupt()), it’s like putting a sticky note on your forehead: “⚠ I was interrupted.”
+	•	Now, anyone later checking you knows you were told to stop.
+
+
+1. What is the “value” here?
+
+The “value” we are restoring is the interrupt flag — a boolean flag inside each Thread object.
+	•	true → thread has been interrupted.
+	•	false → not interrupted.
+
+Java manages this internally, but you can check it using:
+	•	isInterrupted() → checks the flag (doesn’t clear it).
+	•	Thread.interrupted() → checks the flag and clears it immediately.
+
+⸻
+
+2. What happens during wait()
+	•	Suppose thread T1 calls wait().
+	•	Another thread T2 calls T1.interrupt().
+	•	JVM does 2 things:
+	1.	Wakes up T1 from wait().
+	2.	Throws InterruptedException.
+	3.	Clears the interrupt flag (sets it back to false).
+
+That’s why, if you don’t restore it, higher code won’t know interruption happened.
+
+⸻
+
+3. How restoring works
+
+When you write:
+catch (InterruptedException e) {
+    Thread.currentThread().interrupt(); // restores flag
+}
+
+	•	This line sets the interrupt flag back to true.
+	•	So now the thread is again marked as “interrupted.”
+
+
+In short
+	•	The “value” restored = the interrupt flag (true).
+	•	wait(), sleep(), join() clear it when throwing InterruptedException.
+	•	Restoring with Thread.currentThread().interrupt() ensures higher-level code can detect interruption.

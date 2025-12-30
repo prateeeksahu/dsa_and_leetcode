@@ -1,0 +1,29 @@
+> it is special type of annotaion that also gives bean
+
+> we create a seprate package to add multiple controller classes
+
+> these are special type of components that handles http requests
+
+> whatever endpoint we hit comes inside this class
+
+> however number of endpoints/urls written in this class will always return json
+
+
+@RestController
+public class healthCheck {
+
+    @GetMapping("health-check")
+    public String healthCheck(){
+        return "up and running...";
+    }
+}
+
+this is just a sample but always create this class
+
+methdos inside controller should always be public so that they can be accesed by spring and external http requests
+
+in request url if we write ...id/prateek - prateek becomes path name variable, but
+
+if we pass it as ..id/?name=prateek this becomes request parameter
+
+you can also pass ..id/2 as input value.. but you will have to handle this 2 in post method 

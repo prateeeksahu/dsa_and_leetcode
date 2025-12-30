@@ -1,0 +1,96 @@
+1. What is Thread Communication?
+	•	Normally, when multiple threads work, they compete for resources.
+	•	But in some cases, threads need to cooperate — e.g., one thread produces data and another consumes it.
+	•	Java provides 3 methods (inherited from Object class) for this cooperation:
+	•	wait() → thread releases the lock and waits until notified.
+	•	notify() → wakes up one waiting thread.
+	•	notifyAll() → wakes up all waiting threads.
+
+These methods can only be called from synchronized blocks/methods, because they depend on object’s intrinsic lock.
+
+⸻
+
+2. Producer-Consumer Problem (Concept)
+	•	Producer: creates items and puts them in a shared buffer (e.g., queue).
+	•	Consumer: takes items from the buffer and processes them.
+	•	Problem:
+	•	Producer should wait if the buffer is full.
+	•	Consumer should wait if the buffer is empty.
+
+This is where wait() and notify() are used.
+
+
+class SharedBuffer {
+    private int data;
+    private boolean hasData = false; // flag
+
+    // Producer puts data
+    public synchronized void produce(int value) {
+        while (hasData) {  // buffer full
+            try { wait(); } catch (InterruptedException e) { e.printStackTrace(); }
+        }
+        data = value;
+        hasData = true;
+        System.out.println("Produced: " + value);
+        notify(); // wake up consumer
+    }
+
+    // Consumer takes data
+    public synchronized int consume() {
+        while (!hasData) {  // buffer empty
+            try { wait(); } catch (InterruptedException e) { e.printStackTrace(); }
+        }
+        hasData = false;
+        System.out.println("Consumed: " + data);
+        notify(); // wake up producer
+        return data;
+    }
+}
+
+class Producer extends Thread {
+    private SharedBuffer buffer;
+    Producer(SharedBuffer buffer) { this.buffer = buffer; }
+
+    public void run() {
+        for (int i = 1; i <= 5; i++) {
+            buffer.produce(i);
+            try { Thread.sleep(500); } catch (InterruptedException e) { }
+        }
+    }
+}
+
+class Consumer extends Thread {
+    private SharedBuffer buffer;
+    Consumer(SharedBuffer buffer) { this.buffer = buffer; }
+
+    public void run() {
+        for (int i = 1; i <= 5; i++) {
+            buffer.consume();
+            try { Thread.sleep(1000); } catch (InterruptedException e) { }
+        }
+    }
+}
+
+public class ProducerConsumerDemo {
+    public static void main(String[] args) {
+        SharedBuffer buffer = new SharedBuffer();
+        Producer p = new Producer(buffer);
+        Consumer c = new Consumer(buffer);
+        p.start();
+        c.start();
+    }
+}
+
+
+4. How it Works (Step by Step)
+	•	Producer thread calls produce() → if buffer is full (hasData = true), it waits.
+	•	Consumer thread calls consume() → if buffer is empty (hasData = false), it waits.
+	•	After producing/consuming, each thread calls notify() to wake up the other.
+	•	This way, Producer and Consumer take turns safely without corrupting the buffer.
+
+⸻
+
+5. Key Points for Interview
+	•	Communication is done via wait() and notify() → must be inside synchronized block.
+	•	Always use while loop around wait() (not if) to recheck condition after waking up.
+	•	Prevents race conditions and ensures proper coordination.

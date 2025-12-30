@@ -1,0 +1,20 @@
+spring boot makes it easy to create standalone, production grade spring based application that you can just run 
+
+the core spring already reduceds boilerplate and provodes helpful features for java apps
+
+spring boot takes this convinience to next level by reducing the effort required to setup and configure the app
+
+provides auto configuration and creates standalone apps
+
+------------------------------
+
+somethings about sprongbootapplicationannotation
+
+
+
+
+-------------------------------
+
+bean is object of a class that once created the code and be used anywhere in the entire codebase
+
+

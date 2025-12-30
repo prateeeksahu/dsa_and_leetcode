@@ -1,0 +1,188 @@
+ - submit(runnable)
+ - submit(callable)
+ - submit(runable, result)
+ - shutdown
+ - shutdownNow()
+ - isShutDown()	
+ - invokeAll()
+ - invokeany()
+ - invokeAll(list, time)
+ - invokeAny(list, time)
+ - Future.get()
+ - Future.get(time) - waits for specified time else throws exception
+ - Future.IsDone() - returns boolean if finished no matter exception occured or not
+ - Future.cancel(boolean) - cancels the execution, if true cancel no matter what but if false dont cancel if running
+ - Future.isCancel()
+ - schedule()
+ - scheduleAtFixedRate()
+ - scheduleWithFixedDelay
+ - newCachedThreadPool
+
+
+Executor
+ExecutorService
+ShecduledExecutorServivce 
+
+these are all interfaces and they implements eachother
+
+> executor framework helps us run thread
+
+> we dont need to create the thread by ourselves.. we just need to give it the logic and specify the number of threads to be created.. it will manage the task accordingly
+
+> we can reuse threads in this framework, so threds are not killed and made again, this reduces the computatinonal usage
+
+first come first you define a pool like this 
+
+ExecutorService executor = Executors.newFixedThreadPool(3);
+
+3 is number of threads
+
+next what ever you wanna do pass it in submit function.. takes Runnable as input
+
+executor.submit(() -> {
+                long result = 0;
+                try {
+                    result = factorial(finalI);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                System.out.println(result);
+            });
+
+
+then to stop the threads use shutdown function 
+
+executor.shutdown();
+
+remember this funtion donot wait for threads to finish to move to next code of line, it just like a watchman who has duty to close the pool once all threads job is done... once this line is encountered this watchman stats looking at threads and moves on to next line
+
+to wait for control to move to next line before threads ends use this after shutdown
+
+	try {
+            executor.awaitTermination(1, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+this will wait for specified time if done then fine, otherwise moves on to enext line
+
+> shutdownNow() will not wait for threads to finish it will close the pool instantly
+
+> ExecutorService implements Executor interface and it has only execute method... if you create pool using executor reference you can have a pool but you wont be able to use shutdown
+
+> execute method has the void return type but submit has the a Future<?> retrun type, that means we can return anything after submit is executed, ? is explained in generics
+
+this is how code will look like
+
+public class executorServiceReturn {
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
+        Future<Integer> submit = executorService.submit(() -> 42);
+        System.out.println(submit.get());
+        executorService.shutdown();
+    }
+}
+
+.get can be used to get value.. it will wait till computation is finished
+
+> we pass object of runnable interface in submit, but Future is expecting something to be returned and run method in runnble has void return type
+
+> above we are passing callable interfac's object, we can return anything from callable's call() method
+
+checkout below code 
+
+public class executorServiceReturn {
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
+        Future<?> submit = executorService.submit(() -> System.out.println("Hello"), "ABC");
+        System.out.println(submit.get());
+        executorService.shutdown();
+    }
+}
+
+this submit uses runnable interface and when that is completed it saves a result passed in it in future refrence
+
+---------------------------
+
+> isTerminanted methods checks if everything is closed after shutdown
+
+executorService.isTerminated();
+
+--------------------------------
+
+> Invokeall is the method that takes callables as the list and execute all of them at once once
+
+> when it does so it locks main thread, so main waits till invoke all is finished to go ahead
+
+here is the code 
+
+public static void main(String[] args) throws ExecutionException, InterruptedException {
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
+
+        Callable<Integer> c1 = () -> {
+            System.out.println("Task 1");
+            return 1;
+        };
+
+        Callable<Integer> c2 = () -> {
+            System.out.println("Task 2");
+            return 2;
+        };
+
+        Callable<Integer> c3 = () -> {
+            System.out.println("Task 3");
+            return 3;
+        };
+
+        List<Callable<Integer>> l = Arrays.asList(c1, c2, c3);
+        List<Future<Integer>> futures = executorService.invokeAll(l);
+        for(Future<Integer> f : futures) System.out.println(f.get());
+        executorService.shutdown();
+
+    }
+}
+
+
+> invokeany is the method that returns directly a value not a future
+
+> no matter how many clonable you pass it runs all, but returns the one that was completed first
+
+ Integer futures = executorService.invokeAny(l);
+
+
+ ---------------------------------
+
+ ScheduledExecutorService schedules the execution for givem time
+
+ it has 2 methods
+
+ schedule - just takes runnable and the time delay
+
+ scheduleAtFixedRate - takes runnable, initial delay and time period and executes first thread after initial delay then executes rest after given period, overlapping can happen
+
+ scheduleWithFixedDelay - takes runnable, initial delay and delay, same as previous just after previous execution when to strt next is specified by delay
+
+ below is the code 
+
+public static void main(String[] args) throws ExecutionException, InterruptedException {
+        ScheduledExecutorService s = Executors.newScheduledThreadPool(3);
+        s.scheduleAtFixedRate(() -> System.out.println("hi"), 2,5, TimeUnit.SECONDS);
+        s.scheduleWithFixedDelay(() -> System.out.println("hi"), 2,5, TimeUnit.SECONDS);
+        s.schedule(() -> {
+            System.out.println("terminating");
+            s.shutdown();
+        }, 30 , TimeUnit.SECONDS);
+
+    }
+
+
+these methods returns ScheduledFuture<?>
+-----------------------------
+
+ExecutorService executorService = Executors.newCachedThreadPool();
+
+this will create adynamic thread pool in which threads are creadted and kiiled based on usage
+
+if anythread remains inactive for more than 60secs its killed 
+
+since there is no upper limit it can consume enitre CPU

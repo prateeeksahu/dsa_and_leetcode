@@ -1,0 +1,45 @@
+ORM - Object relational mapping
+
+> it is a technique used to map java objects to database tables
+
+> lets say you have a table and class of name user, so if you do operation on class and it will reflect in table
+
+> this allows users to use oops on databases
+
+> ORM framework example - hibernate
+
+
+------------------------------------------------------
+
+JPA
+
+> java persistance API - premanantly storing data using set of rules (API) to achive ORM
+
+> it includes set of annotations, interfaces that classes use for orm implementation
+
+> this also means jpa is set of rules that orm tools implements or presistance providers
+
+> JPA ia one implmentation and then there are multiple more implmentation of it like hibernate, ecpliselink and openjpa
+
+> these providers implement jpa interface and provide underlying functionality
+
+> JPAs are only for relational DBs
+
+Spring Data JPA builds on top of JPA to make it even easier to perform database operations.
+
+It takes away most of the repetitive code by automatically generating the SQL/JPQL queries for you.
+
+You don’t even need to write queries for basic CRUD (Create, Read, Update, Delete) operations!
+
+---------------------------------------------------
+
+in mongo spring data mongodb serves as persistance provider
+
+-------------------------------------------------
+
+there are two ways to interact with db when using Spring data JPA
+
+ - QUery method dsl
+ - Criteria API
+
+you gotta write function names to create queires

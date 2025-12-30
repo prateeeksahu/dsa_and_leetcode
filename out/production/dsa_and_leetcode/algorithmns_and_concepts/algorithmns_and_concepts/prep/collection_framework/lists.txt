@@ -1,0 +1,8 @@
+
+the ordered collection of elements is called list
+
+allows precise control over where elements can be inserted and can contain duplicates
+
+- order preservation
+- index based access
+- allows duplicates

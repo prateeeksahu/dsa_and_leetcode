@@ -24,7 +24,5 @@ public class generics {
         ArrayList<Integer> li = new ArrayList(1000);
 
         li.remove((Integer) 1);
-
-      compareTo();
     }
 }

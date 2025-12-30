@@ -1,0 +1,67 @@
+annotation can be put on a 
+
+ - class
+ - interface
+ - method
+ - field
+
+
+it provides information about the thing it has been put on
+
+
+@Component - specifies that this class shold be kept in ioc container, these clases and their objects are called beans
+
+@SpringBootApplication -  this annotation is used only once in an entire application.. app starts from here.. it is put on main class where main method is present 
+ 
+ it does the job of 3 annotations 
+
+ 1. @ComponentScan - scans the classes with component annotation
+ 2. @Configureation - we can make bean , itna hi pata hai mujhe
+ 3. @EnableAutoConfiuration - automatically configures stuff for things like data base configuration
+
+
+@RequestMapping - adds mapping to entire class.. if there are multiple http verbs are present then based on what type of request is being sent the methods are called
+  remember if you are not adding http verb annotation inside this class there can not me more than 1 method can be present of same mapping, there cannot be 2 gets or posts or put .. this will create error
+  but if you do so the url will become /<Requestmapping valve>/<http verb value>
+
+@RequestBody - takes data in form of json in form of request turn it into java object that can be used in code
+
+@PathVariable - puts the value inside the varible form url
+
+
+@RestController
+@RequestMapping("/journal")
+public class JournalEntryController {
+
+    private HashMap<Long, JournalEntry> journalEntryMap = new HashMap<>();
+
+    @GetMapping
+    public List<JournalEntry> getAll(){
+        return new ArrayList<>(journalEntryMap.values());
+    }
+
+    @PostMapping
+    public boolean postMapping(@RequestBody JournalEntry myEntry){
+        journalEntryMap.put(myEntry.getId(), myEntry);
+        return true;
+    }
+
+    @GetMapping("id/{myId}")
+    public JournalEntry getEntryById(@PathVariable Long myId){
+        return journalEntryMap.get(myId);
+    }
+
+    @DeleteMapping("/id{myId}")
+    public JournalEntry deleteEntryById(@PathVariable Long myId){
+        return journalEntryMap.remove(myId);
+    }
+
+    @PutMapping("/id{myId}")
+    public JournalEntry putEntryById(@PathVariable Long myId, @RequestBody JournalEntry myEntry){
+        return journalEntryMap.put(myId, myEntry);
+    }
+
+
+
+}
+

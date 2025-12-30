@@ -1,0 +1,28 @@
+> Exception is an event that disrupts the normal flow of code. It is object which is thrown at runtime
+
+
+to keep our code running we need to handle these exceptions, we try catch for this 
+
+    private static int divide(int a, int b){
+        try {
+            return a/b;
+        } catch(ArithmeticException e){
+            System.out.println(e);
+            return -1;
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] arr1 = new int[]{1,2,3, 4};
+        int[] arr = new int[]{47,985,0, 858};
+
+        for(int i = 0;i<4; i++) System.out.println(divide(arr1[i], arr[i]));
+
+    }
+
+in above code error will occur when we try to do 3/0 in 3rd itr of loop and code will throw error with arithmatic exception
+
+
+so we handle it in try catch - notice java sends an object of error we receive it in catch and do something else when we get in excepetion
+
+here we are just returning -1 and printing the obj of exception

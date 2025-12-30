@@ -1,0 +1,62 @@
+to start db you gotta put command
+
+  brew services start mongodb-community@7.0
+
+likewise to close it you gotta put 
+
+  brew services stop mongodb-community@7.0
+
+------------------------------------
+
+now to enter the db write start the db and put 
+
+  mongosh
+
+-----------------------------------
+
+to create db write 
+
+  use <dbname>
+
+------------------------------------
+
+to make an entry we write 
+  db.students.insertOne({"name" : "prateek", "age" : 24})
+------------------------------
+
+when we made an entry in students we actually made a collection of student 
+
+to view collection names just write 
+
+  show collections
+
+------------------------------
+
+and to view the entry write 
+
+  db.students.find()
+
+  db.students.find({name:"prateek"})
+
+
+and to delete write 
+
+   db.students.deleteOne({name: "pratik"})
+
+
+
+----------------------------------
+
+collection is similar to table
+
+document is similar to row and each row has a unique id that mongo generates itself
+
+field is similar to column 
+
+--------------------------
+
+@Docuument annotaion over any pojo will tell java that this is a doc of mongodb table 
+
+@Id over a field will tell this is a primary key
+
+--------------------------

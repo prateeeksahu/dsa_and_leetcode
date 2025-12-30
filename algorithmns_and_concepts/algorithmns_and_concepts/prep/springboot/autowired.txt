@@ -1,0 +1,28 @@
+@RestController
+public class car {
+
+    @Autowired
+    private Dog dog;
+
+    @GetMapping("/ok")
+    public String ok(){
+        return dog.fun();
+    }
+}
+
+
+
+ioc has class that was marked as component 
+
+we can put an annotation @Autowired to get its object 
+
+on whichever field you put this on in that field object will be assigned 
+
+and then it can be used... this is called dependeny injection
+
+
+car has dependency on dog... we are putting dog object inside a car.. hence it called dependency injection
+
+more specifically it is called field injection
+
+this supply same instance of class/ same object in every class.. new object is not created ... only 1 object is created

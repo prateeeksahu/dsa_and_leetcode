@@ -1,0 +1,14 @@
+
+controller calls service 
+
+service has all the business logic written in it
+
+service calls repository
+
+in repository interface we extend mongorepository interface that is already provided by mongo to do crud operations 
+
+this interface is generic type so it takes the type of entity (object) and the datatype of id we are searching for
+
+the pojo has to mapped to a collection in db @Document(collection = "journal_entries") annotation is used for mapping, this tell java and mongo what collection it is mapped to
+
+whatever you wanna put as primary key in pojo should be marked as @Id
