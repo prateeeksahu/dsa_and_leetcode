@@ -1,0 +1,20 @@
+project lonbok is a popular java library often used springboot applications
+
+it aims to reduce the boilerplate code like getters, setters, constructors, etc
+
+lombok geneartes this automatically durong compile times based on annotations you add to your java class
+
+below annotations can be used 
+
+@Getter – Generates getter methods for all fields.
+@Setter – Generates setter methods for all fields.
+@NoArgsConstructor – Creates a constructor with no arguments.
+@AllArgsConstructor – Creates a constructor with arguments for all fields.
+@ToString – Generates a toString() method for the class.
+@EqualsAndHashCode – Generates equals() and hashCode() methods based on fields.
+@Builder – Implements the Builder pattern for object creation.
+@Slf4j – Provides an SLF4J logger named 'log'.
+@Data – Combines @Getter, @Setter, @ToString, @EqualsAndHashCode, and @RequiredArgsConstructor
+@DBref - links an entity to another class or object in DB
+
+lombok generates bytecode of all above mentioned methods based on annotations given, this is then added in compiled .class file

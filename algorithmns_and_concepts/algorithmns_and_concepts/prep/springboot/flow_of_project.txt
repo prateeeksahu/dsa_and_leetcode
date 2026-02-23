@@ -12,3 +12,7 @@ this interface is generic type so it takes the type of entity (object) and the d
 the pojo has to mapped to a collection in db @Document(collection = "journal_entries") annotation is used for mapping, this tell java and mongo what collection it is mapped to
 
 whatever you wanna put as primary key in pojo should be marked as @Id
+
+--------------------------------------------------------------------------
+
+whenever you hit an endpoint it goes from controller then to service layer and from there the methods are called and action is performed in db

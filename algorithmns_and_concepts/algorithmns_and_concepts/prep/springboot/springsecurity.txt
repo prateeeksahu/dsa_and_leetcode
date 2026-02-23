@@ -1,0 +1,84 @@
+Spring security is a highly customizable security framework that is often used in springboot applicaton to handle authentication and authorization 
+
+authentication - user identity 
+
+authorization - granting and denying resources and actions to authorised user
+
+you just need to add dependency and springboot's auto configuration feature will add security to application and secures all the end points
+
+by default it uses http basic authentication
+
+
+------------------------------------------------------
+
+the client sends an authorization header that is a basic encoded string - userame:password encoded in base64
+
+server extracts username and password and verifies the user
+
+WebSecurity ConfigurerAdapter is a utility class in the Spring Security framework that provides default configurations and allows customization of certain features. 
+By extending it, you can configure and customize Spring Security for your application needs
+
+------------------------------------------------------
+
+- protected void configure(HttpSecurity http) throws Exception{} - 
+
+This method provides a way to configure how requests are secured.
+It defines how request matching should be done and what security actions should be applied.
+
+--------------------------------------------------------
+
+you can do method chaining spring security... you can use multiple methods one after another
+
+some of the samples are
+
+http.authorizeRequests(): This tells Spring Security to start authorizing the requests.
+
+.antMatchers("/hello").permitAll(): This part specifies that HTTP requests matching the path /hello should be permitted (allowed) for all users, whether they are authenticated or not.
+
+.anyRequest().authenticated(): This is a more general matcher that specifies any request (not already matched by previous matchers) should be authenticated, 
+			       meaning users have to provide valid credentials to access these endpoints.
+
+.and(): Thes is a method to join several configurations. It helps to continue the configuration from the root (HttpSecurity).
+
+•formLogin(): This enables form-based authentication. By default, it will provide a form for the user to enter their username and password. 
+              If the user is not authenticated and they try to access a secured endpoint, they'll be redirected to the default login form.
+	      if you dont provide a login form the default login form becomes active
+
+	      spring security provides an inbuilt controller that handles login path which is responsible for rendering default login form when get request is made on /login
+
+
+a logout() method is also provided.. when configured post request to /logout will logout invalidate user session
+
+--------------------------------------------------
+
+When you log in with Spring Security, it manages your authentication across multiple requests, despite
+HTTP being stateless.
+1. Session Creation: After successful authentication, an HTTP session is formed. Your authentication details are stored in this session.
+2. Session Cookie: A JSESSIONID cookie is sent to your browser, which gets sent back with subsequent requests, helping the server recognize your session.
+3. SecurityContext: Using the SESSIONID, Spring Security fetches your authentication details for each request.
+4. Session Timeout: Sessions have a limited life. If you're inactive past this limit, you're logged out.
+5. Logout: When logging out, your session ends, and the related cookie is removed.
+6. Remember-Me: Spring Security can remember you even after the session ends using a different persistent cookie (typically have a longer lifespan) .
+In essence, Spring Security leverages sessions and cookies, mainly JSESSIONID, to ensure you remain authenticated across requests.
+
+---------------------------------------------------------------------------------------
+
+UserDetailsService - UserDetailsService is the interface Spring uses to load user information during authentication. Spring Security calls UserDetailsService to find a user by username and check their credentials & roles.
+
+What problem does it solve?
+
+When someone tries to log in:
+1. User submits username + password
+2. Spring Security needs to:
+ •find that user
+ • get the stored password (hashed)
+ • get roles / authorities
+3. Spring does NOT know where your users live
+ • database?
+ • memory?
+ • LDAP?
+ • API?
+
+UserDetailsService is the plug-in point where you tell Spring how to load users.
+
+

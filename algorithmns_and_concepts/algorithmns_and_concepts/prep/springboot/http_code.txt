@@ -1,0 +1,40 @@
+hhtp status code is a 3 digit numeric code returned by web server as a part of response to an http request made by the client 
+
+these codes are used to convey information about the result or status of the requested operation 
+
+before reading the respose client first reads the response 
+
+------------------------------------------------------------------
+
+response status code are grouped into 5 categories based on their first digit 
+
+1. 1xx - informational - these represent that the request was recived and understood and the server is continuing to process it. these are rarely seen in practice
+
+2. 2xx - Successful - these represent the request was recived, understood and processed
+
+   ex - 200 OK - retuest has been successfully processed and server is returning the requested resources
+        201 created - the request has been fullfilled and new resource has been created
+	204 no content - the request was successful but there is no response body (typically used for operations that dont return data like, deletion)
+
+3. 3xx - redirection - these codes indicates that further action is needed to complete the request. these are used when client needs to take additional steps to access the requested resources.
+   
+   ex - 301 moved permanently - the requested resource has been permanantely moved to different url.
+        302 found - the requested resource has been temperorly moved to a different url, this code includes location header field that specifes new temp URL where client redirects to
+
+4. 4xx - client error - these indicate that there was an error on client's part such as malformed request or authentication issue
+
+   ex - 400 bad request - the server cannot understand or process client's request due to invalid syntax or other client side issues
+        401 unauthorized - the client needs to provide authentication credentials to aceess requested resource 
+	403 forbidden  - the client is authenticated but does not have premission to access requested resource
+	404 not found 
+
+5. 5xx - server - these status code indicate that there was error on server's part 
+	
+   ex - 500 internal server error - a generic message that something went wrong on server and the server could not handle the request
+        502 bad gateway - the server actiong as gateway or proxy recived an invalid response from an upstream server 
+	503 service unavaliable - the server is currenlty unable to handle request due to temporary overloading and maintenence 
+
+
+-----------------------------------------------------------------------
+
+in spring responseEntity is used to send http status code
