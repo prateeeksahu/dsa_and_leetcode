@@ -25,6 +25,22 @@ If graph is undirected for similar manner below code can be used
 
 
 
+
+another way can be
+
+    Map<Integer, List<int[]>> adj = new HashMap();
+        for(int[]r : roads){
+            adj.computeIfAbsent(r[0], k -> new ArrayList()).add(new int[]{r[1], r[2]});
+            adj.computeIfAbsent(r[1], k -> new ArrayList()).add(new int[]{r[0], r[2]});
+        }
+
+
+* Map<Integer, List<int[]>> adj stores each node and its list of neighbors, where each int[] is {neighbor, weight}.
+* computeIfAbsent(key, k -> new ArrayList<>()) checks if the key exists; if not, it creates a new empty list and returns it.
+* .add(new int[]{neighbor, weight}) adds the neighboring node and edge weight to the list.
+* Since the graph is undirected, each road {u, v, w} is added twice: u → v and v → u.
+
+
 now if you are given 2d matrix as edges then to make adj list you can use this
 
         Map<Integer, List<Integer>> adj = new HashMap();
